@@ -1,8 +1,20 @@
+import { useEffect, useRef } from 'react';
 
 const Hero = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const heroElement = heroRef.current;
+    if (heroElement) {
+      heroElement.classList.add('animate-slide-up');
+    }
+  }, []);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-20 text-center lg:pt-32 h-[80vh]">
+    <div
+      ref={heroRef}
+      className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-20 text-center lg:pt-32 h-[80vh] opacity-0"
+    >
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
         Navigating Your
         <span className="relative whitespace-nowrap text-blue-600">
@@ -29,17 +41,9 @@ const Hero = () => {
         >
           Learn More
         </a>
-        <a
-          className="group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-blue-600 focus-visible:ring-slate-300"
-          // variant="outline"
-          color="slate"
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        >
-          <span className="ml-3">Contact Us</span>
-        </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
