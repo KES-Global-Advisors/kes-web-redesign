@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../assets/KES-Logo-print.png';
 
 const Footer = () => {
