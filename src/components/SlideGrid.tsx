@@ -6,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 const slides = [
   {
     id: 1,
-    imgSrc: "https://cdn.prod.website-files.com/6331e9344ba23e6359005fcf/636a8028e95bb8641d5aeb5b_process-suite-image.jpg",
+    imgSrc: "    https://i.postimg.cc/FFGxzMRD/Capability-Dev-1.jpg",
     alt: "Process Suit",
     title: "Employee Led Strategic Improvement",
     tagline: "Real Ownership and Alignment",
@@ -15,7 +15,7 @@ const slides = [
   },
   {
     id: 2,
-    imgSrc: "https://cdn.prod.website-files.com/6331e9344ba23e6359005fcf/636a805be95bb8ecbe5aeea8_asset-suite-image.jpg",
+    imgSrc: "https://i.postimg.cc/tJGNPb6M/Adobe-Stock-201803237.jpg",
     alt: "Process Suit",
     title: "Organizational Change & Alignment",
     tagline: "Effective Change Management",
@@ -24,7 +24,7 @@ const slides = [
   },
   {
     id: 3,
-    imgSrc: "https://cdn.prod.website-files.com/6331e9344ba23e6359005fcf/636a805be95bb8ecbe5aeea8_asset-suite-image.jpg",
+    imgSrc: "https://i.postimg.cc/9QHHMwzd/Exec-Coaching.jpg",
     alt: "Process Suit",
     title: "Executive Coaching & Leadership Development",
     tagline: "Effective Change Management",
