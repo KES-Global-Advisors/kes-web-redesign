@@ -1,12 +1,9 @@
-
-
-import { useState } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import {useRef, useEffect} from 'react';
 
 const slides = [
   {
     id: 1,
-    imgSrc: "    https://i.postimg.cc/FFGxzMRD/Capability-Dev-1.jpg",
+    imgSrc: "https://i.postimg.cc/wTc3W9Y7/Employee-Led-Change.jpg",
     alt: "Process Suit",
     title: "Employee Led Strategic Improvement",
     tagline: "Real Ownership and Alignment",
@@ -27,42 +24,87 @@ const slides = [
     imgSrc: "https://i.postimg.cc/9QHHMwzd/Exec-Coaching.jpg",
     alt: "Process Suit",
     title: "Executive Coaching & Leadership Development",
-    tagline: "Effective Change Management",
-    description: "One of the biggest challenges facing senior leaders in continuing to improve their personal effectiveness as leaders and drive their own careers forward, is the ability to get constructive and, when needed, critical feedback.  This is where executive coaching can help.",
+    tagline: "Driving Personal Effectiveness",
+    description: "One of the biggest challenges facing senior leaders in continuing to improve their personal effectiveness as leaders and drive their own careers forward, is the ability to get constructive and, when needed, critical feedback. This is where executive coaching can help.",
+    link: "/",
+  },
+  {
+    id: 4,
+    imgSrc: "https://i.postimg.cc/631D02YC/Exec-Coaching-2.jpg",
+    alt: "Experiential Knowledge Capture",
+    title: "Experiential Knowledge Capture",
+    tagline: "Optimizing Plant Operations",
+    description: "We work with our clients to help them design and implement experiential knowledge capture programs to not only mitigate the impacts of the experience drain but to help optimize plant operations delivering bottom line improvements.",
+    link: "/",
+  },
+  {
+    id: 5,
+    imgSrc: "https://i.postimg.cc/FFGxzMRD/Capability-Dev-1.jpg",
+    alt: "Rapid Capability Development",
+    title: "Rapid Capability Development",
+    tagline: "Accelerating Plant Operator Capability",
+    description: "Blending various training methods (e.g., classroom, e-learning, structured self-paced learning, guided job shadowing, experiential development exercises), we help you significantly accelerate plant operator capability development delivering immediate business impact.",
+    link: "/",
+  },
+  {
+    id: 6,
+    imgSrc: "https://i.postimg.cc/4dmhMqbj/digital-Operational-Excellence.jpg",
+    alt: "Digital Operational Excellence",
+    title: "Digital Operational Excellence",
+    tagline: "Sustainable Digital Transformation",
+    description: "We help design and implement digital transformation programs anchored to improvements that directly impact the users to ensure sustainable results.",
     link: "/",
   },
 ];
 
 const SlideGrid = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const sectionRef = useRef(null);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Adjust the threshold as needed
+      }
+    );
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div className="relative lg:w-[60rem] p-6 bg-transparent">
-      <div className="overflow-hidden">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`grid grid-cols-1 md:grid-cols-2 gap-10 transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ display: index === currentSlide ? 'grid' : 'none' }}
-          >
-            <div className="relative w-full h-64 md:h-auto">
+    <div ref={sectionRef} className="bg-[#f5f2f7] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:text-center">
+          <h2 className="text-base font-semibold leading-7 text-indigo-600">What We Do</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Transforming Leadership into Performance</p>
+        </div>
+      </div>
+      <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto mt-16 lg:max-w-[90%]">
+        {slides.map((slide) => (
+          <div key={slide.id} className="flex flex-col md:flex-row bg-white rounded-lg shadow-md overflow-hidden w-full">
+            <div className="relative w-full md:w-1/2 h-64 md:h-auto">
               <img
                 src={slide.imgSrc}
                 alt={slide.alt}
                 className="w-full h-full object-cover rounded-r-[48px]"
               />
             </div>
-            <div className="flex flex-col justify-center p-4">
+            <div className="flex flex-col justify-center p-6 md:w-1/2">
               <div className="mb-4">
                 <div className="flex space-x-2">
                   <div className="w-8 h-1 bg-yellow-500"></div>
@@ -101,21 +143,6 @@ const SlideGrid = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 lg:mt-[-200px]">
-        <button
-            className="bg-gray-200 p-2 rounded-full hover:text-blue-600"
-            onClick={prevSlide}
-        >
-            <FaArrowLeft />
-        </button>
-        <button
-            className=" bg-gray-200 p-2 rounded-full hover:text-blue-600"
-            onClick={nextSlide}
-        >
-            <FaArrowRight />
-        </button>
       </div>
     </div>
   );
