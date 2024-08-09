@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import { Navigation, Autoplay, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import '../styles.css';
 
 const testimonials = [
@@ -73,20 +73,25 @@ const Testimonials: React.FC = () => {
       <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
         <Swiper
           cssMode={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           navigation={true}
           pagination={true}
           mousewheel={true}
           keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          loop={true}
+          modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
           className="mySwiper"
         >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.id}>
-              <figure className="mt-10 transition-opacity duration-500 ease-in-out lg:min-h-[400px] min-h-[520px]">
+              <figure className="lg:min-h-[320px] min-h-[520px]">
                 <blockquote className="text-center font-semibold leading-8 lg:text-white text-gray-900 sm:text-2xl sm:leading-9">
                   <p>{testimonial.text}</p>
                 </blockquote>
-                <figcaption className="mt-10">
+                <figcaption className="mt-8">
                   <div className="mt-4 flex items-center justify-center space-x-3 text-base">
                     <div className="font-semibold lg:text-white text-gray-900">{testimonial.author}</div>
                     <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
