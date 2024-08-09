@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import { ArchiveBoxIcon, ArrowsRightLeftIcon, ChartBarIcon, CogIcon, UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline'
 
 const services = [
   {
@@ -7,42 +7,42 @@ const services = [
     name: 'Employee Led Strategic Improvement ',
     description:
       'Creating real ownership and alignment can be messy, but its essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
-    icon: CloudArrowUpIcon,
+    icon: ChartBarIcon,
   },
   {
     tagline: 'Effective Change Management ',
     name: 'Organizational Change & Alignment ',
     description:
       'Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.',
-    icon: LockClosedIcon,
+    icon: ArrowsRightLeftIcon,
   },
   {
     tagline: 'Driving Leadership Effectiveness ',
     name: 'Leadership Coaching & Development ',
     description:
       'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that drive measurable value.',
-    icon: ArrowPathIcon,
+    icon: UserGroupIcon,
   },
   {
     tagline: 'Optimizing Plant Operations ',
     name: 'Experiential Knowledge Capture ',
     description:
       'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights, optimizing operations and delivering bottom-line improvements.',
-    icon: FingerPrintIcon,
+    icon: ArchiveBoxIcon,
   },
   {
     tagline: 'Accelerating Plant Operator Capability ',
     name: 'Rapid Capability Development',
     description:
       'Active, blended learning accelerates capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
-    icon: ArrowPathIcon,
+    icon: BoltIcon,
   },
   {
     tagline: 'Practical Digital Transformation ',
     name: 'Digital Operational Excellence ',
     description:
       'Digital transformation changes how people work, not just the technology they use. We design and implement programs that align with operational excellence efforts and the unique challenges of production environments, ensuring sustainable results.',
-    icon: FingerPrintIcon,
+    icon: CogIcon,
   },
 ]
 
