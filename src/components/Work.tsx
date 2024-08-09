@@ -1,150 +1,107 @@
-import SlideGrid from './SlideGrid';
-// import Approach from './Approach';
+import { useState } from 'react';
+import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 
-const posts = [
+const services = [
   {
-    id: 1,
-    title: 'Experiential Knowledge Capture',
-    href: '#',
+    tagline: 'Real Ownership and Alignment ',
+    name: 'Employee Led Strategic Improvement ',
     description:
-      'We work with our clients to help them design and implement experiential knowledge capture programs to not only mitigate the impacts of the experience drain but to help optimize plant operations delivering bottom line improvements.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
-    author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
+      'Creating real ownership and alignment can be messy, but its essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
+    icon: CloudArrowUpIcon,
   },
   {
-    id: 2,
-    title: 'Rapid Capability Development',
-    href: '#',
+    tagline: 'Effective Change Management ',
+    name: 'Organizational Change & Alignment ',
     description:
-      'Blending various training methods (e.g., classroom, e-learning, structured self-paced learning, guided job shadowing, experiential development exercises), we help you significantly accelerate plant operator capability development delivering immediate business impact.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
-    author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
+      'Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.',
+    icon: LockClosedIcon,
   },
   {
-    id: 3,
-    title: 'Digital Operational Excellence',
-    href: '#',
+    tagline: 'Driving Leadership Effectiveness ',
+    name: 'Leadership Coaching & Development ',
     description:
-      'We help design and implement digital transformation programs anchored to improvements that directly impact the users to ensure sustainable results.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
-    author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
+      'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that drive measurable value.',
+    icon: ArrowPathIcon,
+  },
+  {
+    tagline: 'Optimizing Plant Operations ',
+    name: 'Experiential Knowledge Capture ',
+    description:
+      'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights, optimizing operations and delivering bottom-line improvements.',
+    icon: FingerPrintIcon,
+  },
+  {
+    tagline: 'Accelerating Plant Operator Capability ',
+    name: 'Rapid Capability Development',
+    description:
+      'Active, blended learning accelerates capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
+    icon: ArrowPathIcon,
+  },
+  {
+    tagline: 'Practical Digital Transformation ',
+    name: 'Digital Operational Excellence ',
+    description:
+      'Digital transformation changes how people work, not just the technology they use. We design and implement programs that align with operational excellence efforts and the unique challenges of production environments, ensuring sustainable results.',
+    icon: FingerPrintIcon,
   },
 ]
 
 const Work = () => {
+  const [openModal, setOpenModal] = useState<string | null>(null);
+
+  const handleOpenModal = (name: string) => {
+    setOpenModal(name);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(null);
+  };
+
   return (
     <div className="bg-[#f5f2f7] py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
-        {/* <Approach /> */}
-        <p className="text-base font-semibold leading-7 text-indigo-600">
-          Value in Every Engagement
-        </p>
-        <p className="text-3xl font-bold mt-6 leading-8 text-gray-900">
-          Our Approach
-        </p>
-        <p className="mt-4 text- leading-8 text-gray-700">
-          Recognizing that every client is different, we do not believe in one size fits all approaches.
-          Instead, we take a very collaborative approach tailored to the needs and challenges unique to each client.
-          Bringing with us decades of technical and organizational experience in the oil and gas and chemicals sectors,
-          we facilitate employee led improvement programs, integrating practical guidance and support as needed to drive
-          alignment and ensure the overall effectiveness of the resulting improvement efforts.
-        </p>
-        <p className="mt-4 text- leading-8 text-gray-700">
-          Any program designed to bring about organizational change cannot be based on a static planned approach.
-          Throughout every engagement, we are constantly evaluating the overall effectiveness of the program approach
-          and making adjustments as needed to maximize value creation.
-        </p>
-      </div>
-
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-10">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">What We Do</h2>
-          <p className="text-lg font-bold mt-2 leading-8 text-gray-900">
-            Transforming Leadership into Performance
+          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Transforming Leadership into Performance 
           </p>
-          <SlideGrid />
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {posts.map((post) => (
-            <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
-              {/* <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={post.datetime} className="text-gray-500">
-                  {post.date}
-                </time>
-                <a
-                  href={post.category.href}
-                  className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                >
-                  {post.category.title}
-                </a>
-              </div> */}
-              <div className="group relative">
-                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <a href={post.href}>
-                    <span className="absolute inset-0" />
-                    {post.title}
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+            {services.map((service) => (
+              <div key={service.name} className="relative pl-16">
+                <div>
+                  <dt className="text-gray-700 text-sm font-semibold mb-2">
+                    {service.tagline}
+                  </dt>
+                  <dt className="text-base font-semibold leading-7 text-gray-900">
+                    <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                      <service.icon aria-hidden="true" className="h-6 w-6 text-white" />
+                    </div>
+                    {service.name}
+                  </dt>
+                  <dd className="mt-2 text-base leading-7 text-gray-600 min-h-[180px]">
+                    {service.description}
+                  </dd>
+                </div>
+                <div className="mt-4">
+                  <a href="#" onClick={() => handleOpenModal(service.name)} className="text-sm font-semibold leading-6 text-indigo-700">
+                    Learn more <span aria-hidden="true">→</span>
                   </a>
-                </h3>
-                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
-              </div>
-              
-              <div className="relative mt-8 flex items-center gap-x-4">
-                {/* <img alt="" src={post.author.imageUrl} className="h-10 w-10 rounded-full bg-gray-50" />
-                <div className="text-sm leading-6">
-                  <p className="font-semibold text-gray-900">
-                    <a href={post.author.href}>
-                      <span className="absolute inset-0" />
-                      {post.author.name}
-                    </a>
-                  </p>
-                  <p className="text-gray-600">{post.author.role}</p>
-                </div> */}
-              <a
-                href={post.href}
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-lg font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Learn More
-                <svg
-                  className="ml-2 w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 13 12"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M0 6.13498C0 5.93607 0.0790178 5.7453 0.21967 5.60465C0.360322 5.464 0.551088 5.38498 0.75 5.38498H9.4395L6.219 2.16598C6.07817 2.02515 5.99905 1.83414 5.99905 1.63498C5.99905 1.43582 6.07817 1.24481 6.219 1.10398C6.35983 0.963151 6.55084 0.884033 6.75 0.884033C6.94916 0.884033 7.14017 0.963151 7.281 1.10398L11.781 5.60398C11.8508 5.67365 11.9063 5.75641 11.9441 5.84753C11.9819 5.93865 12.0013 6.03633 12.0013 6.13498C12.0013 6.23363 11.9819 6.33131 11.9441 6.42243C11.9063 6.51355 11.8508 6.59631 11.781 6.66598L7.281 11.166C7.14017 11.3068 6.94916 11.3859 6.75 11.3859C6.55084 11.3859 6.35983 11.3068 6.219 11.166C6.07817 11.0252 5.99905 10.8341 5.99905 10.635C5.99905 10.4358 6.07817 10.2448 6.219 10.104L9.4395 6.88498H0.75C0.551088 6.88498 0.360322 6.80596 0.21967 6.66531C0.0790178 6.52466 0 6.33389 0 6.13498Z"
-                  />
-                </svg>
-              </a>
-              </div>
+                </div>
 
-            </article>
-          ))}
+                {openModal === service.name && (
+                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg">
+                      <h3 className="text-lg font-semibold mb-4">{service.name}</h3>
+                      <p className="mb-4">{service.description}</p>
+                      <button onClick={handleCloseModal} className="text-indigo-700 font-semibold">Close</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </div>
