@@ -1,57 +1,41 @@
-// import React from 'react';
 import logo from '../assets/KES-Logo-print.png';
 
 const Header = () => {
-  return (
-    <header className="py-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <nav className="relative z-50 flex justify-between">
-          <a aria-label="Home" href="#">
-            <img src={logo} alt="KES Global Advisors" className="h-10 w-auto" />
-          </a>
-
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:flex md:gap-x-6">
-              <a className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900" href="#features">
-                Home
+    return (
+      <header className="z-50 top-0 lg:right-[16%] left-0 right-0 absolute">
+        <div className="max-w-5xl mx-auto">
+          <div className="px-6 pt-6 lg:max-w-5xl lg:pl-8 lg:pr-0">
+            <nav aria-label="Global" className="flex items-center justify-between lg:justify-start">
+              <a href="#" className="m-1.5 p-1.5">
+                <img src={logo} alt="KES Global Advisors" className="h-10 w-auto" />
               </a>
-              <a className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900" href="#testimonials">
-                About
-              </a>
-              <a className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900" href="#pricing">
-                Services
-              </a>
-              <a className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900" href="#pricing">
-                Insights
-              </a>
-              <a className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900" href="#pricing">
-                Contact
-              </a>
-            </div>
-
-            <div className="-mr-1 md:hidden">
-              <div data-headlessui-state="">
-                <button
-                  className="relative z-10 flex h-8 w-8 items-center justify-center ui-not-focus-visible:outline-none"
-                  aria-label="Toggle Navigation"
-                  type="button"
-                  aria-expanded="false"
-                  data-headlessui-state=""
-                  id="headlessui-popover-button-:r2:"
+              <button type="button" className="m-2.5 p-2.5 rounded-lg text-gray-700 lg:hidden">
+                <span className="absolute w-px h-px p-0 m-px overflow-hidden clip-rect">Open main menu</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  className="h-6 w-6"
                 >
-                  <svg aria-hidden="true" className="h-3.5 w-3.5 overflow-visible stroke-slate-700" fill="none" strokeWidth="2" strokeLinecap="round">
-                    <path d="M0 1H14M0 7H14M0 13H14" className="origin-center transition"></path>
-                    <path d="M2 2L12 12M12 2L2 12" className="origin-center transition scale-90 opacity-0"></path>
-                  </svg>
-                </button>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              </button>
+              <div className="hidden lg:flex lg:ml-12 lg:gap-x-14">
+                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Home</a>
+                <a href="#" className="text-base font-semibold leading-6 text-gray-900">About</a>
+                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Services</a>
+                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Insights</a>
+                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Contact</a>
               </div>
-              <div style={{ position: 'fixed', top: 1, left: 1, width: 1, height: 0, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0, display: 'none' }}></div>
-            </div>
+            </nav>
           </div>
-        </nav>
-      </div>
-    </header>
-  );
-};
-
-export default Header;
+        </div>
+      </header>
+    );
+  };
+  
+  export default Header;
+  
