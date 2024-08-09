@@ -1,117 +1,79 @@
-// const Testimonials = () => {
-//   return (
-//     <section className="relative overflow-hidden lg:bg-black bg-white px-6 py-24 sm:py-32 lg:px-8">
-//       <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
-//       <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
-//       <div className="mx-auto max-w-2xl lg:max-w-4xl">
-//         <img alt="" src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg" className="mx-auto h-12" />
-//         <figure className="mt-10">
-//           <blockquote className="text-center text-xl font-semibold leading-8 lg:text-white text-gray-900 sm:text-2xl sm:leading-9">
-//             <p>
-//               “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias
-//               molestiae. Numquam corrupti in laborum sed rerum et corporis.”
-//             </p>
-//           </blockquote>
-//           <figcaption className="mt-10">
-//             <img
-//               alt=""
-//               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-//               className="mx-auto h-10 w-10 rounded-full"
-//             />
-//             <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-//               <div className="font-semibold lg:text-white text-gray-900">Judith Black</div>
-//               <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
-//                 <circle r={1} cx={1} cy={1} />
-//               </svg>
-//               <div className="lg:text-white text-gray-600">CEO of Workcation</div>
-//             </div>
-//           </figcaption>
-//         </figure>
-//       </div>
-//     </section>
-//   )
-// }
-
-// export default Testimonials;
-
-import React, { useState } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-
-interface Testimonial {
-  id: number;
-  text: string;
-  author: string;
-  position: string;
-  imageUrl: string;
-}
-
-const testimonials: Testimonial[] = [
+const posts = [
   {
     id: 1,
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.",
-    author: "Judith Black",
-    position: "CEO of Workcation",
-    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    title: 'Translating Motivation into Performance',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
   },
   {
     id: 2,
-    text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
-    author: "John Doe",
-    position: "CTO of Example Co.",
-    imageUrl: "https://images.unsplash.com/photo-1503264111161-8cda51c5f93a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    title: 'The Value of Digital Transformation',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
   },
-  // Add more testimonials as needed
-];
+  {
+    id: 3,
+    title: 'Intentional Leadership',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+  },
+  {
+    id: 4,
+    title: 'Multi-Dimensional Digital Transformation',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+  },
+  {
+    id: 5,
+    title: 'Does Technology Have Value? ',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+  },
+  {
+    id: 6,
+    title: 'Digital Operational Excellence',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+  },
+]
 
-const WhitePapers: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1));
-  };
-
-  const currentTestimonial = testimonials[currentIndex];
-
+const WhitePapers = () => {
   return (
-    <section className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
-      <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
-      <div className="mx-auto max-w-2xl lg:max-w-4xl">
-        <img alt="" src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg" className="mx-auto h-12" />
-        <figure className="mt-10 transition-opacity duration-500 ease-in-out">
-          <blockquote className="text-center text-xl font-semibold leading-8 lg:text-white text-gray-900 sm:text-2xl sm:leading-9">
-            <p>{currentTestimonial?.text}</p>
-          </blockquote>
-          <figcaption className="mt-10">
-            <img
-              alt={currentTestimonial?.author}
-              src={currentTestimonial?.imageUrl}
-              className="mx-auto h-10 w-10 rounded-full"
-            />
-            <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-              <div className="font-semibold lg:text-white text-gray-900">{currentTestimonial?.author}</div>
-              <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
-                <circle r={1} cx={1} cy={1} />
-              </svg>
-              <div className="lg:text-white text-gray-600">{currentTestimonial?.position}</div>
-            </div>
-          </figcaption>
-        </figure>
-        <div className="flex justify-between mt-4">
-          <button onClick={handlePrev} className="bg-gray-200 rounded-full p-2 hover:bg-gray-300">
-            <FaArrowLeft />
-          </button>
-          <button onClick={handleNext} className="bg-gray-200 rounded-full p-2 hover:bg-gray-300">
-            <FaArrowRight />
-          </button>
+    <div className="lg:bg-blue-700 bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600 lg:text-white">
+            We know how important it is to see other perspectives, and for that reason we freely share ours here.
+          </p>
+        </div>
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          {posts.map((post) => (
+            <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+              <div className="group relative">
+                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 lg:text-white">
+                  <span className="absolute inset-0" />
+                  {post.title}
+                </h3>
+                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 lg:text-white">{post.description}</p>
+              </div>
+              <div className="relative mt-8 flex items-center gap-x-4">
+                <a href={post.href} className="text-sm font-semibold leading-6 text-white hover:text-gray-600">
+                  Learn more <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  )
+}
 
 export default WhitePapers;
