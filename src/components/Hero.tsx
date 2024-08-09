@@ -25,15 +25,6 @@ const Hero = () => {
           </svg>
           <div className="relative px-6 py-8 sm:py-40 sm:px-40 lg:px-8 lg:py-56">
             <div className="mx-auto max-w-3xl">
-              {/* <div className="hidden sm:flex mb-10">
-                <div className="relative rounded-full py-1.5 px-3.5 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10">
-                    Check Out Our White Papers And Industry News.
-                  <a href="#" className="font-semibold text-indigo-600 whitespace-nowrap">
-                    <span aria-hidden="true" className="absolute inset-0"></span>
-                     Read <span aria-hidden="true">→</span>
-                  </a>
-                </div>
-              </div> */}
               <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
                 Maximizing your  
                 <span className="relative whitespace-nowrap text-blue-600">
@@ -51,7 +42,7 @@ const Hero = () => {
               </h1>
       
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                By engaging and empowering you workforce and aligning your organization, KES Global Advisors can help to drive significant improvements for your business.
+                By engaging and empowering your workforce and aligning your organization, KES Global Advisors can help to drive significant improvements for your business.
               </p>
               <div className="mt-10 flex items-center gap-x-6">
                 <a href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
