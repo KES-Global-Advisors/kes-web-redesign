@@ -4,14 +4,14 @@ const posts = [
     title: 'Translating Motivation into Performance',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      'When looking at leveraging the value of an organization’s workforce, you are effectively considering the value of changing on-the-job behaviors of the employees to drive positive changes in business performance.',
   },
   {
     id: 2,
     title: 'The Value of Digital Transformation',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      'The key to getting the most out of the technology available today is to ensure that the technology being utilized fits into an overall plan for an organization that not just aligns and enables the various core work processes or enables completely new work processes or practices but ensures that the organizational capabilities are developed to fully support the utilization of that technology.',
   },
   {
     id: 3,
@@ -25,21 +25,21 @@ const posts = [
     title: 'Multi-Dimensional Digital Transformation',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      'The current industry focus on digital transformation is driving some great innovations in industry, and in some cases, enabling complete transformation in how we work and what we can do.',
   },
   {
     id: 5,
     title: 'Does Technology Have Value? ',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      'Technology has no value.  This simple truth, although unpopular with some and seemingly at odds with conventional thinking, should be the basis behind every digitalization strategy.',
   },
   {
     id: 6,
     title: 'Digital Operational Excellence',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      'For operating companies in the energy and chemicals sectors, there should be a clear integration between their digitalization strategies and their operational excellence programs/practices.',
   },
 ]
 
@@ -65,7 +65,7 @@ const WhitePapers = () => {
               </div>
               <div className="relative mt-8 flex items-center gap-x-4">
                 <a href={post.href} className="text-sm font-semibold leading-6 text-white hover:text-gray-600">
-                  Learn more <span aria-hidden="true">→</span>
+                  Read <span aria-hidden="true">→</span>
                 </a>
               </div>
             </article>
