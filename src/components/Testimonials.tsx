@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Element } from 'react-scroll';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -70,6 +70,33 @@ const testimonials = [
 
 const Testimonials: React.FC = () => {
   const swiperRef = useRef<SwiperCore | null>(null);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Adjust the threshold as needed
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (swiperRef.current && swiperRef.current.autoplay) {
@@ -97,7 +124,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <Element name="testimonial">
-      <section className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <section ref={sectionRef} className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-6xl">
           <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
           <Swiper
