@@ -126,7 +126,7 @@ const Testimonials: React.FC = () => {
     <Element name="testimonial">
       <section ref={sectionRef} className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-6xl">
-          <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
+          <h2 className="text-center font-semibold leading-7 mb-10 text-indigo-600 lg:hidden">Testimonials</h2>
           <Swiper
             cssMode={true}
             autoplay={{

@@ -1,5 +1,6 @@
 import logo from '../assets/KES-Logo-print.png';
 import kevin from '../assets/kevin.jpeg';
+import { Link } from 'react-scroll';
 
 const Footer = () => {
   return (
@@ -11,18 +12,26 @@ const Footer = () => {
               <img src={logo} alt="KES Global Advisors" className="h-10 w-auto" />
             </div>
             <nav className="mt-11 flex gap-8">
-              <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0" href="/#faqs">
-                <span className="relative z-10">Home</span>
-              </a>
-              <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0" href="/#pricing">
-                <span className="relative z-10">About</span>
-              </a>
-              <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0" href="/#features">
-                <span className="relative z-10">Services</span>
-              </a>
-              <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0" href="/#reviews">
-                <span className="relative z-10">Insights</span>
-              </a>
+              <Link to="home" smooth={true} duration={500}>
+                <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
+                  <span className="relative z-10">Home</span>
+                </a>
+              </Link>
+              <Link to="about" smooth={true} duration={500}>
+                <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
+                  <span className="relative z-10">About</span>
+                </a>
+              </Link>
+              <Link to="services" smooth={true} duration={400}>
+                <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
+                  <span className="relative z-10">Services</span>
+                </a>
+              </Link>
+              <Link to="insights" smooth={true} duration={600}>
+                <a className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
+                  <span className="relative z-10">Insights</span>
+                </a>
+              </Link>
             </nav>
           </div>
           <div className="group relative -mx-4 flex items-center self-stretch p-4 transition-colors sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">

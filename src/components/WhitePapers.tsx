@@ -77,7 +77,7 @@ const WhitePapers = () => {
 
   return (
     <Element name="insights">
-      <div ref={sectionRef} className="lg:bg-blue-700 bg-white py-24 sm:py-32">
+      <div ref={sectionRef} className="lg:bg-blue-700 py-24 sm:py-32 bg-[#f5f2f7]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
@@ -95,8 +95,8 @@ const WhitePapers = () => {
                   </h3>
                   <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 lg:text-white">{post.description}</p>
                 </div>
-                <div className="relative mt-8 flex items-center gap-x-4">
-                  <a href={post.href} className="text-sm font-semibold leading-6 text-white hover:text-gray-600">
+                <div className="lg:relative mt-8 flex items-center gap-x-4">
+                  <a href={post.href} className="text-sm font-semibold leading-6 text-indigo-700 lg:text-white lg:hover:text-gray-600">
                     Read <span aria-hidden="true">→</span>
                   </a>
                 </div>
