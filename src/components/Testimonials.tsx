@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Autoplay, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import SwiperCore from 'swiper';
 import '../styles.css';
 
 const testimonials = [
@@ -67,14 +68,40 @@ const testimonials = [
 ];
 
 const Testimonials: React.FC = () => {
+  const swiperRef = useRef<SwiperCore | null>(null);
+
+  const handleMouseEnter = () => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.stop();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.start();
+    }
+  };
+
+  const handleTouchStart = () => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.stop();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.start();
+    }
+  };
+
   return (
     <section className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-2xl lg:max-w-6xl">
-      <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
+        <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
         <Swiper
           cssMode={true}
           autoplay={{
-            delay: 2500,
+            delay: 2600,
             disableOnInteraction: false,
           }}
           navigation={true}
@@ -84,10 +111,19 @@ const Testimonials: React.FC = () => {
           loop={true}
           modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
           className="mySwiper"
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
         >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.id}>
-              <figure className="lg:min-h-[320px] min-h-[520px]">
+              <figure
+                className="lg:min-h-[320px] min-h-[520px]"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
                 <blockquote className="text-center font-semibold leading-8 lg:text-white text-gray-900 sm:text-2xl sm:leading-9">
                   <p>{testimonial.text}</p>
                 </blockquote>
