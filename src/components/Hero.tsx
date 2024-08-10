@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-scroll';
+
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -44,13 +46,12 @@ const Hero = () => {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 By engaging and empowering your workforce and aligning your organization, KES Global Advisors can help to drive significant improvements for your business.
               </p>
-              <div className="mt-10 flex items-center gap-x-6">
-                <a href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                  Contact Us
-                </a>
-                <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                  Learn more <span aria-hidden="true">→</span>
-                </a>
+              <div className="mt-10 sm:items-center gap-x-6">
+                <Link to="testimonial" smooth={true} duration={500}>
+                  <a className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">
+                    Learn more <span aria-hidden="true">→</span>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
