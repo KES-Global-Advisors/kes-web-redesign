@@ -1,9 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { Element } from 'react-scroll';
+import motivation  from '../assets/Motivation to Performance.jpg'
+import digitalTransform  from '../assets/digital transformation 5.jpg'
+import intentional  from '../assets/Intentioanl 2.png'
+import digitalOperation  from '../assets/Digital Operational Excellence.jpeg'
+import digitalValue  from '../assets/Digital No Value 2.png'
+import multiDigital  from '../assets/What If - Technology3.jpg'
 
 const posts = [
   {
     id: 1,
+    imgSrc: motivation,
     title: 'Translating Motivation into Performance',
     href: '#',
     description:
@@ -11,6 +18,7 @@ const posts = [
   },
   {
     id: 2,
+    imgSrc: digitalTransform,
     title: 'The Value of Digital Transformation',
     href: '#',
     description:
@@ -18,13 +26,15 @@ const posts = [
   },
   {
     id: 3,
+    imgSrc: intentional,
     title: 'Intentional Leadership',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      'General thinking is that leaders are always intentional and purposeful.  However, many, if not most, leaders are reactionary and opportunistic, and while there is nothing wrong with those leadership styles and at times these are good tools for the kit, real and lasting change requires intentional leadership.',
   },
   {
     id: 4,
+    imgSrc: multiDigital,
     title: 'Multi-Dimensional Digital Transformation',
     href: '#',
     description:
@@ -32,6 +42,7 @@ const posts = [
   },
   {
     id: 5,
+    imgSrc: digitalValue,
     title: 'Does Technology Have Value? ',
     href: '#',
     description:
@@ -39,6 +50,7 @@ const posts = [
   },
   {
     id: 6,
+    imgSrc: digitalOperation,
     title: 'Digital Operational Excellence',
     href: '#',
     description:
@@ -88,6 +100,7 @@ const WhitePapers = () => {
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {posts.map((post) => (
               <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+                <img className="w-[522px] h-[220px] rounded-xl" src={post.imgSrc} alt="Sunset in the mountains" />
                 <div className="group relative">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 lg:text-white">
                     <span className="absolute inset-0" />
