@@ -28,16 +28,16 @@ const Header = () => {
                 <Link to="home" smooth={true} duration={500}>
                   <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Home</p>
                 </Link>
-                <Link to="services" smooth={true} duration={500}>
+                <Link to="services" smooth={true} duration={400}>
                   <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Services</p>
                 </Link>
                 <Link to="about" smooth={true} duration={500}>
                   <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">About</p>
                 </Link>
-                <Link to="insights" smooth={true} duration={500}>
+                <Link to="insights" smooth={true} duration={600}>
                   <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Insights</p>
                 </Link>
-                <Link to="contact" smooth={true} duration={500}>
+                <Link to="contact" smooth={true} duration={700}>
                   <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Contact</p>
                 </Link>
               </div>
