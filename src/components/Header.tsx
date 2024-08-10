@@ -1,4 +1,5 @@
 import logo from '../assets/KES-Logo-print.png';
+import { Link } from 'react-scroll';
 
 const Header = () => {
     return (
@@ -24,11 +25,21 @@ const Header = () => {
                 </svg>
               </button>
               <div className="hidden lg:flex lg:ml-12 lg:gap-x-14">
-                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Home</a>
-                <a href="#" className="text-base font-semibold leading-6 text-gray-900">About</a>
-                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Services</a>
-                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Insights</a>
-                <a href="#" className="text-base font-semibold leading-6 text-gray-900">Contact</a>
+                <Link to="home" smooth={true} duration={500}>
+                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Home</p>
+                </Link>
+                <Link to="services" smooth={true} duration={500}>
+                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Services</p>
+                </Link>
+                <Link to="about" smooth={true} duration={500}>
+                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">About</p>
+                </Link>
+                <Link to="insights" smooth={true} duration={500}>
+                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Insights</p>
+                </Link>
+                <Link to="contact" smooth={true} duration={500}>
+                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Contact</p>
+                </Link>
               </div>
             </nav>
           </div>

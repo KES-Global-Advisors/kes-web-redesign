@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Element } from 'react-scroll';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -95,53 +96,55 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div className="mx-auto max-w-2xl lg:max-w-6xl">
-        <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
-        <Swiper
-          cssMode={true}
-          autoplay={{
-            delay: 2600,
-            disableOnInteraction: false,
-          }}
-          navigation={true}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          loop={true}
-          modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
-          className="mySwiper"
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-        >
-          {testimonials.map((testimonial) => (
-            <SwiperSlide key={testimonial.id}>
-              <figure
-                className="lg:min-h-[320px] min-h-[520px]"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              >
-                <blockquote className="text-center font-semibold leading-8 lg:text-white text-gray-900 sm:text-2xl sm:leading-9">
-                  <p>{testimonial.text}</p>
-                </blockquote>
-                <figcaption className="mt-8">
-                  <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-                    <div className="font-semibold lg:text-white text-gray-900">{testimonial.author}</div>
-                    <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
-                      <circle r={1} cx={1} cy={1} />
-                    </svg>
-                    <div className="lg:text-white text-gray-600">{testimonial.position}</div>
-                  </div>
-                </figcaption>
-              </figure>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </section>
+    <Element name="testimonial">
+      <section className="relative overflow-hidden lg:bg-blue-700 bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:max-w-6xl">
+          <h2 className="text-center font-semibold leading-7 text-indigo-600 lg:hidden">Testimonials</h2>
+          <Swiper
+            cssMode={true}
+            autoplay={{
+              delay: 2600,
+              disableOnInteraction: false,
+            }}
+            navigation={true}
+            pagination={true}
+            mousewheel={true}
+            keyboard={true}
+            loop={true}
+            modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
+            className="mySwiper"
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+          >
+            {testimonials.map((testimonial) => (
+              <SwiperSlide key={testimonial.id}>
+                <figure
+                  className="lg:min-h-[320px] min-h-[520px]"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  <blockquote className="text-center font-semibold leading-8 lg:text-white text-gray-900 sm:text-2xl sm:leading-9">
+                    <p>{testimonial.text}</p>
+                  </blockquote>
+                  <figcaption className="mt-8">
+                    <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+                      <div className="font-semibold lg:text-white text-gray-900">{testimonial.author}</div>
+                      <svg width={3} height={3} viewBox="0 0 2 2" aria-hidden="true" className="fill-gray-900">
+                        <circle r={1} cx={1} cy={1} />
+                      </svg>
+                      <div className="lg:text-white text-gray-600">{testimonial.position}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+    </Element>
   );
 };
 
