@@ -12,7 +12,7 @@ const posts = [
     id: 1,
     imgSrc: motivation,
     title: 'Translating Motivation into Performance',
-    href: '#',
+    href: 'https://drive.google.com/file/d/1lmDPXpryrGHLXoKMjKVANFYxqcAILOkh/view?usp=sharing',
     description:
       'When looking at leveraging the value of an organization’s workforce, you are effectively considering the value of changing on-the-job behaviors of the employees to drive positive changes in business performance.',
   },
@@ -20,7 +20,7 @@ const posts = [
     id: 2,
     imgSrc: digitalTransform,
     title: 'The Value of Digital Transformation',
-    href: '#',
+    href: 'https://drive.google.com/file/d/1RRkdevcorIbaYL-BShZXp_dIccbmTIvx/view?usp=sharing',
     description:
       'The key to getting the most out of the technology available today is to ensure that the technology being utilized fits into an overall plan for an organization that not just aligns and enables the various core work processes or enables completely new work processes or practices but ensures that the organizational capabilities are developed to fully support the utilization of that technology.',
   },
@@ -28,7 +28,7 @@ const posts = [
     id: 3,
     imgSrc: intentional,
     title: 'Intentional Leadership',
-    href: '#',
+    href: 'https://drive.google.com/file/d/11kzMmPZ1Dqh9OKiBeineoNMPAbY9dQxh/view?usp=sharing',
     description:
       'General thinking is that leaders are always intentional and purposeful.  However, many, if not most, leaders are reactionary and opportunistic, and while there is nothing wrong with those leadership styles and at times these are good tools for the kit, real and lasting change requires intentional leadership.',
   },
@@ -36,7 +36,7 @@ const posts = [
     id: 4,
     imgSrc: multiDigital,
     title: 'Multi-Dimensional Digital Transformation',
-    href: '#',
+    href: 'https://drive.google.com/file/d/1rQIpEHRuO_hkXOwHlQH1NbjdIDRcT_nJ/view?usp=sharing',
     description:
       'The current industry focus on digital transformation is driving some great innovations in industry, and in some cases, enabling complete transformation in how we work and what we can do.',
   },
@@ -44,7 +44,7 @@ const posts = [
     id: 5,
     imgSrc: digitalValue,
     title: 'Does Technology Have Value? ',
-    href: '#',
+    href: 'https://drive.google.com/file/d/1bh7LeTN73oBiFt8uNs7PZbyJnheY8DpT/view?usp=sharing',
     description:
       'Technology has no value.  This simple truth, although unpopular with some and seemingly at odds with conventional thinking, should be the basis behind every digitalization strategy.',
   },
@@ -52,7 +52,7 @@ const posts = [
     id: 6,
     imgSrc: digitalOperation,
     title: 'Digital Operational Excellence',
-    href: '#',
+    href: 'https://drive.google.com/file/d/1GuKYniRyEX7gwBse-dTj63HMsU4ZFtah/view?usp=sharing',
     description:
       'For operating companies in the energy and chemicals sectors, there should be a clear integration between their digitalization strategies and their operational excellence programs/practices.',
   },
@@ -109,7 +109,7 @@ const WhitePapers = () => {
                   <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 lg:text-white">{post.description}</p>
                 </div>
                 <div className="lg:relative mt-8 flex items-center gap-x-4">
-                  <a href={post.href} className="text-sm font-semibold leading-6 text-indigo-700 lg:text-white lg:hover:text-gray-600">
+                  <a href={post.href} target='_blank' className="text-sm font-semibold leading-6 text-indigo-700 lg:text-white lg:hover:text-gray-600">
                     Read <span aria-hidden="true">→</span>
                   </a>
                 </div>
