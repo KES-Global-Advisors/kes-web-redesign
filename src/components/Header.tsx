@@ -1,52 +1,79 @@
+import { useState } from 'react';
 import logo from '../assets/KES-Logo-print.png';
 import { Link } from 'react-scroll';
 
 const Header = () => {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
     return (
-      <header className="z-50 top-0 lg:right-[16%] left-0 right-0 absolute">
-        <div className="max-w-5xl mx-auto">
-          <div className="px-6 pt-6 lg:max-w-5xl lg:pl-8 lg:pr-0">
-            <nav aria-label="Global" className="flex items-center justify-between lg:justify-start">
-              <a href="#" className="m-1.5 p-1.5">
-                <img src={logo} alt="KES Global Advisors" className="h-10 w-auto" />
-              </a>
-              <button type="button" className="m-2.5 p-2.5 rounded-lg text-gray-700 lg:hidden">
-                <span className="absolute w-px h-px p-0 m-px overflow-hidden clip-rect">Open main menu</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-              </button>
-              <div className="hidden lg:flex lg:ml-12 lg:gap-x-14">
-                <Link to="home" smooth={true} duration={500}>
-                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Home</p>
-                </Link>
-                <Link to="services" smooth={true} duration={400}>
-                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Services</p>
-                </Link>
-                <Link to="about" smooth={true} duration={500}>
-                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">About</p>
-                </Link>
-                <Link to="insights" smooth={true} duration={600}>
-                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Insights</p>
-                </Link>
-                <Link to="contact" smooth={true} duration={700}>
-                  <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Contact</p>
-                </Link>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </header>
+        <header className="z-50 top-0 lg:right-[16%] left-0 right-0 lg:absolute bg-white fixed lg:bg-transparent">
+            <div className="max-w-5xl mx-auto">
+                <div className="px-6 pt-6 lg:max-w-5xl lg:pl-8 lg:pr-0">
+                    <nav aria-label="Global" className="flex items-center justify-between lg:justify-start">
+                        <a href="#" className="m-1.5 p-1.5">
+                            <img src={logo} alt="KES Global Advisors" className="h-10 w-auto" />
+                        </a>
+                        <button 
+                            type="button" 
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="m-2.5 p-2.5 rounded-lg text-gray-700 lg:hidden"
+                        >
+                            <span className="sr-only">Open main menu</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                aria-hidden="true"
+                                className="h-6 w-6"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </button>
+                        <div className="hidden lg:flex lg:ml-12 lg:gap-x-14">
+                            <Link to="home" smooth={true} duration={500}>
+                                <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Home</p>
+                            </Link>
+                            <Link to="services" smooth={true} duration={400}>
+                                <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Services</p>
+                            </Link>
+                            <Link to="about" smooth={true} duration={500}>
+                                <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">About</p>
+                            </Link>
+                            <Link to="insights" smooth={true} duration={600}>
+                                <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Insights</p>
+                            </Link>
+                            <Link to="contact" smooth={true} duration={700}>
+                                <p className="text-base font-semibold leading-6 text-gray-900 cursor-pointer">Contact</p>
+                            </Link>
+                        </div>
+                    </nav>
+                    {mobileMenuOpen && (
+                        <div className="lg:hidden absolute top-16 right-0 w-full bg-white shadow-lg p-6 z-50">
+                            <div className="space-y-4">
+                                <Link to="home" smooth={true} duration={500} onClick={() => setMobileMenuOpen(false)}>
+                                    <p className="text-end font-semibold leading-6 text-gray-900 cursor-pointer">Home</p>
+                                </Link>
+                                <Link to="services" smooth={true} duration={400} onClick={() => setMobileMenuOpen(false)}>
+                                    <p className="text-end font-semibold leading-6 text-gray-900 cursor-pointer">Services</p>
+                                </Link>
+                                <Link to="about" smooth={true} duration={500} onClick={() => setMobileMenuOpen(false)}>
+                                    <p className="text-end font-semibold leading-6 text-gray-900 cursor-pointer">About</p>
+                                </Link>
+                                <Link to="insights" smooth={true} duration={600} onClick={() => setMobileMenuOpen(false)}>
+                                    <p className="text-end font-semibold leading-6 text-gray-900 cursor-pointer">Insights</p>
+                                </Link>
+                                <Link to="contact" smooth={true} duration={700} onClick={() => setMobileMenuOpen(false)}>
+                                    <p className="text-end font-semibold leading-6 text-gray-900 cursor-pointer">Contact</p>
+                                </Link>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </header>
     );
-  };
-  
-  export default Header;
-  
+};
+
+export default Header;
