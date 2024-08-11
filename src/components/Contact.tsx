@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Element } from 'react-scroll';
+import Globe from '../assets/Globe.png';
 
 const Contact = () =>  {
   const sectionRef = useRef(null);
@@ -36,7 +37,7 @@ const Contact = () =>  {
         ref={sectionRef}
         className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8"
         style={{
-          backgroundImage: "url('/src/assets/KES-Globe.png')",
+          backgroundImage: `url(${Globe})`,
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
