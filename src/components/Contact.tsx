@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Element } from 'react-scroll';
 import Globe from '../assets/Globe.png';
 
-const Contact = () =>  {
+const Contact = () => {
   const sectionRef = useRef(null);
+  const [status, setStatus] = useState<string>('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -16,7 +17,7 @@ const Contact = () =>  {
         });
       },
       {
-        threshold: 0.1, // Adjust the threshold as needed
+        threshold: 0.1,
       }
     );
 
@@ -31,9 +32,34 @@ const Contact = () =>  {
     };
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xbjwvddv', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        setStatus('SUCCESS');
+        form.reset(); // Clear the form fields
+      } else {
+        setStatus('ERROR');
+      }
+    } catch (error) {
+      setStatus('ERROR');
+    }
+  };
+
   return (
     <Element name="contact">
-      <div 
+      <div
         ref={sectionRef}
         className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8"
         style={{
@@ -43,13 +69,13 @@ const Contact = () =>  {
           backgroundRepeat: 'no-repeat',
           backgroundSize: '45%',
           backgroundBlendMode: 'overlay',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)', // This adds a semi-transparent white overlay
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
         }}
       >
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
         </div>
-        <form action="https://formspree.io/f/xbjwvddv" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+        <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
               <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -130,10 +156,12 @@ const Contact = () =>  {
               Let's talk
             </button>
           </div>
+          {status === 'SUCCESS' && <p className="text-center text-green-600 mt-4">Thanks for your message!</p>}
+          {status === 'ERROR' && <p className="text-center text-red-600 mt-4">Oops! There was an error sending your message.</p>}
         </form>
       </div>
     </Element>
-  )
-}
+  );
+};
 
 export default Contact;
