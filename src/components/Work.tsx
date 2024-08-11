@@ -149,7 +149,15 @@ interface Service {
   tagline: string;
   name: string;
   imgSrc: string;
-  description: string;
+  description: Array<string> | string;
+  shortDescription: string;
+  subContentTitle1: string;
+  subContentDescription1: string;
+  subContentTitle2: string;
+  subContentDescription2: string;
+  subContentTitle3: string;
+  subContentDescription3: string;
+
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
@@ -158,48 +166,108 @@ const services = [
     imgSrc: "https://i.postimg.cc/wTc3W9Y7/Employee-Led-Change.jpg",
     tagline: 'Real Ownership and Alignment ',
     name: 'Employee Led Strategic Improvement ',
-    description:
+    shortDescription:
       'Creating real ownership and alignment can be messy, but its essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
+    description: [
+       "Creating real ownership and alignment can be messy, but it’s essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
+       "From discreet programs to site level strategies to full corporate employee led strategic improvement efforts, we have a track record of creating employee led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
+    ],
+    subContentTitle1: 'Strategic Context Development',
+    subContentDescription1: 'We help leadership teams establish and align on their strategic context (Vision, Mission, Goals, Values) to provide a framework for improvement efforts.',
+    subContentTitle2: 'Flight Mapping ',
+    subContentDescription2: 'Flight mapping helps teams visualize their improvement journey, prioritizing resource allocation and capturing synergies between initiatives.',
+    subContentTitle3: 'Coaching and Guidance ',
+    subContentDescription3: 'Our consultants provide valuable external insights, posing questions and observations that clarify the path forward and sharpen focus on challenges.',
     icon: ChartBarIcon,
   },
   {
     imgSrc: "https://i.postimg.cc/tJGNPb6M/Adobe-Stock-201803237.jpg",
     tagline: 'Effective Change Management ',
     name: 'Organizational Change & Alignment ',
-    description:
+    shortDescription:
       'Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.',
+    description: [
+      "Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.",
+      "We work with clients to build a plan for effective change and then provide guidance and support every step of the way to help ensure the full intended value of the targeted program is realized."
+    ],
+    subContentTitle1: 'Change Program Leadership & Coaching',
+    subContentDescription1: 'From idea inception to execution, we guide teams through the change process, engaging stakeholders and creating ownership for sustainable change.',
+    subContentTitle2: 'Change Leader Training',
+    subContentDescription2: 'We provide targeted training and coaching for change leaders, enhancing their effectiveness at all organizational levels.',
+    subContentTitle3: 'Team & Individual Role Alignment',
+    subContentDescription3: 'We facilitate role and responsibility realignment within organizations, from minor adjustments to significant restructuring, ensuring successful change programs.',
     icon: ArrowsRightLeftIcon,
   },
   {
     imgSrc: "https://i.postimg.cc/9QHHMwzd/Exec-Coaching.jpg",
     tagline: 'Driving Leadership Effectiveness ',
-    name: 'Leadership Coaching & Development ',
-    description:
+    name: 'Executive Coaching & Leadership Development',
+    shortDescription:
       'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that drive measurable value.',
+    description: [
+      "Effective leadership is highly contextual and rarely follows hard and fast rules.  While leadership styles and skills are typically honed over years or decades, development can be accelerated greatly through targeted constructive feedback and guidance anchored by deep industry experience.",
+      "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer term targeted programs that integrate developmental activities with organizational improvement efforts to provide a practical learning environment that drives measurable value creation."
+    ],
+    subContentTitle1: 'Leadership Team Alignment',
+    subContentDescription1: 'We help leadership teams align on common values, philosophies and practices, integrating them into the organizational culture.',
+    subContentTitle2: 'Leadership Training',
+    subContentDescription2: 'Our training programs can be custom-tailored to address specific needs, covering topics like Influence-Based Leadership, Targeted Behavior Change, and Empowering Ownership.',
+    subContentTitle3: 'Application Based Coaching',
+    subContentDescription3: 'We provide targeted, contextual coaching guiding the application leadership values and techniques to drive performance while creating a positive employee experience.   ',
     icon: UserGroupIcon,
   },
   {
     imgSrc: "https://i.postimg.cc/631D02YC/Exec-Coaching-2.jpg",
     tagline: 'Optimizing Plant Operations ',
     name: 'Experiential Knowledge Capture ',
-    description:
+    shortDescription:
       'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights, optimizing operations and delivering bottom-line improvements.',
+    description: [
+      "The loss of experienced employees is one of the most significant emerging challenges facing most companies in the energy and chemicals sectors.  The ability to capture and harness this experiential knowledge before it leaves is not only a competitive advantage but, in many instances, foundational to continued safe, reliable operations.",
+      "We work with our clients to help them design and implement experiential knowledge capture programs that mitigate the impacts of the experience drain and help optimize operations by turning experience into actionable, real-time insights."
+    ],
+    subContentTitle1: 'Targeted Experience Capture',
+    subContentDescription1: 'Our experts facilitate the extraction of contextual experiential knowledge, creating real-time guidance for future employees.',
+    subContentTitle2: 'Experience Capture System Design & Development',
+    subContentDescription2: 'We design structured methods for extracting, storing, and leveraging experiential knowledge, integrating with analytics and data visualization platforms for real-time guidance.',
+    subContentTitle3: '',
+    subContentDescription3: '',
     icon: ArchiveBoxIcon,
   },
   {
     imgSrc: "https://i.postimg.cc/FFGxzMRD/Capability-Dev-1.jpg",
     tagline: 'Accelerating Plant Operator Capability ',
     name: 'Rapid Capability Development',
-    description:
+    shortDescription:
       'Active, blended learning accelerates capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
+    description: [
+      "Active, blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles in significantly less time. The combination of traditional training methods with engaging digital content can greatly enhance the overall learning experience.",
+      "KES Global Advisors designs programs that blend various training methods to accelerate the development process and deliver immediate business impact."
+    ],
+    subContentTitle1: 'Accelerated Capability Development Programs',
+    subContentDescription1: 'KES Global Advisors can help you design and develop a program that is practical for your organization to deliver and sustain that blends traditional competency development with active learning methods, significantly improving knowledge retention and competence.',
+    subContentTitle2: 'Asset Specific Training Material Development',
+    subContentDescription2: 'We create training materials tailored to the needs of your organization, from full turn-key development programs to client-assisted programs.',
+    subContentTitle3: 'Targeted Technical Training',
+    subContentDescription3: 'We offer a wide array of technical and functional training for operational and engineering personnel. Contact us for specific requests.',
     icon: BoltIcon,
   },
   {
     imgSrc: "https://i.postimg.cc/4dmhMqbj/digital-Operational-Excellence.jpg",
     tagline: 'Practical Digital Transformation ',
     name: 'Digital Operational Excellence ',
-    description:
+    shortDescription:
       'Digital transformation changes how people work, not just the technology they use. We design and implement programs that align with operational excellence efforts and the unique challenges of production environments, ensuring sustainable results.',
+    description: [
+      "Digital transformation changes how people work, not just the technology they use. It is this change in working practices that creates value through efficiency or new capabilities.",
+      "We help our clients design and implement digital transformation programs that align with operational excellence improvement efforts to deliver sustainable results and create a natural adoption mechanism for targeted employees."
+    ],
+    subContentTitle1: 'Operational Digital Transformation',
+    subContentDescription1: 'We work with our clients to define transformation maps anchored in observable, measurable changes in how employees work, and provide guidance and support through-out the transformation journey.',
+    subContentTitle2: 'Targeted Adoption Program Support',
+    subContentDescription2: 'We focus on changing employee behaviors to ensure the effective utilization of new technologies, enhancing operational capabilities and creating value.',
+    subContentTitle3: '',
+    subContentDescription3: '',
     icon: CogIcon,
   },
 ]
@@ -268,7 +336,7 @@ const Work = () => {
                       {service.name}
                     </dt>
                     <dd className="mt-2 text-base leading-7 text-gray-600 min-h-[180px]">
-                      {service.description}
+                      {service.shortDescription}
                     </dd>
                   </div>
                   <div className="mt-4">

@@ -6,7 +6,13 @@ interface Service {
   tagline: string;
   name: string;
   imgSrc: string;
-  description: string;
+  description: Array<string> | string;
+  subContentTitle1: string;
+  subContentDescription1: string;
+  subContentTitle2: string;
+  subContentDescription2: string;
+  subContentTitle3: string;
+  subContentDescription3: string;
 }
 
 interface ServiceDrawerProps {
@@ -17,18 +23,18 @@ interface ServiceDrawerProps {
 
 const ServiceDrawer: FC<ServiceDrawerProps> = ({ isOpen, onClose, service }) => {
   return (
-    <Dialog open={isOpen} onClose={onClose} className="relative z-10">
+    <Dialog open={isOpen} onClose={onClose} className="relative z-[1000]">
       <DialogBackdrop
         transition
-        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
+        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0 z-[999]"
       />
 
-      <div className="fixed inset-0 overflow-hidden">
+      <div className="fixed inset-0 overflow-hidden z-[1000]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <DialogPanel
               transition
-              className="pointer-events-auto relative w-screen max-w-2xl transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
+              className="pointer-events-auto relative w-screen max-w-2xl transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700 z-[1000]"
             >
               <TransitionChild>
                 <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 duration-500 ease-in-out data-[closed]:opacity-0 sm:-ml-10 sm:pr-4">
@@ -60,7 +66,22 @@ const ServiceDrawer: FC<ServiceDrawerProps> = ({ isOpen, onClose, service }) => 
                     </div>
                   <div className='mt-10'>
                     <h1 className="text-lg font-semibold leading-6 text-gray-900">Description</h1>
-                    <p className='mt-2'>{service?.description}</p>
+                    {Array.isArray(service?.description) ? (
+                      service?.description.map((line, index) => (
+                        <p key={index} className="mt-2">{line}</p>
+                      ))
+                    ) : (
+                      <p className="mt-2">{service?.description}</p>
+                    )}
+
+                    <h1 className="text-lg font-semibold leading-6 text-gray-900 mt-6">{service?.subContentTitle1}</h1>
+                    <p className='mt-2'>{service?.subContentDescription1}</p>
+
+                    <h1 className="text-lg font-semibold leading-6 text-gray-900 mt-6">{service?.subContentTitle2}</h1>
+                    <p className='mt-2'>{service?.subContentDescription2}</p>
+
+                    <h1 className="text-lg font-semibold leading-6 text-gray-900 mt-6">{service?.subContentTitle3}</h1>
+                    <p className='mt-2'>{service?.subContentDescription3}</p>
                   </div>  
                 </div>
               </div>
