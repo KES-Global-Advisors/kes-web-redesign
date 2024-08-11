@@ -72,6 +72,10 @@ const Testimonials: React.FC = () => {
   const swiperRef = useRef<SwiperCore | null>(null);
   const sectionRef = useRef(null);
 
+  const isMobileDevice = () => {
+    return typeof window !== 'undefined' && window.innerWidth <= 768;
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -129,10 +133,7 @@ const Testimonials: React.FC = () => {
           <h2 className="text-center font-semibold leading-7 mb-10 text-indigo-600 lg:hidden">Testimonials</h2>
           <Swiper
             cssMode={true}
-            autoplay={{
-              delay: 2600,
-              disableOnInteraction: false,
-            }}
+            autoplay={!isMobileDevice() ? { delay: 2600, disableOnInteraction: false } : undefined}
             navigation={true}
             pagination={true}
             mousewheel={true}
