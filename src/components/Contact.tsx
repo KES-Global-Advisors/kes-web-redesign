@@ -32,7 +32,19 @@ const Contact = () =>  {
 
   return (
     <Element name="contact">
-      <div ref={sectionRef} className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div 
+        ref={sectionRef}
+        className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8"
+        style={{
+          backgroundImage: "url('/src/assets/KES-Globe.png')",
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '45%',
+          backgroundBlendMode: 'overlay',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', // This adds a semi-transparent white overlay
+        }}
+      >
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
         </div>
