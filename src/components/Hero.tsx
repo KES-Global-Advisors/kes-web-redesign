@@ -90,7 +90,7 @@ const Hero = () => {
     <Element name="home">
       <div ref={heroRef} className="bg-white lg:h-[100vh]">
         <div className="relative">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl lg:max-w-7xl">
             <div className="relative pt-14 z-10 max-w-3xl w-full">
               <svg
                 viewBox="0 0 100 100"
@@ -102,7 +102,7 @@ const Hero = () => {
               </svg>
               <div className="relative px-6 py-8 sm:py-40 sm:px-40 mt-20 lg:px-8 lg:py-56 lg:mt-0">
                 <div className="mx-auto max-w-3xl text-center lg:text-left">
-                  <h1 className="mx-auto max-w-4xl font-display text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-slate-900">
+                  <h1 className="mx-auto max-w-4xl font-display text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight text-slate-900">
                     Maximizing your  
                     <span className="relative whitespace-nowrap text-blue-600">
                       <svg
