@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import logo from '../assets/KES-Logo-print.png';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-scroll';
 
 const Header = () => {
@@ -18,18 +19,14 @@ const Header = () => {
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             className="m-2.5 p-2.5 rounded-lg text-gray-700 lg:hidden"
                         >
-                            <span className="sr-only">Open main menu</span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                                className="h-6 w-6"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
+                            <span className="absolute w-px h-px p-0 m-px overflow-hidden clip-rect">
+                              {mobileMenuOpen ? 'Close main menu' : 'Open main menu'}
+                            </span>
+                            {mobileMenuOpen ? (
+                              <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                            ) : (
+                              <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+                            )}
                         </button>
                         <div className="hidden lg:flex lg:ml-12 lg:gap-x-14">
                             <Link to="home" smooth={true} duration={500}>
