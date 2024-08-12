@@ -29,7 +29,7 @@ const Hero = () => {
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 aria-hidden="true"
-                className="absolute top-0 bottom-0 right-8 hidden lg:block h-full w-80 translate-x-1/2 fill-white"
+                className="absolute top-0 bottom-0 left-[225px] hidden lg:block h-full w-[30rem] translate-x-1/2 fill-white"
               >
                 <polygon points="0,0 90,0 50,100 0,100"></polygon>
               </svg>
