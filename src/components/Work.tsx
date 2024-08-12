@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ArchiveBoxIcon, ArrowsRightLeftIcon, ChartBarIcon, CogIcon, UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline'
 import ServiceDrawer from './ServiceDrawer';
+import Globe from '../assets/Globe.png';
 
 interface Service {
   tagline: string;
@@ -177,7 +178,20 @@ const Work = () => {
 
   return (
     <>
-      <div id="services" ref={sectionRef} className="bg-[#f5f2f7] py-24 sm:py-32">
+      <div 
+        id="services" 
+        ref={sectionRef} 
+        className="bg-[#f5f2f7] py-24 sm:py-32"
+        style={{
+          backgroundImage: `url(${Globe})`,
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '45%',
+          backgroundBlendMode: 'overlay',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        }}
+        >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">What We Do</h2>
