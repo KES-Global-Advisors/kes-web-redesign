@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Element } from 'react-scroll';
 import motivation  from '../assets/Motivation to Performance.jpg'
 import digitalTransform  from '../assets/digital transformation 5.jpg'
 import intentional  from '../assets/Intentioanl 2.png'
@@ -95,7 +94,6 @@ const WhitePapers = () => {
   }, []);
 
   return (
-    <Element name="insights">
       <div id="insights" ref={sectionRef} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
@@ -125,7 +123,6 @@ const WhitePapers = () => {
           </div>
         </div>
       </div>
-    </Element>
   )
 }
 

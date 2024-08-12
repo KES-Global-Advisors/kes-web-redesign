@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { ArchiveBoxIcon, ArrowsRightLeftIcon, ChartBarIcon, CogIcon, UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline'
-import { Element } from 'react-scroll';
 import ServiceDrawer from './ServiceDrawer';
 
 interface Service {
@@ -177,7 +176,7 @@ const Work = () => {
   };
 
   return (
-    <Element name="services">
+    <>
       <div id="services" ref={sectionRef} className="bg-[#f5f2f7] py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
@@ -221,7 +220,7 @@ const Work = () => {
         onClose={handleCloseDrawer}
         service={selectedService}
       />
-    </Element>
+    </>
   )
 }
 

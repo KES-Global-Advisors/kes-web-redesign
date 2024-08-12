@@ -55,7 +55,7 @@ const Hero = () => {
                     By engaging and empowering your workforce and aligning your organization, KES Global Advisors can help to drive significant improvements for your business.
                   </p>
                   <div className="mt-10 flex justify-center lg:justify-start">
-                    <Link to="testimonial" smooth={true} duration={500}>
+                    <Link to="testimonials" smooth={true} duration={500}>
                       <button className="rounded-md bg-[rgb(55,134,181)] px-3.5 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Learn more <span aria-hidden="true">→</span>
                       </button>

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Element } from 'react-scroll';
 const About = () => {
   const sectionRef = useRef(null);
 
@@ -37,7 +36,6 @@ const About = () => {
   }, []);
 
   return (
-    <Element name="about">
       <div
         id="about"
         ref={sectionRef}
@@ -93,7 +91,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </Element>
   );
 };
 

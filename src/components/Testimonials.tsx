@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import { Element } from 'react-scroll';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -126,9 +125,15 @@ const Testimonials: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    // Scroll to the section if the URL has the #testimonials hash
+    if (window.location.hash === '#testimonials' && sectionRef.current) {
+      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
-    <Element name="testimonial">
-      <section ref={sectionRef} className="relative overflow-hidden lg:bg-[rgb(55,134,181)] bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <section id="testimonials" ref={sectionRef} className="relative overflow-hidden lg:bg-[rgb(55,134,181)] bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-6xl">
           <h2 className="text-center font-semibold leading-7 mb-10 text-indigo-600 lg:hidden">Testimonials</h2>
           <Swiper
@@ -172,7 +177,6 @@ const Testimonials: React.FC = () => {
           </Swiper>
         </div>
       </section>
-    </Element>
   );
 };
 

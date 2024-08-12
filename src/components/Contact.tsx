@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Element } from 'react-scroll';
 import Globe from '../assets/Globe.png';
 
 const Contact = () => {
@@ -65,7 +64,6 @@ const Contact = () => {
   };
 
   return (
-    <Element name="contact">
       <div
         id="contact"
         ref={sectionRef}
@@ -168,7 +166,6 @@ const Contact = () => {
           {status === 'ERROR' && <p className="text-center text-red-600 mt-4">Oops! There was an error sending your message.</p>}
         </form>
       </div>
-    </Element>
   );
 };
 
