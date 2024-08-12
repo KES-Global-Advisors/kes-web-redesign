@@ -11,8 +11,8 @@ const Header = () => {
             <div className="w-full mx-auto lg:ml-[19rem]">
                 <div className="px-6 pt-6 w-full lg:pl-8 lg:pr-0">
                     <nav aria-label="Global" className=" flex items-center justify-between lg:justify-start">
-                        <a href="#" className="m-1.5 p-1.5">
-                            <img src={logo} alt="KES Global Advisors" className="h-10 w-auto" />
+                        <a href="/" className="m-1.5 p-1.5">
+                            <img src={logo} alt="KES Global Advisors Logo" className="h-10 w-auto" />
                         </a>
                         <button 
                             type="button" 

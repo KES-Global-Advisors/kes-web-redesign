@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link, Element } from 'react-scroll';
 
 const Hero = () => {
+  const sectionRef = useRef(null);
   const heroRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -11,9 +12,16 @@ const Hero = () => {
     }
   }, []);
 
+  useEffect(() => {
+    // Scroll to the section if the URL has the #home hash
+    if (window.location.hash === '#home' && sectionRef.current) {
+      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
     <Element name="home">
-      <div ref={heroRef} className="bg-white lg:h-[100vh]">
+      <div id="home" ref={heroRef} className="bg-white lg:h-[100vh]">
         <div className="relative">
           <div className="mx-auto max-w-3xl lg:max-w-7xl">
             <div className="relative pt-14 z-10 max-w-3xl w-full">
@@ -48,9 +56,9 @@ const Hero = () => {
                   </p>
                   <div className="mt-10 flex justify-center lg:justify-start">
                     <Link to="testimonial" smooth={true} duration={500}>
-                      <a className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer">
+                      <button className="rounded-md bg-[rgb(55,134,181)] px-3.5 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Learn more <span aria-hidden="true">→</span>
-                      </a>
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -58,7 +66,7 @@ const Hero = () => {
             </div>
             <div className="absolute inset-y-0 right-0 hidden lg:block w-1/2 bg-gray-50">
               <img
-                alt=""
+                alt="KES Global Advisors Banner"
                 src="https://i.postimg.cc/d3MxcZ38/KES-Banner-5.png"
                 className="object-cover h-full w-full"
               />

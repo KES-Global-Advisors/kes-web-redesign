@@ -32,6 +32,13 @@ const Contact = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Scroll to the section if the URL has the #contact hash
+    if (window.location.hash === '#contact' && sectionRef.current) {
+      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -60,6 +67,7 @@ const Contact = () => {
   return (
     <Element name="contact">
       <div
+        id="contact"
         ref={sectionRef}
         className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8"
         style={{
@@ -151,7 +159,7 @@ const Contact = () => {
           <div className="mt-10">
             <button
               type="submit"
-              className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block w-full rounded-md bg-[rgb(55,134,181)] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Let's talk
             </button>
