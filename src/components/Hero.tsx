@@ -36,7 +36,9 @@ const Hero = () => {
               <div className="relative px-6 py-8 sm:py-40 sm:px-40 mt-20 lg:px-8 lg:py-56 lg:mt-0">
                 <div className="mx-auto max-w-3xl text-center lg:text-left">
                   <h1 className="mx-auto max-w-4xl font-display text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight text-slate-900">
-                    Maximizing your  
+                    <span className="relative">
+                      <span className="whitespace-nowrap">Maximizing your</span>
+                    </span> 
                     <span className="relative whitespace-nowrap text-blue-600">
                       <svg
                         aria-hidden="true"
