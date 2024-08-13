@@ -8,8 +8,8 @@ const Header = () => {
 
     return (
         <header className="z-50 top-0 bg-white fixed w-full">
-            <div className="w-full mx-auto lg:ml-[19rem]">
-                <div className="px-6 pt-6 w-full lg:pl-8 lg:pr-0">
+            <div className="w-full mx-auto  lg:max-w-7xl">
+                <div className="px-6 pt-6 w-full lg:pl-8 lg:pr-0max-w-3xl ">
                     <nav aria-label="Global" className=" flex items-center justify-between lg:justify-start">
                         <a href="/" className="m-1.5 p-1.5">
                             <img src={logo} alt="KES Global Advisors Logo" className="h-10 w-auto" />

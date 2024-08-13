@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ArchiveBoxIcon, ArrowsRightLeftIcon, ChartBarIcon, CogIcon, UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline'
 import ServiceDrawer from './ServiceDrawer';
-import Globe from '../assets/Globe.png';
+// import Globe from '../assets/Globe.png';
 
 interface Service {
   tagline: string;
@@ -182,15 +182,15 @@ const Work = () => {
         id="services" 
         ref={sectionRef} 
         className="bg-[#f5f2f7] py-24 sm:py-32"
-        style={{
-          backgroundImage: `url(${Globe})`,
-          backgroundAttachment: 'fixed',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '45%',
-          backgroundBlendMode: 'overlay',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        }}
+        // style={{
+        //   backgroundImage: `url(${Globe})`,
+        //   backgroundAttachment: 'fixed',
+        //   backgroundPosition: 'center',
+        //   backgroundRepeat: 'no-repeat',
+        //   backgroundSize: '45%',
+        //   backgroundBlendMode: 'overlay',
+        //   backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        // }}
         >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
@@ -200,31 +200,31 @@ const Work = () => {
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-              {services.map((service) => (
-                <div key={service.name} className="relative pl-16">
-                  <div>
-                    <dt className="text-gray-700 text-sm font-semibold mb-2">
-                      {service.tagline}
-                    </dt>
-                    <dt className="text-base font-semibold leading-7 text-gray-900">
-                      <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                        <service.icon aria-hidden="true" className="h-6 w-6 text-white" />
-                      </div>
-                      {service.name}
-                    </dt>
-                    <dd className="mt-2 text-base leading-7 text-gray-600 min-h-[180px]">
-                      {service.shortDescription}
-                    </dd>
-                  </div>
-                  <div className="mt-4">
-                    <button onClick={() => handleOpenDrawer(service)} className="text-sm font-semibold leading-6 text-indigo-700">
-                      Learn more <span aria-hidden="true">→</span>
-                    </button>
-                  </div>
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+            {services.map((service) => (
+              <div key={service.name} className="relative pl-16 flex flex-col justify-between">
+                <div>
+                  <dt className="text-gray-700 text-sm font-semibold mb-2">
+                    {service.tagline}
+                  </dt>
+                  <dt className="text-base font-semibold leading-7 text-gray-900">
+                    <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                      <service.icon aria-hidden="true" className="h-6 w-6 text-white" />
+                    </div>
+                    {service.name}
+                  </dt>
+                  <dd className="mt-2 text-base leading-7 text-gray-600 flex-grow">
+                    {service.shortDescription}
+                  </dd>
                 </div>
-              ))}
-            </dl>
+                <div className="mt-4">
+                  <button onClick={() => handleOpenDrawer(service)} className="text-sm font-semibold leading-6 text-indigo-700">
+                    Learn more <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </dl>
           </div>
         </div>
       </div>
