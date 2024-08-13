@@ -21,13 +21,13 @@ interface Service {
 
 const services = [
   {
-    imgSrc: "https://i.postimg.cc/wTc3W9Y7/Employee-Led-Change.jpg",
+    imgSrc: "https://i.postimg.cc/1zrC6cYY/Employee-Led-Change.avif",
     tagline: 'Real Ownership and Alignment ',
     name: 'Employee Led Strategic Improvement ',
     shortDescription:
       'Creating real ownership and alignment can be messy, but its essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
     description: [
-       "Creating real ownership and alignment can be messy, but it’s essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
+       "Creating real ownership and alignment can be messy, but it's essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
        "From discreet programs to site level strategies to full corporate employee led strategic improvement efforts, we have a track record of creating employee led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
     ],
     subContentTitle1: 'Strategic Context Development',
@@ -39,7 +39,7 @@ const services = [
     icon: ChartBarIcon,
   },
   {
-    imgSrc: "https://i.postimg.cc/tJGNPb6M/Adobe-Stock-201803237.jpg",
+    imgSrc: "https://i.postimg.cc/ZKLxwKLC/Adobe-Stock-201803237.avif",
     tagline: 'Effective Change Management ',
     name: 'Organizational Change & Alignment ',
     shortDescription:
@@ -57,7 +57,7 @@ const services = [
     icon: ArrowsRightLeftIcon,
   },
   {
-    imgSrc: "https://i.postimg.cc/9QHHMwzd/Exec-Coaching.jpg",
+    imgSrc: "https://i.postimg.cc/Y05fThsW/Exec-Coaching.avif",
     tagline: 'Driving Leadership Effectiveness ',
     name: 'Executive Coaching & Leadership Development',
     shortDescription:
@@ -75,7 +75,7 @@ const services = [
     icon: UserGroupIcon,
   },
   {
-    imgSrc: "https://i.postimg.cc/631D02YC/Exec-Coaching-2.jpg",
+    imgSrc: "https://i.postimg.cc/02SLjmxh/Exec-Coaching-2.avif",
     tagline: 'Optimizing Plant Operations ',
     name: 'Experiential Knowledge Capture ',
     shortDescription:
@@ -93,7 +93,7 @@ const services = [
     icon: ArchiveBoxIcon,
   },
   {
-    imgSrc: "https://i.postimg.cc/FFGxzMRD/Capability-Dev-1.jpg",
+    imgSrc: "https://i.postimg.cc/MK1FqSmS/Capability-Dev-1.avif",
     tagline: 'Accelerating Plant Operator Capability ',
     name: 'Rapid Capability Development',
     shortDescription:
@@ -111,7 +111,7 @@ const services = [
     icon: BoltIcon,
   },
   {
-    imgSrc: "https://i.postimg.cc/4dmhMqbj/digital-Operational-Excellence.jpg",
+    imgSrc: "https://i.postimg.cc/0jM0tpcv/digital-Operational-Excellence.avif",
     tagline: 'Practical Digital Transformation ',
     name: 'Digital Operational Excellence ',
     shortDescription:

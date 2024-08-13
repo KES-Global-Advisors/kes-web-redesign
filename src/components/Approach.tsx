@@ -41,7 +41,7 @@ const Approach = () => {
     <div id="approach" ref={sectionRef} className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <img
         alt="KES Global Advisors Approach"
-        src="https://i.postimg.cc/9fyMT8VH/KES-Banner.jpg"
+        src="https://i.postimg.cc/90hQS2Bf/KES-Banner.avif"
         className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
       />
       <div
