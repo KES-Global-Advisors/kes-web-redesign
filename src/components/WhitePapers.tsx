@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import motivation  from '../assets/Motivation to Performance.jpg'
 import digitalTransform  from '../assets/digital transformation 5.jpg'
 import intentional  from '../assets/Intentioanl 2.png'
-import digitalOperation  from '../assets/Digital Operational Excellence.jpeg'
+import digitalOperation  from '../assets/Digital Operational Excellence.avif'
 import digitalValue  from '../assets/Digital No Value 2.png'
 import multiDigital  from '../assets/What If - Technology3.jpg'
 
