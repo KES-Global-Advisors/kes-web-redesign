@@ -84,7 +84,7 @@ const About = () => {
                 <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Our Commitment</h2>
                 <p className="mt-6">
                   Our passion for helping companies realize their employees' full potential drives us.
-                  Our role as a trusted advisor is core to who we are, working collaboratively to improve the performance of our clients organizations.
+                  Our role as a trusted advisor is core to who we are, working collaboratively to improve the performance of our clients' organizations.
                 </p>
                 <p className="mt-6">
                   We believe that focusing on our clients and their needs creates a business based on relationships sustained over decades.
