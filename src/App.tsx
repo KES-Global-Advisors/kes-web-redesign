@@ -1,3 +1,7 @@
+import { CookiesProvider } from 'react-cookie';
+import CookieConsent from './components/CookieConsent';
+import GoogleAnalytics from './components/GoogleAnalytics';
+import FacebookPixel from './components/FacebookPixel';
 import Hero from './components/Hero'
 import Header from './components/Header'
 import Testimonials from './components/Testimonials'
@@ -11,7 +15,10 @@ import Contact from './components/Contact'
 function App() {
 
   return (
-    <>
+    <CookiesProvider>
+      <CookieConsent />
+      <GoogleAnalytics />
+      <FacebookPixel />
       <Header />
       <Hero />
       <Testimonials />
@@ -21,7 +28,7 @@ function App() {
       <WhitePapers />
       <Contact />
       <Footer />
-    </>
+    </CookiesProvider>
   )
 }
 
