@@ -22,14 +22,14 @@ const Hero = () => {
   return (
     <Element name="home">
       <div id="home" ref={heroRef} className="bg-white lg:h-[100vh]">
-        <div className="relative">
+        <div className="relative h-full">
           <div className="mx-auto max-w-3xl lg:max-w-7xl">
             <div className="relative pt-14 z-10 max-w-3xl w-full">
               <svg
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 aria-hidden="true"
-                className="absolute top-0 bottom-0 left-[225px] hidden lg:block h-full w-[30rem] translate-x-1/2 fill-white"
+                className="absolute top-0 bottom-0 left-[225px] hidden lg:block h-[100vh] w-[30rem] translate-x-1/2 fill-white"
               >
                 <polygon points="0,0 90,0 50,100 0,100"></polygon>
               </svg>
