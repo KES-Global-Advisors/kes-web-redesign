@@ -72,7 +72,7 @@ const Approach = () => {
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Our Approach</h2>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Recognizing that every client is unique, we tailor each engagement to address their specific needs and challenges.
+            Recognizing that every client is unique, we tailor each engagement to address specific needs and challenges.
             With decades of global experience in the oil, gas, and chemicals sectors, we facilitate employee-led improvement and
             capability enhancement programs, integrating practical guidance and support to drive alignment and ensure sustainable results. 
           </p>

@@ -58,7 +58,7 @@ const About = () => {
           <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
             <img
               alt="Experience Capture by KES Global Advisors"
-              src="https://i.postimg.cc/FHBsv3x8/Exp-Capture-3.avif"
+              src="https://i.postimg.cc/KYvcZsjd/KES-Global-About-Us-10-2.avif"
               className="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
             />
           </div>
@@ -69,8 +69,11 @@ const About = () => {
                 <p>
                   Our team of experts, with decades of global experience in the oil, gas,
                   and chemicals sectors can help your teams drive performance improvement that enhance the safe,
-                  reliable, profitable operation of your facilities.  We approach every engagement as a partnership,
-                  with the end goal being to create and recognize significant and sustainable value.
+                  reliable, profitable operation of your facilities.
+                </p>
+
+                <p>
+                  <br /> We approach every engagement as a partnership, with the end goal being to create and recognize significant and sustainable value.
                 </p>
 
                 <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Our Mission</h2>

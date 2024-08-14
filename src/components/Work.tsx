@@ -23,12 +23,12 @@ const services = [
   {
     imgSrc: "https://i.postimg.cc/1zrC6cYY/Employee-Led-Change.avif",
     tagline: 'Real Ownership and Alignment ',
-    name: 'Employee Led Strategic Improvement ',
+    name: 'Employee-Led Strategic Improvement ',
     shortDescription:
-      'Creating real ownership and alignment can be messy, but its essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
+      'Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
     description: [
-       "Creating real ownership and alignment can be messy, but it's essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
-       "From discreet programs to site level strategies to full corporate employee led strategic improvement efforts, we have a track record of creating employee led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
+       "Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
+       "From discreet programs to site level strategies to full corporate employee-led strategic improvement efforts, we have a track record of creating employee-led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
     ],
     subContentTitle1: 'Strategic Context Development',
     subContentDescription1: 'We help leadership teams establish and align on their strategic context (Vision, Mission, Goals, Values) to provide a framework for improvement efforts.',
@@ -64,10 +64,10 @@ const services = [
       'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that drive measurable value.',
     description: [
       "Effective leadership is highly contextual and rarely follows hard and fast rules.  While leadership styles and skills are typically honed over years or decades, development can be accelerated greatly through targeted constructive feedback and guidance anchored by deep industry experience.",
-      "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer term targeted programs that integrate developmental activities with organizational improvement efforts to provide a practical learning environment that drives measurable value creation."
+      "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer-term programs. Our approach integrates developmental activities with organizational improvement efforts to provide a practical learning environment that drives measurable value creation."
     ],
     subContentTitle1: 'Leadership Team Alignment',
-    subContentDescription1: 'We help leadership teams align on common values, philosophies and practices, integrating them into the organizational culture.',
+    subContentDescription1: 'We help leadership teams align on common values, philosophies, and practices, integrating them into the organizational culture.',
     subContentTitle2: 'Leadership Training',
     subContentDescription2: 'Our training programs can be custom-tailored to address specific needs, covering topics like Influence-Based Leadership, Targeted Behavior Change, and Empowering Ownership.',
     subContentTitle3: 'Application Based Coaching',
@@ -81,7 +81,7 @@ const services = [
     shortDescription:
       'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights, optimizing operations and delivering bottom-line improvements.',
     description: [
-      "The loss of experienced employees is one of the most significant emerging challenges facing most companies in the energy and chemicals sectors.  The ability to capture and harness this experiential knowledge before it leaves is not only a competitive advantage but, in many instances, foundational to continued safe, reliable operations.",
+      "The loss of experienced employees is one of the most significant emerging challenges facing most companies in the energy and chemicals sectors.  The ability to capture and harness this experiential knowledge before it leaves is not only a competitive advantage, but, in many instances, foundational to continued safe, reliable operations.",
       "We work with our clients to help them design and implement experiential knowledge capture programs that mitigate the impacts of the experience drain and help optimize operations by turning experience into actionable, real-time insights."
     ],
     subContentTitle1: 'Targeted Experience Capture',
