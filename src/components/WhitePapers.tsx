@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react';
 import motivation  from '../assets/Motivation to Performance.jpg'
 import digitalTransform  from '../assets/digital transformation 5.jpg'
 import intentional  from '../assets/Intentioanl 2.png'
-import digitalOperation  from '../assets/Digital Operational Excellence.avif'
-import digitalValue  from '../assets/Digital No Value 2.png'
 import multiDigital  from '../assets/What If - Technology3.jpg'
 
 const posts = [
@@ -41,7 +39,7 @@ const posts = [
   },
   {
     id: 5,
-    imgSrc: digitalValue,
+    imgSrc: 'https://i.postimg.cc/MKPJfxTW/Digital-No-Value-2.avif',
     title: 'Does Technology Have Value? ',
     href: 'https://drive.google.com/file/d/1bh7LeTN73oBiFt8uNs7PZbyJnheY8DpT/view?usp=sharing',
     description:
@@ -49,7 +47,7 @@ const posts = [
   },
   {
     id: 6,
-    imgSrc: digitalOperation,
+    imgSrc: 'https://i.postimg.cc/sD2tr8Jb/Digital-Operational-Excellence.avif',
     title: 'Digital Operational Excellence',
     href: 'https://drive.google.com/file/d/1GuKYniRyEX7gwBse-dTj63HMsU4ZFtah/view?usp=sharing',
     description:
