@@ -1,7 +1,6 @@
 import { CookiesProvider } from 'react-cookie';
 import CookieConsent from './components/CookieConsent';
 import GoogleAnalytics from './components/GoogleAnalytics';
-import FacebookPixel from './components/FacebookPixel';
 import Hero from './components/Hero'
 import Header from './components/Header'
 import Testimonials from './components/Testimonials'
@@ -18,7 +17,6 @@ function App() {
     <CookiesProvider>
       <CookieConsent />
       <GoogleAnalytics />
-      <FacebookPixel />
       <Header />
       <Hero />
       <Testimonials />
