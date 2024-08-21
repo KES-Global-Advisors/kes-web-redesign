@@ -1,5 +1,5 @@
 import logo from '../assets/KES-Logo-print.png';
-import kevin from '../assets/kevin.jpeg';
+// import kevin from '../assets/kevin.jpeg';
 import { Link } from 'react-scroll';
 
 const Footer = () => {
@@ -34,7 +34,7 @@ const Footer = () => {
               </Link>
             </nav>
           </div>
-          <div className="group relative -mx-4 flex items-center self-stretch p-4 transition-colors sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
+          {/* <div className="group relative -mx-4 flex items-center self-stretch p-4 transition-colors sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
             <div className="relative flex h-24 w-24 flex-none items-center justify-center">
               <img alt="Kevin Smith CEO" loading="lazy" decoding="async" data-nimg="1" style={{ color: 'transparent', borderRadius: '20%' }} src={kevin} />
             </div>
@@ -45,7 +45,7 @@ const Footer = () => {
               </p>
               <p className="mt-1 text-sm text-gray-700">President and Founder</p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className=" text-center  border-t border-gray-200 pb-12 pt-8 md:flex-row-reverse md:justify-between md:pt-6">
           <p className="mt-6 text-sm text-gray-500 md:mt-0">© Copyright 2024. All rights reserved.</p>

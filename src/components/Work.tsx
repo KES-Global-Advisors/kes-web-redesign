@@ -22,13 +22,13 @@ interface Service {
 const services = [
   {
     imgSrc: "https://i.postimg.cc/1zrC6cYY/Employee-Led-Change.avif",
-    tagline: 'Real Ownership and Alignment ',
+    tagline: 'Facilitating Real Ownership and Alignment',
     name: 'Employee-Led Strategic Improvement ',
     shortDescription:
       'Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
     description: [
        "Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
-       "From discreet programs to site level strategies to full corporate employee-led strategic improvement efforts, we have a track record of creating employee-led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
+       "From discreet site level programs to full corporate employee-led strategic improvement efforts, we create employee-led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
     ],
     subContentTitle1: 'Strategic Context Development',
     subContentDescription1: 'We help leadership teams establish and align on their strategic context (Vision, Mission, Goals, Values) to provide a framework for improvement efforts.',
@@ -40,13 +40,13 @@ const services = [
   },
   {
     imgSrc: "https://i.postimg.cc/ZKLxwKLC/Adobe-Stock-201803237.avif",
-    tagline: 'Effective Change Management ',
+    tagline: 'Creating Sustainable Change',
     name: 'Organizational Change & Alignment ',
     shortDescription:
       'Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.',
     description: [
       "Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.",
-      "We work with clients to build a plan for effective change and then provide guidance and support every step of the way to help ensure the full intended value of the targeted program is realized."
+      "We work with clients to build a plan for effective change and then provide guidance and support every step of the way."
     ],
     subContentTitle1: 'Change Program Leadership & Coaching',
     subContentDescription1: 'From idea inception to execution, we guide teams through the change process, engaging stakeholders and creating ownership for sustainable change.',
@@ -76,7 +76,7 @@ const services = [
   },
   {
     imgSrc: "https://i.postimg.cc/02SLjmxh/Exec-Coaching-2.avif",
-    tagline: 'Optimizing Plant Operations ',
+    tagline: 'Turning Experience into Insight',
     name: 'Experiential Knowledge Capture ',
     shortDescription:
       'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights, optimizing operations and delivering bottom-line improvements.',
@@ -94,7 +94,7 @@ const services = [
   },
   {
     imgSrc: "https://i.postimg.cc/MK1FqSmS/Capability-Dev-1.avif",
-    tagline: 'Accelerating Plant Operator Capability ',
+    tagline: 'Enhancing Plant Operator Capability',
     name: 'Rapid Capability Development',
     shortDescription:
       'Active, blended learning accelerates capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
@@ -103,7 +103,7 @@ const services = [
       "KES Global Advisors designs programs that blend various training methods to accelerate the development process and deliver immediate business impact."
     ],
     subContentTitle1: 'Accelerated Capability Development Programs',
-    subContentDescription1: 'KES Global Advisors can help you design and develop a program that is practical for your organization to deliver and sustain that blends traditional competency development with active learning methods, significantly improving knowledge retention and competence.',
+    subContentDescription1: 'We can help you design and develop a program that is practical for your organization to deliver and sustain. We blend traditional competency development with active learning methods to significantly improve knowledge retention and competence.',
     subContentTitle2: 'Asset Specific Training Material Development',
     subContentDescription2: 'We create training materials tailored to the needs of your organization, from full turn-key development programs to client-assisted programs.',
     subContentTitle3: 'Targeted Technical Training',
@@ -112,7 +112,7 @@ const services = [
   },
   {
     imgSrc: "https://i.postimg.cc/0jM0tpcv/digital-Operational-Excellence.avif",
-    tagline: 'Practical Digital Transformation ',
+    tagline: 'Making Digital Transformation Practical',
     name: 'Digital Operational Excellence ',
     shortDescription:
       'Digital transformation changes how people work, not just the technology they use. We design and implement programs that align with operational excellence efforts and the unique challenges of production environments, ensuring sustainable results.',
@@ -204,14 +204,14 @@ const Work = () => {
             {services.map((service) => (
               <div key={service.name} className="relative pl-16 flex flex-col justify-between">
                 <div>
-                  <dt className="text-gray-700 text-sm font-semibold mb-2">
-                    {service.tagline}
+                  <dt className="mb-2 text-base font-semibold leading-7 text-gray-900">
+                    {service.name}
                   </dt>
-                  <dt className="text-base font-semibold leading-7 text-gray-900">
+                  <dt className="text-gray-700 text-sm font-semibold italic">
                     <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                       <service.icon aria-hidden="true" className="h-6 w-6 text-white" />
                     </div>
-                    {service.name}
+                    {service.tagline}
                   </dt>
                   <dd className="mt-2 text-base leading-7 text-gray-600 flex-grow">
                     {service.shortDescription}
