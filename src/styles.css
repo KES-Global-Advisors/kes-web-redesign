@@ -1,10 +1,12 @@
-.swiper-button-next {
-  /* display: none; */
-  /* position: absolute;
-  left: 100%; */
+.swiper-button-next,
+.swiper-button-prev {
+  top: 100px;
+  color: white;
 }
 
-.swiper-button-prev {
-  /* position: absolute;
-  right: 800px; */
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
 }
