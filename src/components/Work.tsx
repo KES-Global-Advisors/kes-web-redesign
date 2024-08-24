@@ -27,13 +27,13 @@ const services = [
     shortDescription:
       'Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
     description: [
-       "Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
-       "From discreet site level programs to full corporate employee-led strategic improvement efforts, we create employee-led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
+       "Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this messiness, helping employees design and deliver strategic improvement programs that create lasting change.",
+       "From discreet site level programs to full corporate strategic improvement efforts, we create employee-led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
     ],
     subContentTitle1: 'Strategic Context Development',
     subContentDescription1: 'We help leadership teams establish and align on their strategic context (Vision, Mission, Goals, Values) to provide a framework for improvement efforts.',
     subContentTitle2: 'Flight Mapping ',
-    subContentDescription2: 'Flight mapping helps teams visualize their improvement journey, prioritizing resource allocation and capturing synergies between initiatives.',
+    subContentDescription2: 'We support your teams as they create flight maps that help visualize the improvement journey, and make it easier to prioritize resource allocation and capture synergies between initiatives.',
     subContentTitle3: 'Coaching and Guidance ',
     subContentDescription3: 'Our consultants provide valuable external insights, posing questions and observations that clarify the path forward and sharpen focus on challenges.',
     icon: ChartBarIcon,
@@ -43,9 +43,9 @@ const services = [
     tagline: 'Creating Sustainable Change',
     name: 'Organizational Change & Alignment ',
     shortDescription:
-      'Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.',
+      'Leading change is complex, especially in industrial settings. We help clients design and lead effective change programs, providing guidance and support to ensure the full value of targeted programs is realized.',
     description: [
-      "Leading change is complex, especially in industrial settings. We help clients build effective change plans, providing guidance and support to ensure the full value of targeted programs is realized.",
+      "Leading change is complex, especially in industrial settings. We help clients design and lead effective change programs, providing guidance and support to ensure the full value of targeted programs is realized.",
       "We work with clients to build a plan for effective change and then provide guidance and support every step of the way."
     ],
     subContentTitle1: 'Change Program Leadership & Coaching',
@@ -53,7 +53,7 @@ const services = [
     subContentTitle2: 'Change Leader Training',
     subContentDescription2: 'We provide targeted training and coaching for change leaders, enhancing their effectiveness at all organizational levels.',
     subContentTitle3: 'Team & Individual Role Alignment',
-    subContentDescription3: 'We facilitate role and responsibility realignment within organizations, from minor adjustments to significant restructuring, ensuring successful change programs.',
+    subContentDescription3: 'We facilitate role and responsibility realignment within organizations, from minor adjustments to significant restructuring, in support of organizational change programs.',
     icon: ArrowsRightLeftIcon,
   },
   {
@@ -61,10 +61,10 @@ const services = [
     tagline: 'Driving Leadership Effectiveness ',
     name: 'Executive Coaching & Leadership Development',
     shortDescription:
-      'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that drive measurable value.',
+      'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that create real value.',
     description: [
       "Effective leadership is highly contextual and rarely follows hard and fast rules.  While leadership styles and skills are typically honed over years or decades, development can be accelerated greatly through targeted constructive feedback and guidance anchored by deep industry experience.",
-      "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer-term programs. Our approach integrates developmental activities with organizational improvement efforts to provide a practical learning environment that drives measurable value creation."
+      "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer-term programs. Our approach integrates developmental activities with organizational improvement efforts to provide a practical learning environment that drives targeted changes to organizational performance."
     ],
     subContentTitle1: 'Leadership Team Alignment',
     subContentDescription1: 'We help leadership teams align on common values, philosophies, and practices, integrating them into the organizational culture.',
@@ -79,7 +79,7 @@ const services = [
     tagline: 'Turning Experience into Insight',
     name: 'Experiential Knowledge Capture ',
     shortDescription:
-      'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights, optimizing operations and delivering bottom-line improvements.',
+      'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights that support real-time application, optimizing operations and delivering bottom-line improvements.',
     description: [
       "The loss of experienced employees is one of the most significant emerging challenges facing most companies in the energy and chemicals sectors.  The ability to capture and harness this experiential knowledge before it leaves is not only a competitive advantage, but, in many instances, foundational to continued safe, reliable operations.",
       "We work with our clients to help them design and implement experiential knowledge capture programs that mitigate the impacts of the experience drain and help optimize operations by turning experience into actionable, real-time insights."
