@@ -130,7 +130,7 @@ const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" ref={sectionRef} className="relative overflow-hidden lg:bg-[rgb(55,134,181)] bg-white px-6 py-24 sm:py-32 lg:px-8 lg:h-[625px]">
       <div className="mx-auto max-w-2xl lg:max-w-full">
-        <h1 className="text-center font-semibold leading-7 mb-10 text-indigo-600 lg:text-white lg:font-bold lg:text-3xl">What Our Clients Say</h1>
+        <h1 className="text-center text-2xl leading-7 mb-10 text-indigo-600 lg:text-white font-bold lg:text-3xl">What Our Clients Say</h1>
         <Swiper
           cssMode={true}
           autoplay={{ delay: 9000, disableOnInteraction: false }}
