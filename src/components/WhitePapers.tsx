@@ -1,8 +1,13 @@
-// import { useEffect, useRef } from 'react';
-// import motivation  from '../assets/Motivation to Performance.jpg'
-// import digitalTransform  from '../assets/digital transformation 5.jpg'
-// import intentional  from '../assets/Intentioanl 2.png'
-// import multiDigital  from '../assets/What If - Technology3.jpg'
+// import { useEffect, useRef, useState } from 'react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+// import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+// import SwiperCore from 'swiper';
+// import motivation from '../assets/Motivation to Performance.jpg';
+// import digitalTransform from '../assets/digital transformation 5.jpg';
+// import intentional from '../assets/Intentioanl 2.png';
+// import multiDigital from '../assets/What If - Technology3.jpg';
 
 // const posts = [
 //   {
@@ -56,7 +61,30 @@
 // ]
 
 // const WhitePapers = () => {
+//   const swiperRef = useRef<SwiperCore | null>(null);
 //   const sectionRef = useRef(null);
+//   const [slidesPerView, setSlidesPerView] = useState(3);
+
+//   // Adjust the number of slides based on screen width
+//   useEffect(() => {
+//     const updateSlidesPerView = () => {
+//       const width = window.innerWidth;
+//       if (width < 640) {
+//         setSlidesPerView(1);
+//       } else if (width < 1024) {
+//         setSlidesPerView(2);
+//       } else {
+//         setSlidesPerView(3);
+//       }
+//     };
+
+//     updateSlidesPerView(); // Set initial slidesPerView
+//     window.addEventListener('resize', updateSlidesPerView); // Update on window resize
+
+//     return () => {
+//       window.removeEventListener('resize', updateSlidesPerView);
+//     };
+//   }, []);
 
 //   useEffect(() => {
 //     const observer = new IntersectionObserver(
@@ -69,7 +97,7 @@
 //         });
 //       },
 //       {
-//         threshold: 0.1, // Adjust the threshold as needed
+//         threshold: 0.1,
 //       }
 //     );
 
@@ -85,24 +113,37 @@
 //   }, []);
 
 //   useEffect(() => {
-//     // Scroll to the section if the URL has the #insights hash
 //     if (window.location.hash === '#insights' && sectionRef.current) {
 //       (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
 //     }
 //   }, []);
 
 //   return (
-//       <div id="insights" ref={sectionRef} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
-//         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-//           <div className="mx-auto max-w-2xl lg:mx-0">
-//             <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
-//             <p className="mt-2 text-lg leading-8 text-gray-600 lg:text-white">
-//               We know how important it is to see other perspectives, and for that reason we freely share ours here.
-//             </p>
-//           </div>
-//           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-//             {posts.map((post) => (
-//               <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+//     <div id="insights" ref={sectionRef} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
+//       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+//         <div className="mx-auto max-w-2xl lg:mx-0">
+//           <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
+//           <p className="mt-2 text-lg leading-8 text-gray-600 lg:text-white">
+//             We know how important it is to see other perspectives, and for that reason we freely share ours here.
+//           </p>
+//         </div>
+//         <Swiper
+//           spaceBetween={30}
+//           slidesPerView={slidesPerView} // Dynamically set slides per view
+//           navigation={true} // Add navigation buttons (optional)
+//           className="mt-10 mySwiper min-h-[500px]"
+//           pagination={true}
+//           mousewheel={true}
+//           keyboard={true}
+//           loop={true}
+//           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+//           onSwiper={(swiper) => {
+//             swiperRef.current = swiper;
+//           }}
+//         >
+//           {posts.map((post) => (
+//             <SwiperSlide key={post.id}>
+//               <article className="flex flex-col items-start justify-between">
 //                 <img className="w-[522px] h-[220px] rounded-xl" src={post.imgSrc} alt="White Papers by KES Global Advisors" />
 //                 <div className="group relative">
 //                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 lg:text-white">
@@ -112,26 +153,25 @@
 //                   <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 lg:text-white">{post.description}</p>
 //                 </div>
 //                 <div className="lg:relative mt-8 flex items-center gap-x-4">
-//                   <a href={post.href} target='_blank' className="text-sm font-semibold leading-6 text-indigo-700 lg:text-white lg:hover:text-gray-600">
+//                   <a href={post.href} target="_blank" className="text-sm font-semibold leading-6 text-indigo-700 lg:text-white lg:hover:text-gray-600">
 //                     Read <span aria-hidden="true">→</span>
 //                   </a>
 //                 </div>
 //               </article>
-//             ))}
-//           </div>
-//         </div>
+//             </SwiperSlide>
+//           ))}
+//         </Swiper>
 //       </div>
-//   )
+//     </div>
+//   );
 // }
 
 // export default WhitePapers;
 
-import { useEffect, useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import SwiperCore from 'swiper';
+import { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import motivation from '../assets/Motivation to Performance.jpg';
 import digitalTransform from '../assets/digital transformation 5.jpg';
 import intentional from '../assets/Intentioanl 2.png';
@@ -186,68 +226,46 @@ const posts = [
     description:
       'For operating companies in the energy and chemicals sectors, there should be a clear integration between their digitalization strategies and their operational excellence programs/practices.',
   },
-]
+];
 
 const WhitePapers = () => {
-  const swiperRef = useRef<SwiperCore | null>(null);
-  const sectionRef = useRef(null);
-  const [slidesPerView, setSlidesPerView] = useState(3);
+  const [slidesToShow, setSlidesToShow] = useState(3);
 
-  // Adjust the number of slides based on screen width
   useEffect(() => {
-    const updateSlidesPerView = () => {
+    const updateSlidesToShow = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setSlidesPerView(1);
+        setSlidesToShow(1);
       } else if (width < 1024) {
-        setSlidesPerView(2);
+        setSlidesToShow(2);
       } else {
-        setSlidesPerView(3);
+        setSlidesToShow(3);
       }
     };
 
-    updateSlidesPerView(); // Set initial slidesPerView
-    window.addEventListener('resize', updateSlidesPerView); // Update on window resize
+    updateSlidesToShow(); // Set initial slides to show
+    window.addEventListener('resize', updateSlidesToShow); // Update on window resize
 
     return () => {
-      window.removeEventListener('resize', updateSlidesPerView);
+      window.removeEventListener('resize', updateSlidesToShow);
     };
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-slide-up');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (window.location.hash === '#insights' && sectionRef.current) {
-      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
+  const settings = {
+    dots: true,
+    infinite: true,
+    swipe: true, // Enable swiping
+    swipetoSlide: true, // Enable swiping to slide
+    touchMove: true, // Enable touch gestures
+    speed: 500,
+    slidesToShow: slidesToShow,
+    slidesToScroll: 1,
+    nextArrow: <div className="slick-next slick-arrow" />,
+    prevArrow: <div className="slick-prev slick-arrow" />,
+  };
 
   return (
-    <div id="insights" ref={sectionRef} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
+    <div id="insights" className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
@@ -255,22 +273,9 @@ const WhitePapers = () => {
             We know how important it is to see other perspectives, and for that reason we freely share ours here.
           </p>
         </div>
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={slidesPerView} // Dynamically set slides per view
-          navigation={true} // Add navigation buttons (optional)
-          className="mt-10 mySwiper min-h-[500px]"
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          loop={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-        >
+        <Slider {...settings} className="mt-10">
           {posts.map((post) => (
-            <SwiperSlide key={post.id}>
+            <div key={post.id} className="px-3">
               <article className="flex flex-col items-start justify-between">
                 <img className="w-[522px] h-[220px] rounded-xl" src={post.imgSrc} alt="White Papers by KES Global Advisors" />
                 <div className="group relative">
@@ -286,9 +291,9 @@ const WhitePapers = () => {
                   </a>
                 </div>
               </article>
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </Slider>
       </div>
     </div>
   );
