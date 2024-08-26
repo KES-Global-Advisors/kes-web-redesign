@@ -45,7 +45,7 @@ const About = () => {
           <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
             <div className="lg:pr-4">
               <div className="lg:max-w-lg">
-                <p className="text-base font-semibold leading-7 text-indigo-600">About Us</p>
+                <p className="text-2xl font-bold leading-7 text-indigo-600">About Us</p>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Company</h1>
               </div>
             </div>
@@ -64,7 +64,7 @@ const About = () => {
               <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
                 <p>
                   Our team of experts, with decades of global experience in the oil, gas,
-                  and chemicals sectors can help your teams drive performance improvement that enhance the safe,
+                  and chemicals sectors, can help your teams drive performance improvement that enhances the safe,
                   reliable, profitable operation of your facilities.
                 </p>
 
@@ -72,12 +72,12 @@ const About = () => {
                   <br /> We approach every engagement as a partnership, with the end goal being to create and recognize significant and sustainable value.
                 </p>
 
-                <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Our Mission</h2>
+                <h2 className="mt-16 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Mission</h2>
                 <p className="mt-6">
                   Our mission is simple — to add value by creating sustainable improvements in business performance.
                   This commitment extends to every interaction, from the first meeting to the final project closeout.
                 </p>
-                <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Our Commitment</h2>
+                <h2 className="mt-16 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Commitment</h2>
                 <p className="mt-6">
                   Our passion for helping companies realize their employees' full potential drives us.
                   As a trusted advisor, our core focus is adding value to our clients in every interaction.

@@ -98,7 +98,8 @@ const WhitePapers = () => {
     <div id="insights" className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
+          <h2 className="text-2xl font-bold leading-7 text-indigo-600 lg:text-white">Insights</h2>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">Our Perspective</h2>
           <p className="mt-2 text-lg leading-8 text-gray-600 lg:text-white">
             We know how important it is to see other perspectives, and for that reason we freely share ours here.
           </p>

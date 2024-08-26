@@ -133,7 +133,7 @@ const Testimonials: React.FC = () => {
         <h1 className="text-center text-2xl leading-7 mb-10 text-indigo-600 lg:text-white font-bold lg:text-3xl">What Our Clients Say</h1>
         <Swiper
           cssMode={true}
-          autoplay={{ delay: 9000, disableOnInteraction: false }}
+          autoplay={{ delay: 15000, disableOnInteraction: true }}
           navigation={true}
           pagination={true}
           mousewheel={true}

@@ -27,7 +27,7 @@ const services = [
     shortDescription:
       'Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.',
     description: [
-       "Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this messiness, helping employees design and deliver strategic improvement programs that create lasting change.",
+       "Creating real ownership and alignment can be messy, but it is essential for true employee engagement. KES Global Advisors embraces this process, helping employees design and deliver strategic improvement programs that create lasting change.",
        "From discreet site level programs to full corporate strategic improvement efforts, we create employee-led improvement programs that not only deliver results but become embedded as evergreen programs that keep employees engaged."  
     ],
     subContentTitle1: 'Strategic Context Development',
@@ -46,7 +46,6 @@ const services = [
       'Leading change is complex, especially in industrial settings. We help clients design and lead effective change programs, providing guidance and support to ensure the full value of targeted programs is realized.',
     description: [
       "Leading change is complex, especially in industrial settings. We help clients design and lead effective change programs, providing guidance and support to ensure the full value of targeted programs is realized.",
-      "We work with clients to build a plan for effective change and then provide guidance and support every step of the way."
     ],
     subContentTitle1: 'Change Program Leadership & Coaching',
     subContentDescription1: 'From idea inception to execution, we guide teams through the change process, engaging stakeholders and creating ownership for sustainable change.',
@@ -63,7 +62,7 @@ const services = [
     shortDescription:
       'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that create real value.',
     description: [
-      "Effective leadership is highly contextual and rarely follows hard and fast rules.  While leadership styles and skills are typically honed over years or decades, development can be accelerated greatly through targeted constructive feedback and guidance anchored by deep industry experience.",
+      "Effective leadership is highly contextual and rarely follows hard and fast rules. While leadership styles and skills are typically honed over years or decades, development can be accelerated greatly through targeted, constructive feedback and guidance anchored by deep industry experience.",
       "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer-term programs. Our approach integrates developmental activities with organizational improvement efforts to provide a practical learning environment that drives targeted changes to organizational performance."
     ],
     subContentTitle1: 'Leadership Team Alignment',
@@ -182,19 +181,10 @@ const Work = () => {
         id="services" 
         ref={sectionRef} 
         className="bg-[#f5f2f7] py-24 sm:py-32"
-        // style={{
-        //   backgroundImage: `url(${Globe})`,
-        //   backgroundAttachment: 'fixed',
-        //   backgroundPosition: 'center',
-        //   backgroundRepeat: 'no-repeat',
-        //   backgroundSize: '45%',
-        //   backgroundBlendMode: 'overlay',
-        //   backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        // }}
         >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">What We Do</h2>
+            <h2 className="text-2xl font-bold leading-7 text-indigo-600">What We Do</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Transforming Leadership into Performance 
             </p>
