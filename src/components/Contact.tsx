@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Globe from '../assets/Globe.png';
+import Globe from '/assets/Globe.png';
 
 interface ContactProps {
   id: string;

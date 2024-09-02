@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import logo from '../assets/KES-Logo-print.png';
-import globe from '../assets/Globe.png';
+import logo from '/assets/KES-Logo-print.png';
+import globe from '/assets/Globe.png';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link, Events } from 'react-scroll';

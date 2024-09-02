@@ -1,4 +1,4 @@
-import logo from '../assets/KES-Logo-print.png';
+import logo from '/assets/KES-Logo-print.png';
 import { Link } from 'react-scroll';
 
 const Footer = () => {

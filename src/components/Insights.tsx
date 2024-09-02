@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import motivation from '../assets/Motivation to Performance.jpg';
-import digitalTransform from '../assets/digital transformation 5.jpg';
-import intentional from '../assets/Intentioanl 2.png';
-import multiDigital from '../assets/What If - Technology3.jpg';
+import motivation from '/assets/Motivation to Performance.jpg';
+import digitalTransform from '/assets/digital transformation 5.jpg';
+import intentional from '/assets/Intentioanl 2.png';
+import multiDigital from '/assets/What If - Technology3.jpg';
 
 const posts = [
   {
