@@ -1,0 +1,54 @@
+.swiper-button-next,
+.swiper-button-prev {
+  top: 100px;
+  color: white;
+}
+
+@media (min-width: 1024px) {
+  .swiper-pagination-bullet-active {
+  background-color: white;
+ }
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* Custom slick-arrow button styles */
+/* .slick-arrow {
+  width: 100px;
+  height: 100px;
+  background-color: #3776B5; 
+  color: white;
+  border-radius: 50%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+  transition: background-color 0.3s ease;
+} */
+
+/* .slick-arrow:hover {
+  background-color: #2A5A85;
+  opacity: 1;
+} */
+
+/* Position adjustments */
+/* .slick-prev {
+  left: 10px;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 10px;
+} */
+
+/* Hide buttons on smaller screens */
+@media (max-width: 640px) {
+  .slick-arrow {
+    display: none !important;
+  }
+}
