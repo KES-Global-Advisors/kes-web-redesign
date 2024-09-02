@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ArchiveBoxIcon, ArrowsRightLeftIcon, ChartBarIcon, CogIcon, UserGroupIcon, BoltIcon } from '@heroicons/react/24/outline'
 import ServiceDrawer from './ServiceDrawer';
-// import Globe from '../assets/Globe.png';
 
 interface Service {
   tagline: string;
@@ -129,8 +128,11 @@ const services = [
   },
 ]
 
+interface ServiceProps {
+  id: string;
+}
 
-const Work = () => {
+const Service: React.FC<ServiceProps> = ({ id }) => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -178,7 +180,7 @@ const Work = () => {
   return (
     <>
       <div 
-        id="services" 
+        id={id}
         ref={sectionRef} 
         className="bg-[#f5f2f7] py-24 sm:py-32"
         >
@@ -228,4 +230,4 @@ const Work = () => {
   )
 }
 
-export default Work;
+export default Service;

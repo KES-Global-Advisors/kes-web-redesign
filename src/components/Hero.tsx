@@ -61,7 +61,6 @@ const Hero = () => {
             <div className="absolute inset-y-0 right-0 hidden lg:block w-1/2 bg-gray-50">
               <img
                 alt="KES Global Advisors Banner"
-                // https://i.postimg.cc/NFfWJPM8/KES-Banner-5.png
                 src="https://i.postimg.cc/tTPMrGpV/KES-Banner-5.webp"
                 className="object-cover h-full w-full"
               />

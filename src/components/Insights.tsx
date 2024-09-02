@@ -58,7 +58,11 @@ const posts = [
   },
 ];
 
-const WhitePapers = () => {
+interface InsightProps {
+  id: string;
+}
+
+const Insights: React.FC<InsightProps> = ({ id }) => {
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   useEffect(() => {
@@ -95,7 +99,7 @@ const WhitePapers = () => {
   };
 
   return (
-    <div id="insights" className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
+    <div id={id} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-2xl font-bold leading-7 text-indigo-600 lg:text-white">Insights</h2>
@@ -130,4 +134,4 @@ const WhitePapers = () => {
   );
 }
 
-export default WhitePapers;
+export default Insights;

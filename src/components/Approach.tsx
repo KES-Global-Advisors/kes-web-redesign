@@ -1,7 +1,10 @@
 import { useEffect, useRef } from 'react';
+interface ApproachProps {
+  id: string;
+}
 
+const Approach: React.FC<ApproachProps> = ({ id }) => {
 
-const Approach = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -38,7 +41,7 @@ const Approach = () => {
   }, []);
 
   return (
-    <div id="approach" ref={sectionRef} className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+    <div id={id} ref={sectionRef} className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <img
         alt="KES Global Advisors Approach"
         src="https://i.postimg.cc/90hQS2Bf/KES-Banner.avif"
