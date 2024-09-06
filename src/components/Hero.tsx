@@ -52,8 +52,8 @@ const Hero = () => {
                     </span>
                   </h1>
         
-                  <p className="mt-10 mb-11 text-xl lg:text-2xl leading-9 text-gray-600 text-center lg:text-left">
-                    By engaging, aligning, and empowering your workforce, <br/> KES Global Advisors can help unlock your organization’s full potential to drive sustainable improvements for your business.
+                  <p className="mt-10 mb-11 text-xl text-balance lg:text-2xl leading-9 text-gray-600 text-center lg:text-left">
+                    By engaging, aligning, and empowering your workforce, KES Global Advisors can help unlock your organization’s full potential to drive sustainable improvements for your business.
                   </p>
                 </div>
               </div>
