@@ -7,3 +7,11 @@
 # Catch-all redirect for client-side routing
 /*    /index.html   200
 
+#redirect trailing slashes
+/testimonials/  /testimonials  301!
+/approach/      /approach      301!
+/services/      /services      301!
+/about/         /about         301!
+/insights/      /insights      301!
+/contact/       /contact       301!
+
