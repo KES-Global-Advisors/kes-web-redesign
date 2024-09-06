@@ -1,11 +1,3 @@
-# Redirect trailing slashes
-/testimonials/  /testimonials  301!
-/approach/      /approach      301!
-/services/      /services      301!
-/about/         /about         301!
-/insights/      /insights      301!
-/contact/       /contact       301!
-
 # Allow access to static files like images, sitemaps, and robots.txt
 /assets/*    /assets/:splat   200
 /sitemap.xml    /sitemap.xml   200
