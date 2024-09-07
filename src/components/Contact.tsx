@@ -48,7 +48,7 @@ const Contact: React.FC<ContactProps> = ({ id }) => {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch('https://formspree.io/f/xovabqoj', {
+      const response = await fetch('https://formspree.io/f/mldrvaey', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
