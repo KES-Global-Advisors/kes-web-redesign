@@ -69,7 +69,7 @@ const services = [
     subContentTitle2: 'Leadership Training',
     subContentDescription2: 'Our training programs can be custom-tailored to address specific needs, covering topics like Influence-Based Leadership, Targeted Behavior Change, and Empowering Ownership.',
     subContentTitle3: 'Application Based Coaching',
-    subContentDescription3: 'We provide targeted coaching that guides the application leadership values and techniques to drive performance while creating a positive employee experience.   ',
+    subContentDescription3: 'We provide targeted coaching that guides the application of leadership values and techniques to drive performance while creating a positive employee experience.   ',
     icon: UserGroupIcon,
   },
   {
@@ -95,9 +95,9 @@ const services = [
     tagline: 'Enhancing Plant Operator Capability',
     name: 'Rapid Capability Development',
     shortDescription:
-      'Active, blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
+      'Blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
     description: [
-      "Active, blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles in significantly less time. The combination of traditional training methods with engaging digital content can greatly enhance the overall learning experience.",
+      "Blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles in significantly less time. The combination of traditional training methods with engaging digital content can greatly enhance the overall learning experience.",
       "KES Global Advisors designs programs that blend various training methods to accelerate the development process and deliver immediate business impact."
     ],
     subContentTitle1: 'Accelerated Capability Development Programs',
