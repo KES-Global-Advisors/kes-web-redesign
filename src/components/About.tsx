@@ -69,7 +69,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
                 <p>
                   Our team of experts, with decades of global experience in the oil, gas,
                   and chemicals sectors, can help your teams drive performance improvement that enhances the safe,
-                  reliable, profitable operation of your facilities.
+                  reliable and profitable operation of your facilities.
                 </p>
 
                 <p>

@@ -59,7 +59,7 @@ const services = [
     tagline: 'Driving Leadership Effectiveness ',
     name: 'Executive Coaching & Leadership Development',
     shortDescription:
-      'Effective leadership requires constructive feedback. We design leadership development programs that integrate developmental activities with organizational improvement efforts, providing practical learning environments that create real value.',
+      'Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer-term programs. Our approach integrates developmental activities with organizational improvement efforts to provide a practical learning environment that drives targeted changes to organizational performance.',
     description: [
       "Effective leadership is highly contextual and rarely follows hard and fast rules. While leadership styles and skills are typically honed over years or decades, development can be accelerated greatly through targeted, constructive feedback and guidance anchored by deep industry experience.",
       "Working with our clients, KES Global Advisors designs leadership development programs ranging from one-off training sessions to longer-term programs. Our approach integrates developmental activities with organizational improvement efforts to provide a practical learning environment that drives targeted changes to organizational performance."
@@ -69,7 +69,7 @@ const services = [
     subContentTitle2: 'Leadership Training',
     subContentDescription2: 'Our training programs can be custom-tailored to address specific needs, covering topics like Influence-Based Leadership, Targeted Behavior Change, and Empowering Ownership.',
     subContentTitle3: 'Application Based Coaching',
-    subContentDescription3: 'We provide targeted, contextual coaching guiding the application leadership values and techniques to drive performance while creating a positive employee experience.   ',
+    subContentDescription3: 'We provide targeted coaching that guides the application leadership values and techniques to drive performance while creating a positive employee experience.   ',
     icon: UserGroupIcon,
   },
   {
@@ -77,9 +77,9 @@ const services = [
     tagline: 'Turning Experience into Insight',
     name: 'Experiential Knowledge Capture ',
     shortDescription:
-      'Capturing experiential knowledge before experienced employees leave is critical. Our method turns this knowledge into actionable insights that support real-time application, optimizing operations and delivering bottom-line improvements.',
+      'We work with our clients to help them design and implement experiential knowledge capture programs that mitigate the impacts of the experience drain and help optimize operations by turning experience into actionable, real-time insights.',
     description: [
-      "The loss of experienced employees is one of the most significant emerging challenges facing most companies in the energy and chemicals sectors.  The ability to capture and harness this experiential knowledge before it leaves is not only a competitive advantage, but, in many instances, foundational to continued safe, reliable operations.",
+      "The loss of experienced employees is one of the most significant emerging challenges facing most companies in the energy and chemicals sectors.  The ability to capture and harness this experiential knowledge before it leaves is not only a competitive advantage but is also foundational to continued safe and reliable operations.",
       "We work with our clients to help them design and implement experiential knowledge capture programs that mitigate the impacts of the experience drain and help optimize operations by turning experience into actionable, real-time insights."
     ],
     subContentTitle1: 'Targeted Experience Capture',
@@ -95,7 +95,7 @@ const services = [
     tagline: 'Enhancing Plant Operator Capability',
     name: 'Rapid Capability Development',
     shortDescription:
-      'Active, blended learning accelerates capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
+      'Active, blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles. We design and develop programs that blend various training methods to deliver immediate business impact.',
     description: [
       "Active, blended learning that actively engages the employee can accelerate capability development, ensuring employees become truly competent in their roles in significantly less time. The combination of traditional training methods with engaging digital content can greatly enhance the overall learning experience.",
       "KES Global Advisors designs programs that blend various training methods to accelerate the development process and deliver immediate business impact."
@@ -113,13 +113,13 @@ const services = [
     tagline: 'Making Digital Transformation Practical',
     name: 'Digital Operational Excellence ',
     shortDescription:
-      'Digital transformation changes how people work, not just the technology they use. We design and implement programs that align with operational excellence efforts and the unique challenges of production environments, ensuring sustainable results.',
+      'Digital transformation changes how people work, not just the technology they use.  We help our clients design and implement programs that align with operational excellence improvement efforts to deliver sustainable results and create a natural adoption mechanism for targeted employees.',
     description: [
       "Digital transformation changes how people work, not just the technology they use. It is this change in working practices that creates value through efficiency or new capabilities.",
       "We help our clients design and implement digital transformation programs that align with operational excellence improvement efforts to deliver sustainable results and create a natural adoption mechanism for targeted employees."
     ],
     subContentTitle1: 'Operational Digital Transformation',
-    subContentDescription1: 'We work with our clients to define transformation maps anchored in observable, measurable changes in how employees work, and provide guidance and support through-out the transformation journey.',
+    subContentDescription1: 'We work with our clients to define transformation maps anchored in observable, measurable changes in how employees work, and provide guidance and support throughout the transformation journey.',
     subContentTitle2: 'Targeted Adoption Program Support',
     subContentDescription2: 'We focus on changing employee behaviors to ensure the effective utilization of new technologies, enhancing operational capabilities and creating value.',
     subContentTitle3: '',
