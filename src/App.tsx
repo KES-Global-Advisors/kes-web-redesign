@@ -49,8 +49,8 @@ function App() {
         <ScrollToSection />
         <div>
           <Hero/>
-          <Testimonials id="testimonials" />
-          <Approach id="approach" />
+          <Testimonials />
+          <Approach />
           <Service id="services" />
           <About id="about" />
           <Insights id="insights" />

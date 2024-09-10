@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
-interface ApproachProps {
-  id: string;
-}
 
-const Approach: React.FC<ApproachProps> = ({ id }) => {
+
+const Approach = () => {
 
   const sectionRef = useRef(null);
 
@@ -33,15 +31,9 @@ const Approach: React.FC<ApproachProps> = ({ id }) => {
     };
   }, []);
 
-  useEffect(() => {
-    // Scroll to the section if the URL has the #approach hash
-    if (window.location.hash === '#approach' && sectionRef.current) {
-      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
 
   return (
-    <div id={id} ref={sectionRef} className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <img
         alt="KES Global Advisors Approach"
         src="https://i.postimg.cc/90hQS2Bf/KES-Banner.avif"

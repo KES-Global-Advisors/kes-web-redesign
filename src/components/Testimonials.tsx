@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -89,13 +89,9 @@ const testimonials = [
   },
 ];
 
-interface TestimonialProps {
-  id: string;
-}
 
-const Testimonials: React.FC<TestimonialProps> = ({ id }) => {
+const Testimonials = () => {
   const swiperRef = useRef<SwiperCore | null>(null);
-  const sectionRef = useRef(null);
 
   const isMobileDevice = () => {
     return typeof window !== 'undefined' && window.innerWidth <= 768;
@@ -124,15 +120,9 @@ const Testimonials: React.FC<TestimonialProps> = ({ id }) => {
     };
   }, []);
 
-  useEffect(() => {
-    // Scroll to the section if the URL has the #testimonials hash
-    if (window.location.hash === '#testimonials' && sectionRef.current) {
-      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
 
   return (
-    <section id={id} ref={sectionRef} className="relative overflow-hidden lg:bg-[rgb(55,134,181)] bg-white px-6 py-24 sm:py-32 lg:px-8 lg:h-[625px]">
+    <section className="relative overflow-hidden lg:bg-[rgb(55,134,181)] bg-white px-6 py-24 sm:py-32 lg:px-8 lg:h-[625px]">
       <div className="mx-auto max-w-2xl lg:max-w-full">
         <h1 className="text-center text-2xl leading-7 mb-10 text-indigo-600 lg:text-white font-bold lg:text-3xl">What Our Clients Say</h1>
         <Swiper
