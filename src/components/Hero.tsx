@@ -21,7 +21,7 @@ const Hero = () => {
 
   return (
     <Element name="home">
-      <div id="home" ref={heroRef} className="bg-white lg:min-h-[calc(100vh-56px)] min-h-[600px] lg:h-auto">
+      <div id="home" ref={heroRef} className="bg-white min-h-screen lg:h-auto lg:min-h-[100%]">
         <div className="relative h-full">
           <div className="mx-auto max-w-3xl lg:max-w-7xl">
             <div className="relative pt-14 z-10 max-w-3xl w-full">
@@ -39,7 +39,7 @@ const Hero = () => {
                     <span className="relative">
                       <span className="whitespace-nowrap">Unlocking Your</span><br/>
                     </span> 
-                    <span className="relative  text-blue-600">
+                    <span className="relative text-blue-600">
                       <svg
                         aria-hidden="true"
                         viewBox="0 0 418 42"
@@ -51,7 +51,6 @@ const Hero = () => {
                       <span className="relative">Organization’s Full Potential</span>
                     </span>
                   </h1>
-        
                   <p className="mt-10 mb-11 text-xl text-balance lg:text-2xl leading-9 text-gray-600 text-center lg:text-left">
                     By engaging, aligning, and empowering your workforce, KES Global Advisors can help unlock your organization’s full potential to drive sustainable improvements for your business.
                   </p>
