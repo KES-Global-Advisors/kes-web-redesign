@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation, Link } from 'react-router-dom';
 import { useSupabase } from './SupabaseContext';
 import ContentEditor from './ContentEditor';
-import DocumentManager from './DocumentManager';
+import ContentManager from './ContentManager';
 import { 
   DocumentTextIcon, 
   FolderIcon, 
@@ -32,7 +32,7 @@ const AdminPanel = () => {
 
   const navigation = [
     { name: 'Content Editor', href: '/admin/content', icon: DocumentTextIcon },
-    { name: 'Document Manager', href: '/admin/documents', icon: FolderIcon },
+    { name: 'Content Manager', href: '/admin/manager', icon: FolderIcon },
   ];
 
   if (loading) {
@@ -192,7 +192,7 @@ const AdminPanel = () => {
           <Routes>
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/content" element={<ContentEditor />} />
-            <Route path="/documents" element={<DocumentManager />} />
+            <Route path="/manager" element={<ContentManager />} />
             <Route path="/" element={<AdminDashboard />} />
           </Routes>
         </div>

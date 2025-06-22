@@ -15,23 +15,29 @@ import Contact from './components/Contact';
 import AdminPanel from './components/admin/AdminPanel';
 import AdminLogin from './components/admin/AdminLogin';
 import { SupabaseProvider } from './components/admin/SupabaseContext';
+import { ContentProvider } from './hooks/useContent';
+import { InsightsProvider } from './hooks/useInsights';
 
 // Main website component
 const MainWebsite: React.FC = () => {
   return (
-    <>
-      <Header />
-      <div>
-        <Hero/>
-        <Testimonials />
-        <Approach />
-        <Service id="services" />
-        <About id="about" />
-        <Insights id="insights" />
-        <Contact id="contact" />
-      </div>
-      <Footer />
-    </>
+    <SupabaseProvider>
+      <ContentProvider>
+        <InsightsProvider>
+          <Header />
+          <div>
+            <Hero/>
+            <Testimonials />
+            <Approach />
+            <Service id="services" />
+            <About id="about" />
+            <Insights id="insights" />
+            <Contact id="contact" />
+          </div>
+          <Footer />
+        </InsightsProvider>
+      </ContentProvider>
+    </SupabaseProvider>
   );
 };
 
