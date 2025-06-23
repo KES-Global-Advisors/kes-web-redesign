@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import CookieConsent from './components/CookieConsent';
@@ -12,52 +12,80 @@ import About from './components/About';
 import Insights from './components/Insights';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
+import AdminPanel from './components/admin/AdminPanel';
+import AdminLogin from './components/admin/AdminLogin';
+import { SupabaseProvider } from './components/admin/SupabaseContext';
+import { ContentProvider } from './hooks/useContent';
+import { InsightsProvider } from './hooks/useInsights';
+
+// Main website component
+const MainWebsite: React.FC = () => {
+  return (
+    <SupabaseProvider>
+      <ContentProvider>
+        <InsightsProvider>
+          <Header />
+          <div>
+            <Hero/>
+            <Testimonials />
+            <Approach />
+            <Service id="services" />
+            <About id="about" />
+            <Insights id="insights" />
+            <Contact id="contact" />
+          </div>
+          <Footer />
+        </InsightsProvider>
+      </ContentProvider>
+    </SupabaseProvider>
+  );
+};
 
 // Component to handle scrolling to sections with smooth scrolling
-function ScrollToSection() {
+const ScrollToSection: React.FC = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const sectionId = pathname.substring(1); // remove leading slash
-    if (sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
+    // Only handle scrolling for main website routes, not admin routes
+    if (!pathname.startsWith('/admin')) {
+      const sectionId = pathname.substring(1); // remove leading slash
+      if (sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          window.scrollTo({
+            top: element.offsetTop,
+          });
+        }
+      } else {
+        // If no specific section is targeted, scroll to top
         window.scrollTo({
-          top: element.offsetTop,
-          // behavior: 'smooth',
+          top: 0,
         });
       }
-    } else {
-      // If no specific section is targeted, scroll to top
-      window.scrollTo({
-        top: 0,
-        // behavior: 'smooth',
-      });
     }
   }, [pathname]);
 
   return null;
-}
+};
 
-function App() {
+const App: React.FC = () => {
   return (
     <CookiesProvider>
-      <CookieConsent />
-      <GoogleAnalytics />
-      <Router>
-        <Header />
-        <ScrollToSection />
-        <div>
-          <Hero/>
-          <Testimonials />
-          <Approach />
-          <Service id="services" />
-          <About id="about" />
-          <Insights id="insights" />
-          <Contact id="contact" />
-        </div>
-        <Footer />
-      </Router>
+      <SupabaseProvider>
+        <CookieConsent />
+        <GoogleAnalytics />
+        <Router>
+          <ScrollToSection />
+          <Routes>
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/*" element={<AdminPanel />} />
+            
+            {/* Main Website Route */}
+            <Route path="*" element={<MainWebsite />} />
+          </Routes>
+        </Router>
+      </SupabaseProvider>
     </CookiesProvider>
   );
 }

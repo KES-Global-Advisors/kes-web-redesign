@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-
+import { useContent } from '../hooks/useContent';
 
 const Approach = () => {
-
+  const { getContent, loading } = useContent();
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Approach = () => {
         });
       },
       {
-        threshold: 0.1, // Adjust the threshold as needed
+        threshold: 0.1,
       }
     );
 
@@ -31,6 +31,25 @@ const Approach = () => {
     };
   }, []);
 
+  // Loading state
+  if (loading) {
+    return (
+      <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+        <img
+          alt="KES Global Advisors Approach"
+          src="https://i.postimg.cc/90hQS2Bf/KES-Banner.avif"
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+        />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0 animate-pulse">
+            <div className="h-16 bg-gray-700 rounded mb-6"></div>
+            <div className="h-6 bg-gray-700 rounded mb-4"></div>
+            <div className="h-6 bg-gray-700 rounded w-3/4"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
@@ -65,16 +84,16 @@ const Approach = () => {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Our Approach</h2>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            {getContent('approach_title')}
+          </h2>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Recognizing that every client is unique, we tailor each engagement to address specific needs and challenges.
-            With decades of global experience in the oil, gas, and chemicals sectors, we facilitate employee-led improvement and
-            capability enhancement programs, integrating practical guidance and support to drive alignment and ensure sustainable results. 
+            {getContent('approach_description')}
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Approach;
