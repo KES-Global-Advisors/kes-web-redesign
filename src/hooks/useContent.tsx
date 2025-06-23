@@ -1,17 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect, useContext, createContext, ReactNode } from 'react';
-import { useSupabase } from '../components/admin/SupabaseContext';
+import { useState, useEffect, useContext, createContext, ReactNode } from 'react'
+import { supabase } from '../lib/supabase'
+import type { Database } from '../lib/supabase'
+
+type ContentRow = Database['public']['Tables']['site_content']['Row']
 
 interface ContentData {
-  [key: string]: string;
+  [key: string]: string
 }
 
 interface ContentContextType {
-  content: ContentData;
-  loading: boolean;
-  error: string | null;
-  getContent: (section: string, fallback?: string) => string;
-  refreshContent: () => Promise<void>;
+  content: ContentData
+  loading: boolean
+  error: string | null
+  getContent: (section: string, fallback?: string) => string
+  refreshContent: () => Promise<void>
 }
 
 // Default fallback content
@@ -28,65 +30,63 @@ const defaultContent: ContentData = {
   insights_title: 'Insights',
   insights_description: 'We know how important it is to see other perspectives, and for that reason we freely share ours here.',
   contact_title: 'Get in Touch'
-};
+}
 
-const ContentContext = createContext<ContentContextType>({} as ContentContextType);
+const ContentContext = createContext<ContentContextType>({} as ContentContextType)
 
 interface ContentProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const ContentProvider = ({ children }: ContentProviderProps) => {
-  const { supabase } = useSupabase();
-  const [content, setContent] = useState<ContentData>(defaultContent);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [content, setContent] = useState<ContentData>(defaultContent)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const loadContent = async () => {
     try {
-      setLoading(true);
-      setError(null);
+      setLoading(true)
+      setError(null)
       
       const { data, error } = await supabase
         .from('site_content')
         .select('*')
-        .execute();
 
-      if (error) throw error;
+      if (error) throw error
 
       // Convert array to object for easy lookup
-      const contentMap: ContentData = { ...defaultContent };
+      const contentMap: ContentData = { ...defaultContent }
       
       if (data && Array.isArray(data)) {
-        data.forEach((item: any) => {
+        data.forEach((item: ContentRow) => {
           if (item.section && item.text) {
-            contentMap[item.section] = item.text;
+            contentMap[item.section] = item.text
           }
-        });
+        })
       }
 
-      setContent(contentMap);
+      setContent(contentMap)
     } catch (err) {
-      console.error('Failed to load content:', err);
-      setError((err as Error).message);
+      console.error('Failed to load content:', err)
+      setError((err as Error).message)
       // Keep using default content on error
-      setContent(defaultContent);
+      setContent(defaultContent)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    loadContent();
-  }, []);
+    loadContent()
+  }, [])
 
   const getContent = (section: string, fallback?: string): string => {
-    return content[section] || fallback || defaultContent[section] || '';
-  };
+    return content[section] || fallback || defaultContent[section] || ''
+  }
 
   const refreshContent = async () => {
-    await loadContent();
-  };
+    await loadContent()
+  }
 
   const value: ContentContextType = {
     content,
@@ -94,19 +94,19 @@ export const ContentProvider = ({ children }: ContentProviderProps) => {
     error,
     getContent,
     refreshContent
-  };
+  }
 
   return (
     <ContentContext.Provider value={value}>
       {children}
     </ContentContext.Provider>
-  );
-};
+  )
+}
 
 export const useContent = (): ContentContextType => {
-  const context = useContext(ContentContext);
+  const context = useContext(ContentContext)
   if (context === undefined) {
-    throw new Error('useContent must be used within a ContentProvider');
+    throw new Error('useContent must be used within a ContentProvider')
   }
-  return context;
-};
+  return context
+}

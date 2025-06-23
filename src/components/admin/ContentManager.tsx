@@ -1,20 +1,105 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSupabase } from './SupabaseContext';
+import { z } from 'zod';
 import { 
   CloudArrowUpIcon,
   DocumentIcon,
   TrashIcon,
   PhotoIcon,
   EyeIcon,
-  CheckIcon,
   ExclamationTriangleIcon,
   FolderIcon,
   PencilIcon,
   XMarkIcon,
   DocumentTextIcon
 } from '@heroicons/react/24/outline';
+import { showSuccess, showError, showLoading, dismissToast } from '../../lib/notifications';
+import { captureError } from '../../lib/sentry';
 
+// Validation Schemas
+const insightSchema = z.object({
+  title: z.string()
+    .min(1, 'Title is required')
+    .max(200, 'Title must be less than 200 characters'),
+  description: z.string()
+    .min(1, 'Description is required')
+    .max(1000, 'Description must be less than 1000 characters'),
+  display_order: z.number()
+    .int('Display order must be a whole number')
+    .min(0, 'Display order must be positive'),
+  is_active: z.boolean(),
+});
+
+const fileUploadSchema = z.object({
+  name: z.string().min(1, 'Filename is required'),
+  size: z.number()
+    .max(10 * 1024 * 1024, 'File must be smaller than 10MB'),
+  type: z.string().refine(
+    (type) => [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'text/plain',
+      'text/csv',
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/gif'
+    ].includes(type),
+    'Invalid file type'
+  )
+});
+
+// Utility Functions
+const sanitizeFileName = (fileName: string): string => {
+  return fileName
+    .replace(/[^a-zA-Z0-9.-]/g, '_')
+    .replace(/\.+/g, '.')
+    .replace(/^\.+|\.+$/g, '')
+    .substring(0, 100);
+};
+
+const sanitizeText = (text: string): string => {
+  return text
+    .trim()
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove script tags
+    .replace(/javascript:/gi, '') // Remove javascript: URLs
+    .replace(/on\w+="[^"]*"/gi, '') // Remove event handlers
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, ''); // Remove iframes
+};
+
+const validateFile = async (file: File): Promise<string | null> => {
+  try {
+    // Basic validation
+    fileUploadSchema.parse({
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return null; // No errors
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return error.errors[0].message;
+    }
+    return 'File validation failed';
+  }
+};
+
+const validateAndSanitizeInsight = (data: unknown) => {
+  const parsed = insightSchema.parse(data);
+  return {
+    ...parsed,
+    title: sanitizeText(parsed.title),
+    description: sanitizeText(parsed.description)
+  };
+};
+
+// TypeScript Interfaces
 interface DocumentFile {
   name: string;
   id?: string;
@@ -57,19 +142,23 @@ interface InsightFormData {
   is_active: boolean;
 }
 
+interface ValidationError {
+  field: string;
+  message: string;
+}
+
 const ContentManager = () => {
   const { supabase } = useSupabase();
   const [documents, setDocuments] = useState<DocumentWithInsight[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [editingInsight, setEditingInsight] = useState<Insight | null>(null);
   const [creatingFromDoc, setCreatingFromDoc] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<ValidationError[]>([]);
   const [formData, setFormData] = useState<InsightFormData>({
     title: '',
     description: '',
@@ -79,11 +168,7 @@ const ContentManager = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
 
-  useEffect(() => {
-    loadDocumentsAndInsights();
-  }, []);
-
-  const loadDocumentsAndInsights = async () => {
+  const loadDocumentsAndInsights = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -94,11 +179,10 @@ const ContentManager = () => {
 
       if (docsError) throw docsError;
 
-      // Load insights
+      // Load insights - Fixed: Removed .execute() method
       const { data: insightsData, error: insightsError } = await supabase
         .from('insights')
-        .select('*')
-        .execute();
+        .select('*');
 
       if (insightsError) throw insightsError;
 
@@ -118,37 +202,37 @@ const ContentManager = () => {
 
       setDocuments(documentsWithInsights);
     } catch (err) {
-      setError('Failed to load content: ' + (err as Error).message);
+      const error = err as Error;
+      showError('Failed to load content: ' + error.message);
+      captureError(error, { context: 'ContentManager.loadDocumentsAndInsights' });
     } finally {
       setLoading(false);
     }
-  };
+  }, [supabase]);
+
+  useEffect(() => {
+    loadDocumentsAndInsights();
+  }, [loadDocumentsAndInsights]); // Fixed: Added missing dependency
 
   const uploadFile = async (file: File) => {
+    let loadingToast: string | undefined;
+
     try {
       setUploading(true);
-      setError('');
 
-      // Validate file size (max 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        throw new Error('File size must be less than 10MB');
+      // Validate file
+      const validationError = await validateFile(file);
+      if (validationError) {
+        throw new Error(validationError);
       }
 
-      // Validate file type
-      const allowedTypes = [
-        'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        'text/plain', 'text/csv'
-      ];
+      loadingToast = showLoading('Uploading file...');
 
-      if (!allowedTypes.includes(file.type)) {
-        throw new Error('File type not allowed. Please upload PDFs or Office documents.');
-      }
-
-      // Create unique filename
+      // Sanitize filename
       const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const baseName = file.name.replace(`.${fileExt}`, '');
+      const sanitizedBaseName = sanitizeFileName(baseName);
+      const fileName = `${Date.now()}-${sanitizedBaseName}.${fileExt}`;
 
       const { error } = await supabase.storage
         .from('site-documents')
@@ -156,13 +240,21 @@ const ContentManager = () => {
 
       if (error) throw error;
 
-      setSuccess('Document uploaded successfully! You can now create an insight from it.');
-      setTimeout(() => setSuccess(''), 3000);
+      if (loadingToast) dismissToast(loadingToast);
+      showSuccess('Document uploaded successfully! You can now create an insight from it.');
       
       // Reload documents
       await loadDocumentsAndInsights();
     } catch (err) {
-      setError((err as Error).message);
+      if (loadingToast) dismissToast(loadingToast);
+      const error = err as Error;
+      showError(error.message);
+      captureError(error, { 
+        context: 'ContentManager.uploadFile',
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type 
+      });
     } finally {
       setUploading(false);
     }
@@ -189,12 +281,12 @@ const ContentManager = () => {
     const file = event.target.files?.[0];
     if (file) {
       if (!file.type.startsWith('image/')) {
-        setError('Please select an image file');
+        showError('Please select an image file');
         return;
       }
       
       if (file.size > 5 * 1024 * 1024) {
-        setError('Image size must be less than 5MB');
+        showError('Image size must be less than 5MB');
         return;
       }
 
@@ -226,6 +318,7 @@ const ContentManager = () => {
     setImagePreview('');
     setSelectedImage(null);
     setEditingInsight(null);
+    setValidationErrors([]);
     setShowForm(true);
   };
 
@@ -239,25 +332,55 @@ const ContentManager = () => {
       is_active: insight.is_active
     });
     setImagePreview(insight.image_url);
+    setValidationErrors([]);
     setShowForm(true);
+  };
+
+  const validateFormData = (data: InsightFormData): ValidationError[] => {
+    try {
+      validateAndSanitizeInsight(data);
+      return [];
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return error.errors.map(err => ({
+          field: err.path.join('.'),
+          message: err.message
+        }));
+      }
+      return [{ field: 'general', message: 'Validation failed' }];
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.title.trim() || !formData.description.trim()) {
-      setError('Title and description are required');
-      return;
-    }
+    let loadingToast: string | undefined;
 
     try {
       setSaving(true);
-      setError('');
+      setValidationErrors([]);
+
+      // Validate form data
+      const errors = validateFormData(formData);
+      if (errors.length > 0) {
+        setValidationErrors(errors);
+        showError('Please fix validation errors before saving');
+        return;
+      }
+
+      const validatedData = validateAndSanitizeInsight(formData);
+
+      loadingToast = showLoading(editingInsight ? 'Updating insight...' : 'Creating insight...');
 
       let imageUrl = editingInsight?.image_url || '';
 
       // Upload new image if selected
       if (selectedImage) {
+        const imageValidationError = await validateFile(selectedImage);
+        if (imageValidationError) {
+          throw new Error(`Image validation failed: ${imageValidationError}`);
+        }
+
         setUploadingImage(true);
         imageUrl = await uploadImage(selectedImage);
         setUploadingImage(false);
@@ -267,39 +390,45 @@ const ContentManager = () => {
       const documentUrl = getPublicUrl(documentFilename);
 
       const insightData = {
-        ...formData,
+        ...validatedData,
         image_url: imageUrl,
         document_filename: documentFilename,
         document_url: documentUrl,
-        display_order: formData.display_order || documents.length + 1
+        display_order: validatedData.display_order || documents.length + 1
       };
 
       if (editingInsight) {
-        // Update existing insight
+        // Update existing insight - Fixed: Removed .execute() and used proper syntax
         const { error } = await supabase
           .from('insights')
           .update(insightData)
-          .eq('id', editingInsight.id)
-          .execute();
+          .eq('id', editingInsight.id);
 
         if (error) throw error;
-        setSuccess('Insight updated successfully!');
+        if (loadingToast) dismissToast(loadingToast);
+        showSuccess('Insight updated successfully!');
       } else {
         // Create new insight
         const { error } = await supabase
           .from('insights')
-          .insert(insightData)
-          .execute();
+          .insert(insightData);
 
         if (error) throw error;
-        setSuccess('Insight created successfully!');
+        if (loadingToast) dismissToast(loadingToast);
+        showSuccess('Insight created successfully!');
       }
 
       resetForm();
       await loadDocumentsAndInsights();
-      setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
-      setError((err as Error).message);
+      if (loadingToast) dismissToast(loadingToast);
+      const error = err as Error;
+      showError(error.message);
+      captureError(error, { 
+        context: 'ContentManager.handleSubmit',
+        isEditing: !!editingInsight,
+        formData 
+      });
     } finally {
       setSaving(false);
       setUploadingImage(false);
@@ -308,14 +437,15 @@ const ContentManager = () => {
 
   const handleDeleteDocument = async (fileName: string, hasInsight: boolean) => {
     try {
-      setError('');
+      // let loadingToast: string | undefined;
+      const loadingToast = showLoading('Deleting...');
       
       // If document has an insight, delete the insight first
       if (hasInsight) {
         const { error: insightError } = await supabase
           .from('insights')
-          .eq('document_filename', fileName)
-          .delete();
+          .delete()
+          .eq('document_filename', fileName);
 
         if (insightError) throw insightError;
       }
@@ -327,13 +457,19 @@ const ContentManager = () => {
 
       if (error) throw error;
 
-      setSuccess('Document and associated insight deleted successfully!');
-      setTimeout(() => setSuccess(''), 3000);
+      if (loadingToast) dismissToast(loadingToast);
+      showSuccess('Document and associated insight deleted successfully!');
       setDeleteConfirm(null);
       
       await loadDocumentsAndInsights();
     } catch (err) {
-      setError('Failed to delete: ' + (err as Error).message);
+      const error = err as Error;
+      showError('Failed to delete: ' + error.message);
+      captureError(error, { 
+        context: 'ContentManager.handleDeleteDocument',
+        fileName,
+        hasInsight 
+      });
     }
   };
 
@@ -348,10 +484,11 @@ const ContentManager = () => {
     setImagePreview('');
     setEditingInsight(null);
     setCreatingFromDoc(null);
+    setValidationErrors([]);
     setShowForm(false);
   };
 
-  const getFileIcon = (fileName: string, metadata?: any) => {
+  const getFileIcon = (fileName: string, metadata?: DocumentFile['metadata']) => { // Fixed: Proper typing instead of 'any'
     const extension = fileName.split('.').pop()?.toLowerCase();
     const mimeType = metadata?.mimetype || '';
   
@@ -395,6 +532,14 @@ const ContentManager = () => {
     event.target.value = '';
   };
 
+  const handleFormChange = (field: keyof InsightFormData, value: string | number | boolean) => {
+    const newFormData = { ...formData, [field]: value };
+    setFormData(newFormData);
+    
+    // Clear validation errors for this field
+    setValidationErrors(prev => prev.filter(error => error.field !== field));
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -412,28 +557,22 @@ const ContentManager = () => {
         </h1>
       </div>
 
-      {/* Alerts */}
-      {error && (
+      {/* Validation Errors Display */}
+      {validationErrors.length > 0 && (
         <div className="rounded-md bg-red-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <ExclamationTriangleIcon className="h-5 w-5 text-red-400" />
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800">{error}</h3>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {success && (
-        <div className="rounded-md bg-green-50 p-4">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <CheckIcon className="h-5 w-5 text-green-400" />
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-green-800">{success}</h3>
+              <h3 className="text-sm font-medium text-red-800">Please fix the following errors:</h3>
+              <div className="mt-2 text-sm text-red-700">
+                <ul className="list-disc list-inside space-y-1">
+                  {validationErrors.map((error, index) => (
+                    <li key={index}>{error.message}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -604,11 +743,14 @@ const ContentManager = () => {
                 <input
                   type="text"
                   value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  onChange={(e) => handleFormChange('title', e.target.value)}
+                  className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                    validationErrors.some(e => e.field === 'title') ? 'border-red-300' : ''
+                  }`}
                   placeholder="Enter insight title..."
                   required
                 />
+                <p className="mt-1 text-xs text-gray-500">{formData.title.length}/200 characters</p>
               </div>
 
               <div>
@@ -616,11 +758,14 @@ const ContentManager = () => {
                 <textarea
                   rows={4}
                   value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  onChange={(e) => handleFormChange('description', e.target.value)}
+                  className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                    validationErrors.some(e => e.field === 'description') ? 'border-red-300' : ''
+                  }`}
                   placeholder="Enter insight description..."
                   required
                 />
+                <p className="mt-1 text-xs text-gray-500">{formData.description.length}/1000 characters</p>
               </div>
 
               <div>
@@ -648,7 +793,7 @@ const ContentManager = () => {
                   <input
                     type="number"
                     value={formData.display_order}
-                    onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => handleFormChange('display_order', parseInt(e.target.value) || 0)}
                     className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                 </div>
@@ -657,7 +802,7 @@ const ContentManager = () => {
                   <input
                     type="checkbox"
                     checked={formData.is_active}
-                    onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
+                    onChange={(e) => handleFormChange('is_active', e.target.checked)}
                     className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                   />
                   <label className="ml-2 block text-sm text-gray-900">Publish as Active Insight</label>
@@ -674,7 +819,7 @@ const ContentManager = () => {
                 </button>
                 <button
                   type="submit"
-                  disabled={saving || uploadingImage}
+                  disabled={saving || uploadingImage || validationErrors.length > 0}
                   className="px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
                 >
                   {saving || uploadingImage ? (
@@ -745,6 +890,25 @@ const ContentManager = () => {
                 <li><strong>Manage:</strong> Edit insights, reorder them, or delete documents and their associated insights</li>
                 <li><strong>Publish:</strong> Toggle insights active/inactive to control what appears on your website</li>
               </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Validation Info */}
+      <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+        <div className="flex">
+          <div className="flex-shrink-0">
+            <ExclamationTriangleIcon className="h-5 w-5 text-yellow-400" />
+          </div>
+          <div className="ml-3">
+            <h3 className="text-sm font-medium text-yellow-800">Security & Validation</h3>
+            <div className="mt-2 text-sm text-yellow-700">
+              <p>
+                All content is automatically validated and sanitized to prevent security issues. 
+                Script tags, JavaScript URLs, and other potentially harmful content will be removed.
+                File uploads are validated for type and size before processing.
+              </p>
             </div>
           </div>
         </div>
