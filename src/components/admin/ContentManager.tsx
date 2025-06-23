@@ -99,7 +99,6 @@ const validateAndSanitizeInsight = (data: unknown) => {
   };
 };
 
-// TypeScript Interfaces
 interface DocumentFile {
   name: string;
   id?: string;
@@ -179,7 +178,7 @@ const ContentManager = () => {
 
       if (docsError) throw docsError;
 
-      // Load insights - Fixed: Removed .execute() method
+      // Load insights
       const { data: insightsData, error: insightsError } = await supabase
         .from('insights')
         .select('*');
@@ -212,7 +211,7 @@ const ContentManager = () => {
 
   useEffect(() => {
     loadDocumentsAndInsights();
-  }, [loadDocumentsAndInsights]); // Fixed: Added missing dependency
+  }, [loadDocumentsAndInsights]);
 
   const uploadFile = async (file: File) => {
     let loadingToast: string | undefined;
@@ -398,7 +397,7 @@ const ContentManager = () => {
       };
 
       if (editingInsight) {
-        // Update existing insight - Fixed: Removed .execute() and used proper syntax
+        // Update existing insight
         const { error } = await supabase
           .from('insights')
           .update(insightData)
