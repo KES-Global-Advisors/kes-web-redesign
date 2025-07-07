@@ -1,0 +1,9 @@
+# Allow access to static files like images, sitemaps, and robots.txt
+# ––––– SEO assets –––––
+/robots.txt   /.netlify/functions/api-robots    200
+/sitemap.xml  /.netlify/functions/api-sitemap   200
+/assets/*    /assets/:splat   200
+/site.webmanifest /site.webmanifest 200
+
+# Catch-all redirect for client-side routing
+/*    /index.html   200
