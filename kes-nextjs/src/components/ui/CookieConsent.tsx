@@ -21,7 +21,7 @@ const CookieConsent: React.FC = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 z-10 w-full bg-gray-800 text-white p-4 flex justify-between">
+    <div className="fixed bottom-0 z-50 w-full bg-gray-800 text-white p-4 flex justify-between">
       <div>
         We use cookies to improve your experience and for marketing purposes. By clicking &quot;Accept&quot;, you consent to the use of cookies.
       </div>

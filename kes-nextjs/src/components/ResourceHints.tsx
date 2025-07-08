@@ -11,7 +11,9 @@ export default function ResourceHints({
 }: ResourceHintsProps) {
   const defaultPreloadImages = [
     'https://i.postimg.cc/tTPMrGpV/KES-Banner-5.webp',
-    '/assets/KES-Logo-print.png'
+    '/assets/KES-Logo-print.png',
+    'https://i.postimg.cc/qRJZNy36/About-Us-Banner.avif',
+    '/assets/Globe.png'
   ]
 
   const defaultPrefetchPages = [
