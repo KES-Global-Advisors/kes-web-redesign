@@ -11,7 +11,9 @@
     "analyze": "ANALYZE=true next build",
     "build:analyze": "yarn analyze",
     "lighthouse": "node scripts/performance-test.mjs",
-    "test:performance": "yarn build && yarn start & sleep 5 && yarn lighthouse"
+    "test:performance": "yarn build && yarn start & sleep 5 && yarn lighthouse",
+    "optimize-images": "next-optimized-images",
+    "bundle-analyzer": "npx @next/bundle-analyzer"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",

@@ -46,8 +46,8 @@ const Insights: React.FC<InsightProps> = ({ id }) => {
     speed: 500,
     slidesToShow: Math.min(slidesToShow, insights.length),
     slidesToScroll: 1,
-    nextArrow: <div className="slick-next slick-arrow" />,
-    prevArrow: <div className="slick-prev slick-arrow" />,
+    nextarrow: <div className="slick-next slick-arrow" />,
+    prevarrow: <div className="slick-prev slick-arrow" />,
   };
 
   // Show loading state while either content or insights are loading
