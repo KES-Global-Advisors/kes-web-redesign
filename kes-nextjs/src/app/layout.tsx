@@ -1,4 +1,3 @@
-// import localFont from 'next/font/local'
 import { Metadata } from 'next'
 import { SupabaseProvider } from '@/components/admin/SupabaseContext'
 import { ContentProvider } from '@/hooks/useContent'
@@ -13,7 +12,6 @@ import { OrganizationSchema, WebsiteSchema } from '@/components/StructuredData'
 import { WebVitals } from '@/components/WebVitals'
 import { Toaster } from 'react-hot-toast'
 import './globals.css'
-import './styles.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kesglobaladvisors.com'),
@@ -72,13 +70,65 @@ export default function RootLayout({
       <head>
         <OrganizationSchema />
         <WebsiteSchema />
+        
+        {/* Critical CSS for above-the-fold content */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Critical CSS for performance - Prevent CLS */
+            body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+            .hero-container { min-height: 100vh; }
+            .header-fixed { position: fixed; top: 0; width: 100%; z-index: 50; background: white; }
+            .hero-image-container { width: 50%; height: 600px; background: #f9fafb; }
+            .loading-skeleton { background: #e5e7eb; border-radius: 4px; }
+            .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+            @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+            
+            /* Preload critical fonts */
+            @font-face {
+              font-family: 'Inter';
+              font-display: swap;
+              src: url('/fonts/inter-var.woff2') format('woff2');
+              font-weight: 100 900;
+            }
+          `
+        }} />
+        
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://i.postimg.cc" />
+        
+        {/* Preload critical resources */}
+        <link 
+          rel="preload" 
+          href="https://i.postimg.cc/tTPMrGpV/KES-Banner-5.webp" 
+          as="image" 
+          type="image/webp"
+        />
+        <link 
+          rel="preload" 
+          href="/assets/KES-Logo-print.png" 
+          as="image" 
+          type="image/png"
+        />
+        
         {/* DNS prefetch for better performance */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        
+        {/* Performance optimizations */}
+        <meta httpEquiv="x-dns-prefetch-control" content="on" />
+        
+        {/* Viewport optimization */}
+        <meta 
+          name="viewport" 
+          content="width=device-width, initial-scale=1, viewport-fit=cover" 
+        />
+        
+        {/* PWA optimization */}
+        <meta name="theme-color" content="#3786b5" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <CookiesProviderWrapper>

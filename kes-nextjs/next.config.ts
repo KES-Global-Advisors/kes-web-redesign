@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import createBundleAnalyzer from '@next/bundle-analyzer';
+
 const nextConfig = {
   // Enable static exports for better performance
   // output: 'export',
@@ -31,7 +33,7 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000,
   },
   
   // Experimental features for better performance
@@ -46,18 +48,17 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+
+  compress: true,
   
-  // Bundle analyzer (for debugging)
-  // ...(process.env.ANALYZE === 'true' && {
-  //   webpack: (config: { plugins: any[] }) => {
-  //     config.plugins.push(
-  //       require('@next/bundle-analyzer')({
-  //         enabled: process.env.ANALYZE === 'true',
-  //       })
-  //     )
-  //     return config
-  //   },
-  // }),
+  webpack: (config: { plugins: unknown[] }) => {
+    config.plugins.push(
+      createBundleAnalyzer({
+        enabled: process.env.ANALYZE === 'true',
+      })
+    )
+    return config
+  },
   
   // Security headers
   async headers() {
