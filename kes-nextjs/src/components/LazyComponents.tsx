@@ -36,6 +36,7 @@ export const LazyContact = dynamic(() => import('./ui/Contact'), {
       </div>
     </div>
   ),
+  ssr: false,
 })
 
 // Add these new lazy components for better performance

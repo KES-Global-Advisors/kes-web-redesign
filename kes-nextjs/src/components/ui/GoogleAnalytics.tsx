@@ -17,83 +17,92 @@ const GoogleAnalytics: React.FC = () => {
     if (typeof window === 'undefined') return;
 
     try {
-      // Create script element
-      const script = document.createElement('script');
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-47E46SXZR1';
-      script.async = true;
-      
-      // Add script to document
-      document.head.appendChild(script);
+      // Only load after user interaction or after 3 seconds
+      const loadAnalytics = () => {
+        const script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-47E46SXZR1';
+        script.async = true;
+        script.defer = true;
+        
+        document.head.appendChild(script);
 
-      // Initialize dataLayer and gtag function
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function(...args: unknown[]) { 
-        window.dataLayer.push(args); 
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(...args: unknown[]) { 
+          window.dataLayer.push(args); 
+        };
+
+        script.onload = () => {
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-47E46SXZR1', {
+            page_title: document.title,
+            page_location: window.location.href,
+            send_page_view: true,
+            anonymize_ip: true,
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+          });
+          console.log('Google Analytics loaded successfully');
+        };
+
+        script.onerror = () => {
+          console.error('Failed to load Google Analytics');
+        };
       };
 
-      // Wait for script to load
-      await new Promise<void>((resolve, reject) => {
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error('Failed to load Google Analytics'));
+      // Load after user interaction or 3 seconds, whichever comes first
+      let hasLoaded = false;
+      const loadOnce = () => {
+        if (!hasLoaded) {
+          hasLoaded = true;
+          loadAnalytics();
+        }
+      };
+
+      // Load after user interaction
+      const interactionEvents = ['click', 'scroll', 'keydown', 'touchstart'];
+      const handleInteraction = () => {
+        loadOnce();
+        interactionEvents.forEach(event => {
+          document.removeEventListener(event, handleInteraction);
+        });
+      };
+
+      interactionEvents.forEach(event => {
+        document.addEventListener(event, handleInteraction, { passive: true });
       });
 
-      // Configure Google Analytics
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-47E46SXZR1', {
-        page_title: document.title,
-        page_location: window.location.href,
-        // Performance optimizations
-        send_page_view: true,
-        custom_map: {
-          'custom_parameter': 'value'
-        },
-        // Privacy settings
-        anonymize_ip: true,
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false
-      });
+      // Fallback: load after 3 seconds
+      const timer = setTimeout(loadOnce, 3000);
 
-      console.log('Google Analytics loaded successfully');
+      return () => {
+        clearTimeout(timer);
+        interactionEvents.forEach(event => {
+          document.removeEventListener(event, handleInteraction);
+        });
+      };
     } catch (error) {
-      console.error('Failed to load Google Analytics:', error);
+      console.error('Failed to initialize Google Analytics:', error);
     }
   }, []);
 
   useEffect(() => {
     if (cookies.marketing !== 'accepted') return;
 
-    // Delay loading to improve initial page performance
-    const loadTimer = setTimeout(() => {
-      loadGoogleAnalytics();
-    }, 1500); // Load after 1.5 seconds
+    let cleanup: (() => void) | undefined;
 
-    return () => clearTimeout(loadTimer);
-  }, [cookies.marketing, loadGoogleAnalytics]);
+    loadGoogleAnalytics().then(fn => {
+      cleanup = fn;
+    });
 
-  // Track page views for SPA navigation
-  useEffect(() => {
-    if (cookies.marketing !== 'accepted' || !window.gtag) return;
-
-    const handleRouteChange = () => {
-      window.gtag('config', 'G-47E46SXZR1', {
-        page_path: window.location.pathname,
-        page_title: document.title,
-        page_location: window.location.href,
-      });
-    };
-
-    // Listen for navigation events (for SPA routing)
-    window.addEventListener('popstate', handleRouteChange);
-    
     return () => {
-      window.removeEventListener('popstate', handleRouteChange);
+      if (cleanup) cleanup();
     };
-  }, [cookies.marketing]);
+  }, [cookies.marketing, loadGoogleAnalytics]);
 
   return null;
 };
 
-// Additional utility functions for tracking
+// Optimized tracking functions
 export const trackEvent = (eventName: string, parameters: Record<string, unknown> = {}) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, {
