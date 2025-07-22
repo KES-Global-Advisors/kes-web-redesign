@@ -3,7 +3,7 @@ import createBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig = {
   // Enable static exports for better performance
-  // output: 'export',
+  output: 'export',
   trailingSlash: true,
   
   // Image optimization
@@ -36,6 +36,13 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
 
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  },
+
     // Compiler optimizations
   compiler: {
     // Remove console.log in production
@@ -43,9 +50,6 @@ const nextConfig = {
       exclude: ['error', 'warn']
     } : false,
   },
-
-  // Output optimization
-  // output: 'standalone', // For better Docker builds if needed
 
   // Build-time optimizations
   poweredByHeader: false,
