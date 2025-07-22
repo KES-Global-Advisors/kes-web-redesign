@@ -12,7 +12,13 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: true
-  }
+  },
+  global: {
+    headers: {
+      'x-client-info': 'supabase-js-web',
+      'Cache-Control': 'public, max-age=86400', // 24 hour cache
+    },
+  },
 })
 
 // Types for our database

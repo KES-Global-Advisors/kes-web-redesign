@@ -59,10 +59,11 @@ export const useContentQuery = () => {
   return useQuery({
     queryKey: queryKeys.siteContent,
     queryFn: fetchSiteContent,
-    staleTime: 10 * 60 * 1000, // 10 minutes - content changes infrequently
-    gcTime: 60 * 60 * 1000, // 1 hour
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    gcTime: 7 * 24 * 60 * 60 * 1000, // 7 days
     refetchOnWindowFocus: false,
-    // Always return default content as fallback
+    refetchOnMount: false,
+    refetchOnReconnect: false,
     placeholderData: defaultContent,
   })
 }

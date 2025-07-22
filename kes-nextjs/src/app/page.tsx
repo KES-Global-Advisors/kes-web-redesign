@@ -1,16 +1,15 @@
 // app/page.tsx (SSG Implementation)
 import { Metadata } from 'next'
 import { fetchSiteContentServer, fetchActiveInsightsServer, createDehydratedState } from '@/lib/serverDataFetchers'
-import ServerHero from '@/components/server/ServerHero'
-import ServerApproach from '@/components/server/ServerApproach'
 import HydrationBoundary from '@/components/providers/HydrationBoundary'
-import { LazyTestimonials, LazyInsights, LazyContact } from '@/components/LazyComponents'
+import { LazyHero, LazyAbout, LazyInsights, LazyApproach } from '@/components/LazyComponents'
+import Testimonials from '@/components/ui/Testimonials'
 import Service from '@/components/ui/Service'
-import About from '@/components/ui/About'
+import Contact from '@/components/ui/Contact'
 import SSGDebugInfo from '@/components/SSGDebugInfo'
 
 // Enable static generation with ISR
-export const revalidate = 3600 // Revalidate every hour
+export const revalidate = 86400 // Revalidate 24 hours
 
 export const metadata: Metadata = {
   title: 'KES Global Advisors LLC | Unlocking Your Organization\'s Full Potential',
@@ -41,34 +40,13 @@ export default async function HomePage() {
   
   return (
     <HydrationBoundary state={dehydratedState}>
-      {/* Server-rendered Hero with pre-fetched content */}
-      <ServerHero 
-        heroTitle={siteContent.hero_title}
-        heroSubtitle={siteContent.hero_subtitle}
-      />
-      
-      {/* Testimonials - lazy loaded for performance */}
-      <LazyTestimonials />
-      
-      {/* Approach - server-rendered with pre-fetched content */}
-      <ServerApproach 
-        approachTitle={siteContent.approach_title}
-        approachDescription={siteContent.approach_description}
-      />
-      
-      {/* Services - uses static data */}
-      <Service id="services" />
-      
-      {/* About - will use cached data from React Query */}
-      <About id="about" />
-      
-      {/* Insights - will use pre-hydrated data */}
-      <LazyInsights id="insights" />
-      
-      {/* Contact - lazy loaded */}
-      <LazyContact id="contact" />
-
-            {/* Debug info - only shows in development */}
+      <LazyHero />
+      <Testimonials />
+      <LazyApproach />
+      <Service />
+      <LazyAbout />
+      <LazyInsights />
+      <Contact />
       <SSGDebugInfo />
     </HydrationBoundary>
   )

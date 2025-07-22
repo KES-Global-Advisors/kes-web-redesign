@@ -1,11 +1,14 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { getServiceSlugs } from '@/lib/services';
+
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -16,8 +19,23 @@ const navigation = [
 ];
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Prefetch all pages including service slugs
+  useEffect(() => {
+    // Prefetch main pages
+    navigation.forEach(item => {
+      router.prefetch(item.href);
+    });
+
+    // Prefetch all service detail pages
+    const serviceSlugs = getServiceSlugs();
+    serviceSlugs.forEach(slug => {
+      router.prefetch(`/services/${slug}`);
+    });
+  }, [router]);
 
   const isActive = (href: string) => {
     if (href === '/') {

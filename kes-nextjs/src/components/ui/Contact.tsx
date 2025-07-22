@@ -2,11 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-interface ContactProps {
-  id: string;
-}
-
-const Contact: React.FC<ContactProps> = ({ id }) => {
+const Contact = () => {
   const sectionRef = useRef(null);
   const [status, setStatus] = useState<string>('');
   const [errors, setErrors] = useState<string[]>([]);
@@ -38,12 +34,6 @@ const Contact: React.FC<ContactProps> = ({ id }) => {
         observer.unobserve(currentRef);
       }
     };
-  }, []);
-
-  useEffect(() => {
-    if (window.location.hash === '#contact' && sectionRef.current) {
-      (sectionRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
-    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -94,7 +84,6 @@ const Contact: React.FC<ContactProps> = ({ id }) => {
 
   return (
     <div
-      id={id}
       ref={sectionRef}
       className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8 relative"
       style={{

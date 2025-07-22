@@ -107,9 +107,11 @@ export const useInsightsQuery = () => {
   return useQuery({
     queryKey: queryKeys.insightsActive(),
     queryFn: fetchActiveInsights,
-    staleTime: 15 * 60 * 1000, // 15 minutes - insights change less frequently
-    gcTime: 2 * 60 * 60 * 1000, // 2 hours
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    gcTime: 7 * 24 * 60 * 60 * 1000, // 7 days
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
     placeholderData: defaultInsights,
   })
 }

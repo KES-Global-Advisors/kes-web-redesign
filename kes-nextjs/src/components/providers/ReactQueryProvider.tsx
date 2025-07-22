@@ -22,21 +22,19 @@ export default function ReactQueryProvider({
     () => new QueryClient({
       defaultOptions: {
         queries: {
-          // Data is considered fresh for 5 minutes
-          staleTime: 5 * 60 * 1000,
-          // Data stays in cache for 30 minutes
-          gcTime: 30 * 60 * 1000, // Renamed from cacheTime in v5
-          // Retry failed requests 3 times
-          retry: 3,
-          // Retry with exponential backoff
-          retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-          // Don't refetch on window focus in production for better performance
-          refetchOnWindowFocus: process.env.NODE_ENV === 'development',
-          // Enable background refetching
-          refetchOnMount: 'always',
+          // Data stays fresh for 24 hours
+          staleTime: 24 * 60 * 60 * 1000, // 24 hours
+          // Keep in cache for 7 days
+          gcTime: 7 * 24 * 60 * 60 * 1000, // 7 days
+          // CRITICAL: Never refetch if we have data
+          refetchOnMount: false,
+          refetchOnWindowFocus: false,
+          refetchOnReconnect: false,
+          // Only retry once on initial fetch
+          retry: 1,
+          retryDelay: 1000,
         },
         mutations: {
-          // Retry mutations once
           retry: 1,
         },
       },

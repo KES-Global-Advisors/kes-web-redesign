@@ -5,11 +5,7 @@ import Link from 'next/link'
 import { useContent } from '@/hooks/useContentQuery';
 import { getAllServices } from '@/lib/services'
 
-interface ServiceProps {
-  id: string;
-}
-
-const Service: React.FC<ServiceProps> = ({ id }) => {
+const Service = () => {
   const { getContent, loading } = useContent();
   const sectionRef = useRef<HTMLDivElement>(null);
   const services = getAllServices()
@@ -53,7 +49,6 @@ const Service: React.FC<ServiceProps> = ({ id }) => {
   if (loading) {
     return (
       <div 
-        id={id}
         className="bg-[#f5f2f7] py-24 sm:py-32"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -68,7 +63,6 @@ const Service: React.FC<ServiceProps> = ({ id }) => {
 
   return (
     <div 
-      id={id}
       ref={sectionRef} 
       className="bg-[#f5f2f7] py-24 sm:py-32"
     >

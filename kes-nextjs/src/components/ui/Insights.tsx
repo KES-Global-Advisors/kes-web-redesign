@@ -5,11 +5,8 @@ import Image from 'next/image'
 import { useContent } from '../../hooks/useContentQuery';
 import { useInsights } from '../../hooks/useInsightsQuery';
 
-interface InsightProps {
-  id: string;
-}
 
-const Insights: React.FC<InsightProps> = ({ id }) => {
+const Insights = () => {
   const { getContent, loading: contentLoading } = useContent();
   const { insights, loading: insightsLoading } = useInsights();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -92,7 +89,7 @@ const Insights: React.FC<InsightProps> = ({ id }) => {
   // Show loading state with fixed dimensions to prevent CLS
   if (contentLoading || insightsLoading) {
     return (
-      <div id={id} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]" style={{ minHeight: '600px' }}>
+      <div className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]" style={{ minHeight: '600px' }}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <div className="animate-pulse">
@@ -119,7 +116,7 @@ const Insights: React.FC<InsightProps> = ({ id }) => {
   // Show message if no insights are available
   if (insights.length === 0) {
     return (
-      <div id={id} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]" style={{ minHeight: '400px' }}>
+      <div className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]" style={{ minHeight: '400px' }}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-2xl font-bold leading-7 text-indigo-600 lg:text-white">
@@ -146,7 +143,7 @@ const Insights: React.FC<InsightProps> = ({ id }) => {
   const dotsCount = Math.max(1, insights.length - itemsPerPage + 1);
 
   return (
-    <div id={id} className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]" style={{ minHeight: '600px' }}>
+    <div className="lg:bg-[rgb(55,134,181)] py-24 sm:py-32 bg-[#f5f2f7]" style={{ minHeight: '600px' }}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-2xl font-bold leading-7 text-indigo-600 lg:text-white">
