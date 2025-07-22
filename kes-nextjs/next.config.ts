@@ -2,8 +2,6 @@
 import createBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig = {
-  // Enable static exports for better performance
-  output: 'export',
   trailingSlash: true,
   
   // Image optimization
@@ -71,6 +69,49 @@ const nextConfig = {
       })
     )
     return config
+  },
+  
+  // Security headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        // Cache static assets
+        source: '/assets/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache API routes with shorter duration
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=300, stale-while-revalidate=60',
+          },
+        ],
+      },
+    ]
   },
 }
 

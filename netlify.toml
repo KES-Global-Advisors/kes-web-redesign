@@ -2,10 +2,7 @@
 [build]
   # Build command for Next.js
   command = "yarn build"
-  
-  # Next.js exports to 'out' directory for static export
-  # or '.next' for serverless deployment
-  publish = "out"
+  publish = ".next" 
   
   # Node.js version (Next.js requires Node 18+)
   environment = { NODE_VERSION = "18" }
