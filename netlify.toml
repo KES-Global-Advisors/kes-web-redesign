@@ -3,12 +3,10 @@
   # Build command for Next.js
   command = "yarn build"
   publish = ".next" 
-  
-  # Node.js version (Next.js requires Node 18+)
-  environment = { NODE_VERSION = "18" }
 
 [build.environment]
   # Next.js environment variables
+  NODE_VERSION = "18"
   NODE_ENV = "production"
   
 
