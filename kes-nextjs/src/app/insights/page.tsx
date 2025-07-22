@@ -6,11 +6,7 @@ import Image from 'next/image'
 import { useContent } from '../../hooks/useContentQuery';
 import { useInsights } from '../../hooks/useInsightsQuery';
 
-interface InsightProps {
-  id: string;
-}
-
-const InsightsPage: React.FC<InsightProps> = ({ id }) => {
+const InsightsPage = () => {
   const { getContent, loading: contentLoading } = useContent();
   const { insights, loading: insightsLoading } = useInsights();
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -46,7 +42,7 @@ const InsightsPage: React.FC<InsightProps> = ({ id }) => {
   // Show loading state while either content or insights are loading
   if (contentLoading || insightsLoading) {
     return (
-      <div id={id} className="bg-white min-h-screen pt-20">
+      <div className="bg-white min-h-screen pt-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 sm:py-24">
           {/* Header Loading */}
           <div className="mx-auto max-w-2xl text-center mb-16">
@@ -75,7 +71,7 @@ const InsightsPage: React.FC<InsightProps> = ({ id }) => {
   }
 
   return (
-    <div id={id} ref={sectionRef} className="bg-white min-h-screen pt-20">
+    <div ref={sectionRef} className="bg-white min-h-screen pt-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 sm:py-24">
         {/* Header Section */}
         <div className="mx-auto max-w-2xl text-center mb-16">

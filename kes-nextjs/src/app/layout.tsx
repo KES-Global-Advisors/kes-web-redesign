@@ -100,12 +100,6 @@ export default function RootLayout({
         {/* Preload critical resources */}
         <link 
           rel="preload" 
-          href="https://i.postimg.cc/tTPMrGpV/KES-Banner-5.webp" 
-          as="image" 
-          type="image/webp"
-        />
-        <link 
-          rel="preload" 
           href="/assets/KES-Logo-print.png" 
           as="image" 
           type="image/png"

@@ -13,22 +13,6 @@ export default function ClientHeroAnimations() {
     }
   }, [])
 
-  // Preload critical LCP image
-  useEffect(() => {
-    const link = document.createElement('link')
-    link.rel = 'preload'
-    link.as = 'image'
-    link.href = 'https://i.postimg.cc/tTPMrGpV/KES-Banner-5.webp'
-    link.type = 'image/webp'
-    document.head.appendChild(link)
-    
-    return () => {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link)
-      }
-    }
-  }, [])
-
   return (
     <>
       {/* Custom animations styles */}

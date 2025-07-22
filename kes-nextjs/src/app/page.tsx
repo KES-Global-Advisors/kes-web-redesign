@@ -6,7 +6,6 @@ import { LazyHero, LazyAbout, LazyInsights, LazyApproach } from '@/components/La
 import Testimonials from '@/components/ui/Testimonials'
 import Service from '@/components/ui/Service'
 import Contact from '@/components/ui/Contact'
-import SSGDebugInfo from '@/components/SSGDebugInfo'
 
 // Enable static generation with ISR
 export const revalidate = 86400 // Revalidate 24 hours
@@ -22,7 +21,6 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  console.log('🏗️ Building homepage with SSG...')
   
   // Fetch data on the server at build time
   const [siteContent, activeInsights] = await Promise.all([
@@ -33,11 +31,6 @@ export default async function HomePage() {
   // Create dehydrated state for React Query
   const dehydratedState = createDehydratedState(siteContent, activeInsights)
   
-  console.log('📊 SSG Data Summary:')
-  console.log(`- Content items: ${Object.keys(siteContent).length}`)
-  console.log(`- Active insights: ${activeInsights.length}`)
-  console.log(`- Generated at: ${new Date().toISOString()}`)
-  
   return (
     <HydrationBoundary state={dehydratedState}>
       <LazyHero />
@@ -47,7 +40,6 @@ export default async function HomePage() {
       <LazyAbout />
       <LazyInsights />
       <Contact />
-      <SSGDebugInfo />
     </HydrationBoundary>
   )
 }

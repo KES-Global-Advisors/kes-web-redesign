@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 }
 
 export default async function ServicesPage() {
-  console.log('🏗️ Building services page with SSG...')
   
   // Get services data at build time (this is static)
   const services = getAllServices()
