@@ -1,57 +1,12 @@
-'use client'
-
-import { useEffect, useRef } from 'react';
+// components/server/ServerApproach.tsx
 import Image from 'next/image'
-import { useContent } from '../../hooks/useContentQuery';
 
-const Approach = () => {
-  const { getContent, loading } = useContent();
-  const sectionRef = useRef(null);
+interface ServerApproachProps {
+  approachTitle: string
+  approachDescription: string
+}
 
-  useEffect(() => {
-    const currentRef = sectionRef.current
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-slide-up');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, []);
-
-  // Loading state
-  if (loading) {
-    return (
-      <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-        <div className="absolute inset-0 -z-10 h-full w-full bg-gray-700 animate-pulse"></div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 animate-pulse">
-            <div className="h-16 bg-gray-700 rounded mb-6"></div>
-            <div className="h-6 bg-gray-700 rounded mb-4"></div>
-            <div className="h-6 bg-gray-700 rounded w-3/4"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+export default function ServerApproach({ approachTitle, approachDescription }: ServerApproachProps) {
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
       <Image
@@ -88,15 +43,13 @@ const Approach = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            {getContent('approach_title')}
+            {approachTitle}
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            {getContent('approach_description')}
+            {approachDescription}
           </p>
         </div>
       </div>
     </div>
-  );
-};
-
-export default Approach;
+  )
+}

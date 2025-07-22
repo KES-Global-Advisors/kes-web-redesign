@@ -1,14 +1,12 @@
+// src/app/about/page.tsx
 'use client'
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image'
-import { useContent } from '../../hooks/useContent';
+import { useContent } from '../../hooks/useContentQuery';
 
-interface AboutProps {
-  id: string;
-}
 
-const AboutPage: React.FC<AboutProps> = ({ id }) => {
+const AboutPage = () => {
   const { getContent, loading } = useContent();
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +41,7 @@ const AboutPage: React.FC<AboutProps> = ({ id }) => {
   // Loading state
   if (loading) {
     return (
-      <div id={id} className="bg-white min-h-screen pt-20">
+      <div className="bg-white min-h-screen pt-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 sm:py-24">
           {/* Header Loading */}
           <div className="text-center mb-16">
@@ -70,7 +68,7 @@ const AboutPage: React.FC<AboutProps> = ({ id }) => {
   }
 
   return (
-    <div id={id} ref={sectionRef} className="bg-white min-h-screen pt-20">
+    <div ref={sectionRef} className="bg-white min-h-screen pt-20">
       {/* Hero Section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 sm:py-24">
         <div className="text-center mb-16">

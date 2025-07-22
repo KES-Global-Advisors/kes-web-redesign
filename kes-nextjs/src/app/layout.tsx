@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { SupabaseProvider } from '@/components/admin/SupabaseContext'
-import { ContentProvider } from '@/hooks/useContent'
-import { InsightsProvider } from '@/hooks/useInsights'
+import ReactQueryProvider from '@/components/providers/ReactQueryProvider'
 import CookiesProviderWrapper from '@/components/CookiesProviderWrapper'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
@@ -132,21 +131,20 @@ export default function RootLayout({
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <CookiesProviderWrapper>
-          <SupabaseProvider>
-            <ErrorBoundary>
-              <ContentProvider>
-                <InsightsProvider>
-                  <CookieConsent />
-                  <GoogleAnalytics />
-                  <WebVitals />
-                  <Header />
-                  <main>{children}</main>
-                  <Footer />
-                  <Toaster position="bottom-right" />
-                </InsightsProvider>
-              </ContentProvider>
-            </ErrorBoundary>
-          </SupabaseProvider>
+          <ReactQueryProvider>
+            <SupabaseProvider>
+              <ErrorBoundary>
+                {/* Removed ContentProvider and InsightsProvider - now using React Query */}
+                <CookieConsent />
+                <GoogleAnalytics />
+                <WebVitals />
+                <Header />
+                <main>{children}</main>
+                <Footer />
+                <Toaster position="bottom-right" />
+              </ErrorBoundary>
+            </SupabaseProvider>
+          </ReactQueryProvider>
         </CookiesProviderWrapper>
       </body>
     </html>

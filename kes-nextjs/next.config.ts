@@ -35,6 +35,20 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
   },
+
+    // Compiler optimizations
+  compiler: {
+    // Remove console.log in production
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn']
+    } : false,
+  },
+
+  // Output optimization
+  // output: 'standalone', // For better Docker builds if needed
+
+  // Build-time optimizations
+  poweredByHeader: false,
   
   // Experimental features for better performance
   experimental: {
@@ -43,11 +57,6 @@ const nextConfig = {
   },
   
   allowedDevOrigins: ['local-origin.dev', '*.local-origin.dev', 'localhost:3000', '192.168.1.192'],
-  
-  // Compiler optimizations
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
 
   compress: true,
   
@@ -77,6 +86,26 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        // Cache static assets
+        source: '/assets/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache API routes with shorter duration
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=300, stale-while-revalidate=60',
           },
         ],
       },

@@ -1,7 +1,13 @@
+// src/app/services/page.tsx (SSG Implementation)
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllServices } from '@/lib/services'
+
+// Enable static generation - services are relatively static
+export async function generateStaticParams() {
+  return []
+}
 
 export const metadata: Metadata = {
   title: 'Services | KES Global Advisors - Business Strategy & Corporate Advisory',
@@ -14,8 +20,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  console.log('🏗️ Building services page with SSG...')
+  
+  // Get services data at build time (this is static)
   const services = getAllServices()
+  
+  console.log(`📊 SSG Services: ${services.length} services generated at build time`)
 
   return (
     <div className="bg-white min-h-screen pt-20">
@@ -34,7 +45,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* Services Grid */}
+      {/* Services Grid - Statically rendered */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 sm:py-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {services.map((service) => (
@@ -48,6 +59,8 @@ export default function ServicesPage() {
                   alt={service.name}
                   fill
                   className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 256px"
+                  loading={services.indexOf(service) < 2 ? 'eager' : 'lazy'} // Eager load first 2
                 />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
               </div>
@@ -95,7 +108,7 @@ export default function ServicesPage() {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Contact Us Today
                 </Link>

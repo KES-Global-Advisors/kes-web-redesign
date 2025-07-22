@@ -1,18 +1,29 @@
-// src/app/services/[slug]/page.tsx
+// src/app/services/[slug]/page.tsx (SSG Implementation)
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { getServiceBySlug, getAllServices } from '@/lib/services'
+import { getServiceBySlug, getServiceSlugs } from '@/lib/services'
 import type { Service } from '@/lib/services'
 
 interface ServicePageProps {
-  params: Promise<{ slug: string }>  // Changed: params is now a Promise
+  params: Promise<{ slug: string }>
+}
+
+// Generate static params for all services at build time
+export async function generateStaticParams() {
+  console.log('🏗️ Generating static params for service pages...')
+  const slugs = getServiceSlugs()
+  console.log(`📊 Generating ${slugs.length} service pages`)
+  
+  return slugs.map((slug) => ({
+    slug,
+  }))
 }
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const { slug } = await params  // Changed: await the params
+  const { slug } = await params
   const service = getServiceBySlug(slug)
   
   if (!service) {
@@ -50,13 +61,6 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 }
 
-export async function generateStaticParams() {
-  const services = getAllServices()
-  return services.map((service) => ({
-    slug: service.slug,
-  }))
-}
-
 function ServiceJsonLd({ service }: { service: Service }) {
   return (
     <script
@@ -72,12 +76,16 @@ function ServiceJsonLd({ service }: { service: Service }) {
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
-  const { slug } = await params  // Changed: await the params
+  console.log('🏗️ Building service detail page with SSG...')
+  
+  const { slug } = await params
   const service = getServiceBySlug(slug)
 
   if (!service) {
     notFound()
   }
+
+  console.log(`📊 Generated service page: ${service.name}`)
 
   return (
     <>
@@ -115,6 +123,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 width={800}
                 height={600}
                 className="mt-10 aspect-[6/5] w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 800px"
               />
             </div>
           </div>

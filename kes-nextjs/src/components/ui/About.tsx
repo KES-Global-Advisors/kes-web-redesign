@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image'
-import { useContent } from '../../hooks/useContent';
+import { useContent } from '../../hooks/useContentQuery';
 
 interface AboutProps {
   id: string;

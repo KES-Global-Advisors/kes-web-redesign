@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image'
-import { useContent } from '../../hooks/useContent';
-import { useInsights } from '../../hooks/useInsights';
+import { useContent } from '../../hooks/useContentQuery';
+import { useInsights } from '../../hooks/useInsightsQuery';
 
 interface InsightProps {
   id: string;
@@ -34,7 +34,22 @@ const Insights: React.FC<InsightProps> = ({ id }) => {
     return () => window.removeEventListener('resize', updateItemsPerPage);
   }, []);
 
-  // Keyboard navigation
+  // Calculate the maximum index based on items and items per page
+  const maxIndex = Math.max(0, insights.length - itemsPerPage);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => {
+      return prev >= maxIndex ? 0 : prev + 1;
+    });
+  }, [maxIndex]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => {
+      return prev <= 0 ? maxIndex : prev - 1;
+    });
+  }, [maxIndex]);
+
+    // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (insights.length <= itemsPerPage) return;
@@ -48,22 +63,7 @@ const Insights: React.FC<InsightProps> = ({ id }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [insights.length, itemsPerPage]);
-
-  // Calculate the maximum index based on items and items per page
-  const maxIndex = Math.max(0, insights.length - itemsPerPage);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => {
-      return prev >= maxIndex ? 0 : prev + 1;
-    });
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => {
-      return prev <= 0 ? maxIndex : prev - 1;
-    });
-  };
+  }, [insights.length, itemsPerPage, nextSlide, prevSlide]);
 
   // Touch handlers for swipe gestures
   const handleTouchStart = (e: React.TouchEvent) => {

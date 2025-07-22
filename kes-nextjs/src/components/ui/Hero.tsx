@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image'
-import { useContent } from '../../hooks/useContent';
+import { useContent } from '../../hooks/useContentQuery';
 
 const Hero = () => {
-  const { getContent, loading } = useContent();
+  const { getContent, loading } = useContent(); // Same interface, now powered by React Query
   const heroRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -32,6 +32,7 @@ const Hero = () => {
   }, []);
 
   // Show loading skeleton while content is being fetched
+  // Note: With React Query placeholderData, this should rarely show
   if (loading) {
     return (
       <div className="bg-white lg:bg-white bg-gradient-to-b from-sky-100 to-white min-h-screen lg:h-auto lg:min-h-[100%]">

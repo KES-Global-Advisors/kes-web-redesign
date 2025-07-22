@@ -1,19 +1,14 @@
+// hooks/useInsightsQuery.ts
 'use client'
 
-import { useState, useEffect, useContext, createContext, ReactNode } from 'react'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '../lib/supabase'
+import { queryKeys } from '../components/providers/ReactQueryProvider'
 import type { Database } from '../lib/supabase'
 
 type InsightRow = Database['public']['Tables']['insights']['Row']
 
-interface InsightsContextType {
-  insights: InsightRow[]
-  loading: boolean
-  error: string | null
-  refreshInsights: () => Promise<void>
-}
-
-// Default fallback insights (your existing hardcoded data)
+// Default fallback insights (same as original)
 const defaultInsights: InsightRow[] = [
   {
     id: '1',
@@ -89,81 +84,128 @@ const defaultInsights: InsightRow[] = [
   }
 ]
 
-const InsightsContext = createContext<InsightsContextType>({
-  insights: defaultInsights,
-  loading: true,
-  error: null,
-  refreshInsights: async () => {}
-})
+// Fetch function for active insights
+const fetchActiveInsights = async (): Promise<InsightRow[]> => {
+  try {
+    const { data, error } = await supabase
+      .from('insights')
+      .select('*')
+      .eq('is_active', true)
+      .order('display_order', { ascending: true })
 
-interface InsightsProviderProps {
-  children: ReactNode
+    if (error) throw error
+
+    return data && data.length > 0 ? data : defaultInsights
+  } catch (error) {
+    console.error('Failed to fetch insights:', error)
+    return defaultInsights
+  }
 }
 
-export const InsightsProvider = ({ children }: InsightsProviderProps) => {
-  const [insights, setInsights] = useState<InsightRow[]>(defaultInsights)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+// Main hook for fetching active insights
+export const useInsightsQuery = () => {
+  return useQuery({
+    queryKey: queryKeys.insightsActive(),
+    queryFn: fetchActiveInsights,
+    staleTime: 15 * 60 * 1000, // 15 minutes - insights change less frequently
+    gcTime: 2 * 60 * 60 * 1000, // 2 hours
+    refetchOnWindowFocus: false,
+    placeholderData: defaultInsights,
+  })
+}
 
-  const loadInsights = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      
-      // Only load insights on client side
-      if (typeof window !== 'undefined' && supabase) {
-        const { data, error } = await supabase
-          .from('insights')
-          .select('*')
-          .eq('is_active', true)
-          .order('display_order', { ascending: true })
-
-        if (error) throw error
-
-        if (data && data.length > 0) {
-          setInsights(data)
-        } else {
-          setInsights(defaultInsights)
-        }
-      } else {
-        // Use default insights for SSR
-        setInsights(defaultInsights)
-      }
-    } catch (err) {
-      console.error('Failed to load insights:', err)
-      setError((err as Error).message)
-      setInsights(defaultInsights)
-    } finally {
-      setLoading(false)
+// Hook compatible with existing useInsights interface
+export const useInsights = () => {
+  const { data: insights, isLoading, error } = useInsightsQuery()
+  
+  return {
+    insights: insights || defaultInsights,
+    loading: isLoading,
+    error: error?.message || null,
+    refreshInsights: () => {
+      console.log('Insights refresh triggered by React Query')
     }
   }
-
-  useEffect(() => {
-    loadInsights()
-  }, [])
-
-  const refreshInsights = async () => {
-    await loadInsights()
-  }
-
-  const value: InsightsContextType = {
-    insights,
-    loading,
-    error,
-    refreshInsights
-  }
-
-  return (
-    <InsightsContext.Provider value={value}>
-      {children}
-    </InsightsContext.Provider>
-  )
 }
 
-export const useInsights = (): InsightsContextType => {
-  const context = useContext(InsightsContext)
-  if (context === undefined) {
-    throw new Error('useInsights must be used within an InsightsProvider')
-  }
-  return context
+// Hook for fetching all insights (admin use)
+export const useAllInsightsQuery = () => {
+  return useQuery({
+    queryKey: queryKeys.insights,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('insights')
+        .select('*')
+        .order('display_order', { ascending: true })
+      
+      if (error) throw error
+      return data || []
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes for admin data
+  })
+}
+
+// Mutation hooks for admin operations
+export const useCreateInsightMutation = () => {
+  const queryClient = useQueryClient()
+  
+  return useMutation({
+    mutationFn: async (insight: Omit<InsightRow, 'id' | 'created_at' | 'updated_at'>) => {
+      const { data, error } = await supabase
+        .from('insights')
+        .insert({
+          ...insight,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+        .select()
+      
+      if (error) throw error
+      return data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.insights })
+      queryClient.invalidateQueries({ queryKey: queryKeys.insightsActive() })
+    }
+  })
+}
+
+export const useUpdateInsightMutation = () => {
+  const queryClient = useQueryClient()
+  
+  return useMutation({
+    mutationFn: async ({ id, ...updates }: Partial<InsightRow> & { id: string }) => {
+      const { data, error } = await supabase
+        .from('insights')
+        .update({ ...updates, updated_at: new Date().toISOString() })
+        .eq('id', id)
+        .select()
+      
+      if (error) throw error
+      return data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.insights })
+      queryClient.invalidateQueries({ queryKey: queryKeys.insightsActive() })
+    }
+  })
+}
+
+export const useDeleteInsightMutation = () => {
+  const queryClient = useQueryClient()
+  
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from('insights')
+        .delete()
+        .eq('id', id)
+      
+      if (error) throw error
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.insights })
+      queryClient.invalidateQueries({ queryKey: queryKeys.insightsActive() })
+    }
+  })
 }

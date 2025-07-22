@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link'
-import { useContent } from '@/hooks/useContent';
+import { useContent } from '@/hooks/useContentQuery';
 import { getAllServices } from '@/lib/services'
 
 interface ServiceProps {

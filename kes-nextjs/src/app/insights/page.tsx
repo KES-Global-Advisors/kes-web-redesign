@@ -1,9 +1,10 @@
+// src/app/insights/page.tsx
 'use client'
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image'
-import { useContent } from '../../hooks/useContent';
-import { useInsights } from '../../hooks/useInsights';
+import { useContent } from '../../hooks/useContentQuery';
+import { useInsights } from '../../hooks/useInsightsQuery';
 
 interface InsightProps {
   id: string;
@@ -199,7 +200,7 @@ const InsightsPage: React.FC<InsightProps> = ({ id }) => {
                   </p>
                   <a
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors duration-200"
+                    className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors duration-200"
                   >
                     Get in Touch
                   </a>

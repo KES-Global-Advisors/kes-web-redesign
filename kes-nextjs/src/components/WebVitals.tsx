@@ -7,11 +7,7 @@ import { sendToGoogleAnalytics } from '@/lib/analytics'
 // Proper typing for gtag function
 declare global {
   interface Window {
-    gtag: (
-      command: 'config' | 'event' | 'js' | 'set',
-      targetId: string,
-      config?: Record<string, unknown>
-    ) => void
+    gtag: (...args: unknown[]) => void
   }
 }
 
