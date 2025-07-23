@@ -9,7 +9,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  
+  NEXT_PRIVATE_STANDALONE = "true"
 
 # Headers for better performance and security
 [[headers]]
@@ -38,6 +38,11 @@
   for = "/sw.js"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
 
 # Redirect rules for SPA behavior (if needed)
 [[redirects]]
