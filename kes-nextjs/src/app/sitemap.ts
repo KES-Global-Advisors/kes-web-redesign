@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllServices } from '@/lib/services'
+import { getAllServices } from '../lib/services'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.kesglobaladvisors.com'
