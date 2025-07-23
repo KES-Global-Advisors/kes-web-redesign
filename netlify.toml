@@ -45,12 +45,6 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Handle client-side routing for any missed routes
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 # Form handling (for your contact form)
 [forms]
   # This enables Netlify Forms processing

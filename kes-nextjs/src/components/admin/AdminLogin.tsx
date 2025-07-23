@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation'; 
 import { useSupabase } from './SupabaseContext';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
@@ -11,15 +11,36 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, user } = useSupabase();
-  const navigate = useNavigate();
+  const { signIn, user, loading: authLoading } = useSupabase();
+  const router = useRouter();
 
   // Redirect if already logged in
   useEffect(() => {
-    if (user) {
-      navigate('/admin/dashboard');
+    if (user && !authLoading) {
+      router.push('/admin/dashboard'); 
     }
-  }, [user, navigate]);
+  }, [user, authLoading, router]);
+
+  // Show loading while checking auth status
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      </div>
+    );
+  }
+
+  // Show loading while redirecting
+  if (user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Redirecting to dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -36,7 +57,7 @@ const AdminLogin = () => {
       if (error) {
         setError(error.message || 'Login failed');
       } else if (data?.user) {
-        navigate('/admin/dashboard');
+        router.push('/admin/dashboard');
       }
     } catch {
       setError('An unexpected error occurred');
@@ -52,7 +73,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-indigo-100">
@@ -160,7 +181,7 @@ const AdminLogin = () => {
           <div className="text-center">
             <button
               type="button"
-              onClick={() => navigate('/')}
+              onClick={() => router.push('/')}
               className="text-sm text-indigo-600 hover:text-indigo-500"
             >
               ← Back to main site

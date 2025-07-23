@@ -51,7 +51,7 @@ const Header = () => {
           <nav aria-label="Global" className="flex items-center justify-between lg:justify-start">
             <Link href="/" className="m-1.5 p-1.5">
               <Image 
-                src="/assets/KES-Logo-print.png" 
+                src="https://i.postimg.cc/4dnBSWYW/KES-Logo-print.png" 
                 alt="KES Global Advisors Logo" 
                 width={120}
                 height={40}
