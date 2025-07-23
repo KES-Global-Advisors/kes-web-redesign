@@ -1,6 +1,5 @@
 'use client'
 
-import logo from '../../../public/assets/KES-Logo-print.png';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
 
@@ -12,7 +11,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center text-gray-900">
               <Image 
-                src={logo} 
+                src="https://i.postimg.cc/4dnBSWYW/KES-Logo-print.png"
                 alt="KES Global Advisors" 
                 className="h-10 w-auto" 
                 width={120}

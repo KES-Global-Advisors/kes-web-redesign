@@ -1,10 +1,9 @@
 'use client'
 
 import { useEffect } from 'react';
-import { Routes, Route, useNavigate, useLocation, Link } from 'react-router-dom';
+import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link'; 
 import { useSupabase } from './SupabaseContext';
-import ContentEditor from './ContentEditor';
-import ContentManager from './ContentManager';
 import { 
   DocumentTextIcon, 
   FolderIcon, 
@@ -15,21 +14,21 @@ import {
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
-const AdminPanel = () => {
+const AdminPanel = ({ children }: { children: React.ReactNode }) => {
   const { user, loading, signOut } = useSupabase();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname(); 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
-      navigate('/admin/login');
+      router.push('/admin/login');
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, router]);
 
   const handleSignOut = async () => {
     await signOut();
-    navigate('/admin/login');
+    router.push('/admin/login');
   };
 
   const navigation = [
@@ -37,16 +36,28 @@ const AdminPanel = () => {
     { name: 'Content Manager', href: '/admin/manager', icon: FolderIcon },
   ];
 
+  // Show loading spinner while checking authentication
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
       </div>
     );
   }
 
+  // Show loading while redirecting to login
   if (!user) {
-    return null; // Will redirect to login
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Redirecting to login...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -76,9 +87,9 @@ const AdminPanel = () => {
                       {navigation.map((item) => (
                         <li key={item.name}>
                           <Link
-                            to={item.href}
+                            href={item.href}
                             className={`group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold ${
-                              location.pathname === item.href
+                              pathname === item.href
                                 ? 'bg-gray-50 text-indigo-600'
                                 : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
                             }`}
@@ -111,9 +122,9 @@ const AdminPanel = () => {
                   {navigation.map((item) => (
                     <li key={item.name}>
                       <Link
-                        to={item.href}
+                        href={item.href}
                         className={`group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold ${
-                          location.pathname === item.href
+                          pathname === item.href
                             ? 'bg-gray-50 text-indigo-600'
                             : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
                         }`}
@@ -166,14 +177,14 @@ const AdminPanel = () => {
           <div className="hidden lg:flex lg:items-center lg:justify-between lg:mb-8">
             <div className="min-w-0 flex-1">
               <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                {location.pathname === '/admin/content' && 'Content Editor'}
-                {location.pathname === '/admin/documents' && 'Document Manager'}
-                {location.pathname === '/admin/dashboard' && 'Dashboard'}
+                {pathname === '/admin/content' && 'Content Editor'}
+                {pathname === '/admin/manager' && 'Document Manager'}
+                {pathname === '/admin/dashboard' && 'Dashboard'}
               </h1>
             </div>
             <div className="flex items-center gap-x-4">
               <Link
-                to="/"
+                href="/"
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600"
               >
                 <HomeIcon className="h-5 w-5" />
@@ -190,49 +201,10 @@ const AdminPanel = () => {
             </div>
           </div>
 
-          {/* Routes */}
-          <Routes>
-            <Route path="/dashboard" element={<AdminDashboard />} />
-            <Route path="/content" element={<ContentEditor />} />
-            <Route path="/manager" element={<ContentManager />} />
-            <Route path="/" element={<AdminDashboard />} />
-          </Routes>
+          {/* Render children */}
+          {children}
         </div>
       </main>
-    </div>
-  );
-};
-
-// Simple dashboard component
-const AdminDashboard = () => {
-  const { user } = useSupabase();
-  
-  return (
-    <div className="space-y-6">
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Welcome to the Admin Panel</h2>
-        <p className="text-gray-600 mb-4">
-          Hello {user?.email}! You can manage your website content and documents from here.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link
-            to="/admin/content"
-            className="block p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 hover:bg-gray-50 transition-colors"
-          >
-            <DocumentTextIcon className="h-8 w-8 text-indigo-600 mb-2" />
-            <h3 className="font-medium text-gray-900">Content Editor</h3>
-            <p className="text-sm text-gray-600">Edit text content throughout your website</p>
-          </Link>
-          <Link
-            to="/admin/documents"
-            className="block p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 hover:bg-gray-50 transition-colors"
-          >
-            <FolderIcon className="h-8 w-8 text-indigo-600 mb-2" />
-            <h3 className="font-medium text-gray-900">Document Manager</h3>
-            <p className="text-sm text-gray-600">Upload and manage documents and images</p>
-          </Link>
-        </div>
-      </div>
     </div>
   );
 };
