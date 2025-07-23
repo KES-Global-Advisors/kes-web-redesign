@@ -2,7 +2,7 @@
 [build]
   base = "kes-nextjs"
   command = "yarn install && yarn build"
-  publish = "kes-nextjs/.next"
+  publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
