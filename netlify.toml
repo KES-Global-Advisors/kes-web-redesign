@@ -34,9 +34,10 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/sw.js"
+  for = "/sitemap.xml"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
 
 [[redirects]]
   from = "/sitemap.xml"
@@ -44,10 +45,9 @@
   status = 200
 
 [[headers]]
-  for = "/sitemap.xml"
+  for = "/sw.js"
   [headers.values]
-    Content-Type = "application/xml; charset=utf-8"
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Redirect rules for SPA behavior (if needed)
 [[redirects]]
