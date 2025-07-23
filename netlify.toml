@@ -9,7 +9,6 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_PRIVATE_STANDALONE = "true"
 
 # Headers for better performance and security
 [[headers]]
@@ -39,10 +38,16 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.next/server/app/sitemap.xml"
+  status = 200
+
 [[headers]]
   for = "/sitemap.xml"
   [headers.values]
-    Content-Type = "application/xml"
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
 
 # Redirect rules for SPA behavior (if needed)
 [[redirects]]
