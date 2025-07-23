@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import { Link } from 'react-scroll';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -20,25 +20,35 @@ const Footer = () => {
               />
             </div>
             <nav className="mt-11 flex gap-8">
-              <Link to="home" smooth={true} duration={500}>
-                <button className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
-                  <span className="relative z-10">Home</span>
-                </button>
+              <Link 
+                href="/"
+                className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+              >
+                <span className="relative z-10">Home</span>
               </Link>
-              <Link to="about" smooth={true} duration={500}>
-                <button className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
-                  <span className="relative z-10">About</span>
-                </button>
+              <Link 
+                href="/about"
+                className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+              >
+                <span className="relative z-10">About</span>
               </Link>
-              <Link to="services" smooth={true} duration={400}>
-                <button className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
-                  <span className="relative z-10">Services</span>
-                </button>
+              <Link 
+                href="/services"
+                className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+              >
+                <span className="relative z-10">Services</span>
               </Link>
-              <Link to="insights" smooth={true} duration={600}>
-                <button className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0">
-                  <span className="relative z-10">Insights</span>
-                </button>
+              <Link 
+                href="/insights"
+                className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+              >
+                <span className="relative z-10">Insights</span>
+              </Link>
+              <Link 
+                href="/contact"
+                className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-0"
+              >
+                <span className="relative z-10">Contact</span>
               </Link>
             </nav>
           </div>
