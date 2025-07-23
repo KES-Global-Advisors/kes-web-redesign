@@ -40,7 +40,7 @@
 
 [[redirects]]
   from = "/sitemap.xml"
-  to = "/.next/server/app/sitemap.xml"
+  to = "/sitemap.xml"
   status = 200
 
 [[headers]]
