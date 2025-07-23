@@ -38,13 +38,6 @@ const Service = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // Scroll to the section if the URL has the #services hash
-    if (window.location.hash === '#services' && sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
-
   // Loading state
   if (loading) {
     return (

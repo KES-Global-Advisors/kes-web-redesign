@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useContent } from '../../hooks/useContentQuery';
 
 const Hero = () => {
-  const { getContent, loading } = useContent(); // Same interface, now powered by React Query
+  const { getContent, loading } = useContent();
   const heroRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -13,22 +13,6 @@ const Hero = () => {
     if (heroElement) {
       heroElement.classList.add('animate-slide-up');
     }
-  }, []);
-
-  // Preload critical LCP image
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = 'https://i.postimg.cc/tTPMrGpV/KES-Banner-5.webp';
-    link.type = 'image/webp';
-    document.head.appendChild(link);
-    
-    return () => {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-    };
   }, []);
 
   // Show loading skeleton while content is being fetched

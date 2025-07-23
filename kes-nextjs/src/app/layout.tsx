@@ -97,14 +97,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://i.postimg.cc" />
         
-        {/* Preload critical resources */}
-        <link 
-          rel="preload" 
-          href="/assets/KES-Logo-print.png" 
-          as="image" 
-          type="image/png"
-        />
-        
         {/* DNS prefetch for better performance */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />

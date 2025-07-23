@@ -16,7 +16,6 @@ const Footer = () => {
                 className="h-10 w-auto" 
                 width={120}
                 height={40}
-                priority
               />
             </div>
             <nav className="mt-11 flex gap-8">

@@ -155,7 +155,7 @@ const CookieConsent: React.FC = () => {
               onClick={acceptCookies} 
               className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800"
             >
-              Accept All
+              Accept
             </button>
           </div>
         </div>
