@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { getServiceSlugs } from '@/lib/services';
+import { getServiceSlugs } from '../../lib/services';
 
 
 const navigation = [

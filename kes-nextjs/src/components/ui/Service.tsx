@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link'
-import { useContent } from '@/hooks/useContentQuery';
-import { getAllServices } from '@/lib/services'
+import { useContent } from '../../hooks/useContentQuery';
+import { getAllServices } from '../../lib/services'
 
 const Service = () => {
   const { getContent, loading } = useContent();

@@ -1,11 +1,11 @@
 // app/page.tsx (SSG Implementation)
 import { Metadata } from 'next'
-import { fetchSiteContentServer, fetchActiveInsightsServer, createDehydratedState } from '@/lib/serverDataFetchers'
-import HydrationBoundary from '@/components/providers/HydrationBoundary'
-import { LazyHero, LazyAbout, LazyInsights, LazyApproach } from '@/components/LazyComponents'
-import Testimonials from '@/components/ui/Testimonials'
-import Service from '@/components/ui/Service'
-import Contact from '@/components/ui/Contact'
+import { fetchSiteContentServer, fetchActiveInsightsServer, createDehydratedState } from '../lib/serverDataFetchers'
+import HydrationBoundary from '../components/providers/HydrationBoundary'
+import { LazyHero, LazyAbout, LazyInsights, LazyApproach } from '../components/LazyComponents'
+import Testimonials from '../components/ui/Testimonials'
+import Service from '../components/ui/Service'
+import Contact from '../components/ui/Contact'
 
 // Enable static generation with ISR
 export const revalidate = 86400 // Revalidate 24 hours

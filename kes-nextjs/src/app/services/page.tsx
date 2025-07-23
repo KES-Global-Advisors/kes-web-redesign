@@ -2,7 +2,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllServices } from '@/lib/services'
+import { getAllServices } from '../../lib/services'
 
 // Enable static generation - services are relatively static
 export async function generateStaticParams() {

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { getServiceBySlug, getServiceSlugs } from '@/lib/services'
+import { getServiceBySlug, getServiceSlugs } from '../../../lib/services'
 import type { Service } from '@/lib/services'
 
 interface ServicePageProps {

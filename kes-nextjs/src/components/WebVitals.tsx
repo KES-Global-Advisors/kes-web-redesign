@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { sendToGoogleAnalytics } from '@/lib/analytics'
+import { sendToGoogleAnalytics } from '../lib/analytics'
 
 // Proper typing for gtag function
 declare global {

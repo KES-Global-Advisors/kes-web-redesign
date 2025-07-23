@@ -1,4 +1,4 @@
-import { getAllServices } from '@/lib/services'
+import { getAllServices } from '../lib/services'
 
 export function OrganizationSchema() {
   const services = getAllServices()
