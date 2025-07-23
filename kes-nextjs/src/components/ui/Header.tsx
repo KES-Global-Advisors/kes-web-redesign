@@ -91,7 +91,7 @@ const Header = () => {
                 <Link href="/" className="-m-1.5 p-1.5">
                   <Image
                     alt="KES Global Advisors"
-                    src="/assets/Globe.png"
+                    src="https://i.postimg.cc/ydK5dM8W/Globe.png"
                     width={40}
                     height={40}
                     className="h-10 w-auto"
