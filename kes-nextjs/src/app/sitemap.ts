@@ -1,6 +1,6 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next'
-import { getAllServices } from '@/lib/services'
+import { getAllServices } from '../lib/services'
 
 // Add this helper function
 function escapeXml(unsafe: string): string {
