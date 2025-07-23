@@ -1,8 +1,0 @@
-# Allow access to static files like images, sitemaps, and robots.txt
-/assets/*    /assets/:splat   200
-/sitemap.xml    /sitemap.xml   200
-/robots.txt     /robots.txt    200
-/site.webmanifest /site.webmanifest 200
-
-# Catch-all redirect for client-side routing
-/*    /index.html   200
