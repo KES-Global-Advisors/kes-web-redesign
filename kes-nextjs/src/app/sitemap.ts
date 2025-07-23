@@ -1,8 +1,22 @@
+// src/app/sitemap.ts
 import { MetadataRoute } from 'next'
-import { getAllServices } from '../lib/services'
+import { getAllServices } from '@/lib/services'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  console.log('🔍 Sitemap generating...')
+// Add this helper function
+function escapeXml(unsafe: string): string {
+  return unsafe.replace(/[<>&'"]/g, function (c) {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
+    }
+  });
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {  
   const baseUrl = 'https://www.kesglobaladvisors.com'
   const services = getAllServices()
   
@@ -39,8 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
+  // Escape service slugs to prevent XML errors
   const servicePages = services.map((service) => ({
-    url: `${baseUrl}/services/${service.slug}`,
+    url: `${baseUrl}/services/${escapeXml(service.slug)}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
