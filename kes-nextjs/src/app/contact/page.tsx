@@ -1,6 +1,6 @@
 // src/app/contact/page.tsx
 import { Metadata } from 'next'
-import Contact from '../../components/ui/Contact'
+import Contact from '@/components/ui/Contact'
 
 export const metadata: Metadata = {
   title: 'Contact Us | KES Global Advisors',
